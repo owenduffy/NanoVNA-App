@@ -2023,6 +2023,8 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 	if (Hz > 0 && !tdr_mode)
 	{
 		const int size = data_unit.freqArraySize(mem);
+		if (size < 4)
+			return false;
 
 		if (index >= 0 && index < size)
 		{  // mouse is over a graph line

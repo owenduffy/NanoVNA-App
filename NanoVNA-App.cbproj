@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{0F65EE07-D5E9-4AA3-9F9F-7295FE4D8924}</ProjectGuid>
-        <ProjectVersion>18.8</ProjectVersion>
+        <ProjectVersion>19.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
         <MainSource>NanoVNA-App.cpp</MainSource>
@@ -99,7 +99,6 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <_TCHARMapping>char</_TCHARMapping>
         <VerInfo_Debug>true</VerInfo_Debug>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;vclwinx.bpi;vclimg.bpi;VclSmp.bpi;vclx.bpi;IndyCore.bpi;IndySystem.bpi;bcbsmp.bpi</LinkPackageImports>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
         <DCC_RangeChecking>true</DCC_RangeChecking>
         <Icon_MainIcon>NanoVNA-App_Icon.ico</Icon_MainIcon>
@@ -112,6 +111,10 @@
         <BCC_InstructionSet>6</BCC_InstructionSet>
         <BCC_UseRegisterVariables>None</BCC_UseRegisterVariables>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclwinx.lib;vclimg.lib;VclSmp.lib;vclx.lib;IndyCore.lib;IndySystem.lib;bcbsmp.lib</LinkPackageStatics>
+        <UsePackages>false</UsePackages>
+        <DynamicRTL>false</DynamicRTL>
+        <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -309,8 +312,8 @@
                     <Source Name="MainSource">NanoVNA-App.cpp</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k260.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp260.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Platforms>

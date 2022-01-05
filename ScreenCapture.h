@@ -18,14 +18,18 @@
 class TVNAScreenCaptureForm : public TForm
 {
 __published:	// IDE-managed Components
-	TImage *ActualSizeImage;
 	TSaveDialog *SaveDialog1;
-	TImage *ResizeImage;
 	TToggleSwitch *ActualSizeToggleSwitch;
 	TBitBtn *CloseBitBtn;
 	TBitBtn *SaveImageBitBtn;
 	TBitBtn *CopyImageBitBtn;
 	TBitBtn *RefreshImageBitBtn;
+	TToggleSwitch *ToggleSwitch1;
+	TLabel *ActualSize;
+	TLabel *Remote;
+	TPanel *Panel1;
+	TImage *ResizeImage;
+	TImage *ActualSizeImage;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -37,13 +41,31 @@ __published:	// IDE-managed Components
 	void __fastcall SaveImageBitBtnClick(TObject *Sender);
 	void __fastcall CopyImageBitBtnClick(TObject *Sender);
 	void __fastcall RefreshImageBitBtnClick(TObject *Sender);
+	void __fastcall ToggleSwitch1Click(TObject *Sender);
 
+	void __fastcall ResizeImageMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+	void __fastcall ActualSizeImageMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,  int X, int Y);
 
+	void __fastcall ResizeImageMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+	void __fastcall ActualSizeImageMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+
+	void __fastcall ResizeImageMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+	void __fastcall ActualSizeImageMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+
+	void __fastcall ActualSizeImageMouseLeave(TObject *Sender);
+	void __fastcall ResizeImageMouseLeave(TObject *Sender);
 private:	// User declarations
 	bool m_initialised;
 
 	int m_image_dw;
 	int m_image_dh;
+	int m_image_w;
+	int m_image_h;
+	struct {
+		int    x;
+		int    y;
+		int down;
+	} m_mouse;
 
 	String m_title;
 

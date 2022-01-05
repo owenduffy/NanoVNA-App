@@ -441,42 +441,7 @@ void __fastcall TSettingsForm::show()
 void __fastcall TSettingsForm::SetTimeButtonClick(TObject *Sender)
 {
 	if (Form1)
-	{
-		{
-			String s;
-
-			TDateTime now = Now();
-
-			unsigned short year;
-			unsigned short month;
-			unsigned short day;
-			unsigned short hour;
-			unsigned short min;
-			unsigned short sec;
-			unsigned short msec;
-			now.DecodeDate(&year, &month, &day);
-			now.DecodeTime(&hour, &min, &sec, &msec);
-
-			// time b 0x200831 0x233315  .. set 2020/08/31 23:33:15
-			s.printf(L"time b 0x%02u%02u%02u 0x%02u%02u%02u", year % 100, month, day,hour, min, sec);
-			Form1->addSerialTxCommand(s);
-/*
-			s.printf(L"time y %u", (year >= 2000) ? year - 2000 : (year >= 1900) ? year - 1900 : year);
-			Form1->addSerialTxCommand(s);
-			s.printf(L"time m %u", month);
-			Form1->addSerialTxCommand(s);
-			s.printf(L"time d %u", day);
-			Form1->addSerialTxCommand(s);
-			s.printf(L"time h %u", hour);
-			Form1->addSerialTxCommand(s);
-			s.printf(L"time min %u", min);
-			Form1->addSerialTxCommand(s);
-			s.printf(L"time sec %u", sec);
-			Form1->addSerialTxCommand(s);
-*/
-			Form1->addSerialTxCommand("time");
-		}
-	}
+		Form1->sendTimeCommand();
 }
 
 void __fastcall TSettingsForm::ClearConfigButtonClick(TObject *Sender)

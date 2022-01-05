@@ -85,6 +85,8 @@ String __fastcall CNanoVNA1Comms::getSerialStateString(t_serial_state state)
 		case SERIAL_STATE_FREQDATA_BIN:		s = "freq_data_bin";  break;
 		case SERIAL_STATE_FREQDATA_RAW:		s = "freq_data_raw";  break;
 		case SERIAL_STATE_SCREEN_CAPTURE:	s = "screen_capture"; break;
+		case SERIAL_STATE_SCREEN_FILL:      s = "fill"; break;
+		case SERIAL_STATE_SCREEN_BULK:      s = "bulk"; break;
 		case SERIAL_STATE_SD_LIST:				s = "sd_list";        break;
 		case SERIAL_STATE_SD_READFILE:		s = "sd_readfile";    break;
 		case SERIAL_STATE_MODE:					s = "mode";           break;
@@ -2056,38 +2058,48 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 						break;
 
 					case SERIAL_STATE_SCREEN_CAPTURE:
+					case SERIAL_STATE_SCREEN_FILL:
+					case SERIAL_STATE_SCREEN_BULK:
 						if (data_unit.m_vna_data.lcd_width >= 320 && data_unit.m_vna_data.lcd_height >= 240 && data_unit.m_vna_data.lcd_width <= 4096 && data_unit.m_vna_data.lcd_height <= 4096)
 						{
-							if (m_rx_block.bin_data_index == (unsigned int)(data_unit.m_vna_data.lcd_width * data_unit.m_vna_data.lcd_height * 2) && m_rx_block.bin_data_index == m_rx_block.bin_data.size())
+							if (m_rx_block.bin_data_index == m_rx_block.bin_data.size())
 							{
-								if (m_capture_bm == NULL)
+								if (m_capture_bm == NULL) {
 									m_capture_bm = new Graphics::TBitmap();
-								if (m_capture_bm != NULL)
-								{
 									m_capture_bm->Monochrome  = false;
 									m_capture_bm->Transparent = false;
-									m_capture_bm->PixelFormat = pf32bit;
-									m_capture_bm->Width       = data_unit.m_vna_data.lcd_width;
-									m_capture_bm->Height      = data_unit.m_vna_data.lcd_height;
-
-									for (int i = 0; i < (int)m_rx_block.bin_data.size(); i += 2)
-									{
-										const uint16_t pixel = ((uint16_t)m_rx_block.bin_data[i + 1] << 8) | ((uint16_t)m_rx_block.bin_data[i + 0] << 0);
-
-										const uint8_t red =  (pixel >> 0) & 0xf8;
-										const uint8_t grn = ((pixel << 5) & 0xe0) | ((pixel >> 11) & 0x1c);
-										const uint8_t blu =  (pixel >> 5) & 0xf8;
-
-										const int y = (i / 2) / m_capture_bm->Width;
-										const int x = (i / 2) % m_capture_bm->Width;
-										if (y < m_capture_bm->Height && x < m_capture_bm->Width)
-										{
-											uint8_t *p = (uint8_t *)m_capture_bm->ScanLine[y] + (x * 4);
-											p[0] = blu;
-											p[1] = grn;
-											p[2] = red;
-											p[3] = 255;
-										}
+									m_capture_bm->PixelFormat = pf16bit;
+								}
+								if (m_capture_bm == NULL) break;
+								if (m_capture_bm->Width  != data_unit.m_vna_data.lcd_width ) m_capture_bm->Width = data_unit.m_vna_data.lcd_width;
+								if (m_capture_bm->Height != data_unit.m_vna_data.lcd_height) m_capture_bm->Height = data_unit.m_vna_data.lcd_height;
+								int16_t x0, x1, y0, y1;
+								uint16_t *data;
+								int step = 1;
+								if (m_rx_block.type == SERIAL_STATE_SCREEN_CAPTURE) {
+								   x0 = 0; x1 = m_capture_bm->Width;
+								   y0 = 0; y1 = m_capture_bm->Height;
+								   data = (uint16_t*)&m_rx_block.bin_data[0];
+								}
+								else if (m_rx_block.type == SERIAL_STATE_SCREEN_BULK){
+								   x0 = m_region.x;
+								   y0 = m_region.y;
+								   x1 = m_region.w + x0;
+								   y1 = m_region.h + y0;
+								   data = (uint16_t*)&m_rx_block.bin_data[8];
+								}
+								else {
+								   x0 = m_region.x;
+								   y0 = m_region.y;
+								   x1 = m_region.w + x0;
+								   y1 = m_region.h + y0;
+								   data = (uint16_t*)&m_rx_block.bin_data[8];
+								   step = 0;
+								}
+								for (int16_t y = y0; y < y1; y++) {
+									uint16_t *dst = (uint16_t *)m_capture_bm->ScanLine[y] + x0;
+									for (int16_t x = x0; x < x1; x++, data+=step){
+										*dst++ = (*data<<8)|(*data>>8);
 									}
 								}
 
@@ -2133,7 +2145,7 @@ bool __fastcall CNanoVNA1Comms::processRxLine()
 			if (m_rx_block.type != SERIAL_STATE_IDLE)
 				Form1->pushCommMessage("rx: " + getSerialStateString(m_rx_block.type).UpperCase() + " done");
 		#endif
-		Form1->pushCommMessage("rx: " + m_rx_string);
+		//Form1->pushCommMessage("rx: " + m_rx_string);
 
 		m_rx_string = m_rx_string.SubString(pos + 3, m_rx_string.Length());
 
@@ -2146,7 +2158,8 @@ bool __fastcall CNanoVNA1Comms::processRxLine()
 	}
 	else
 	{
-		Form1->pushCommMessage("rx: " + m_rx_string.Trim());
+		if (m_rx_string != "fill" && m_rx_string != "bulk")
+			Form1->pushCommMessage("rx: " + m_rx_string.Trim());
 	}
 
 	if (m_rx_string.IsEmpty())
@@ -2310,6 +2323,28 @@ bool __fastcall CNanoVNA1Comms::processRxLine()
 		}
 	}
 	else
+	if (cmd == "fill")
+	{
+		if (data_unit.m_vna_data.lcd_width > 0 && data_unit.m_vna_data.lcd_height > 0)
+		{
+			block_type = SERIAL_STATE_SCREEN_FILL;
+
+			m_rx_block.bin_data.resize(10);
+			m_rx_block.bin_data_index = 0;
+		}
+	}
+	else
+	if (cmd == "bulk")
+	{
+		if (data_unit.m_vna_data.lcd_width > 0 && data_unit.m_vna_data.lcd_height > 0)
+		{
+			block_type = SERIAL_STATE_SCREEN_BULK;
+
+			m_rx_block.bin_data.resize(8);
+			m_rx_block.bin_data_index = 0;
+		}
+	}
+	else
 	if (cmd == "scan")
 	{
 		if (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA)
@@ -2418,6 +2453,11 @@ bool __fastcall CNanoVNA1Comms::processRxLine()
 		}
 	}
 	else
+	if (cmd == "touch" || cmd == "release" || cmd == "refresh")
+	{
+		return true;
+	}
+	else
 	if (cmd == "sd_list")
 	{
 		//block_type = SERIAL_STATE_SD_LIST;
@@ -2466,11 +2506,69 @@ int __fastcall CNanoVNA1Comms::processRx(t_serial_buffer &serial_buffer)
 	// add the received bytes into the correct rx buffer for processing
 
 	unsigned int k = 0;
-
 	while (k < serial_buffer.buffer_wr)
 	{
 		switch (m_rx_block.type)
 		{
+			case SERIAL_STATE_SCREEN_BULK:
+			case SERIAL_STATE_SCREEN_FILL:
+			{
+				const uint8_t b = serial_buffer.buffer[k];
+#if 0
+				if (m_rx_block.bin_data_index == 0)
+				{
+					if (b == '\r' || b == '\n') {	// drop any initial carriage return and line feed characters
+						k++;
+						break;
+					}
+				}
+#endif
+				if (m_rx_block.bin_data_index < 8)
+				{
+					m_rx_block.bin_data[m_rx_block.bin_data_index++] = b;
+					k++;
+					if (m_rx_block.bin_data_index >= 8)
+					{
+						int i = 0;
+						m_region.x = ((uint16_t)m_rx_block.bin_data[1] << 8) | (m_rx_block.bin_data[0] << 0);
+						m_region.y = ((uint16_t)m_rx_block.bin_data[3] << 8) | (m_rx_block.bin_data[2] << 0);
+						m_region.w = ((uint16_t)m_rx_block.bin_data[5] << 8) | (m_rx_block.bin_data[4] << 0);
+						m_region.h = ((uint16_t)m_rx_block.bin_data[7] << 8) | (m_rx_block.bin_data[6] << 0);
+						if (m_region.w*m_region.h*2 <= 2048 && m_region.x >= 0 && m_region.x < 480 && m_region.y >= 0 && m_region.y < 320)
+						{
+							if (m_rx_block.type == SERIAL_STATE_SCREEN_BULK)
+								m_rx_block.bin_data.resize(8 + m_region.w*m_region.h*2);	// make room for the following data
+							else
+								m_rx_block.bin_data.resize(8 + 2);												// make room for the following data
+						}
+					}
+				} else {
+					int available_bytes = serial_buffer.buffer_wr - k;
+					int available_space = (int)m_rx_block.bin_data.size() - (int)m_rx_block.bin_data_index;
+					if (available_bytes > available_space)
+						available_bytes  = available_space;
+					if (available_bytes > 0)
+					{	// copy the rx'ed data into the rx binary buffer
+						memcpy(&m_rx_block.bin_data[m_rx_block.bin_data_index], &serial_buffer.buffer[k], available_bytes);
+						m_rx_block.bin_data_index += available_bytes;
+						k += available_bytes;
+					}
+
+					if (m_rx_block.bin_data_index >= m_rx_block.bin_data.size())
+					{	// done
+						if (k > 0)
+						{	// remove used data from the rx serial buffer
+							if (k < serial_buffer.buffer_wr)
+								memmove(&serial_buffer.buffer[0], &serial_buffer.buffer[k], serial_buffer.buffer_wr - k);
+							serial_buffer.buffer_wr -= k;
+							k = 0;
+						}
+						processRxBlock();
+					}
+				}
+				break;
+
+			}
 			case SERIAL_STATE_SD_READFILE:
 			case SERIAL_STATE_SCREEN_CAPTURE:
 			case SERIAL_STATE_FREQDATA_RAW:
@@ -2663,6 +2761,8 @@ int __fastcall CNanoVNA1Comms::processRx(t_serial_buffer &serial_buffer)
 
 	if (	m_rx_block.type == SERIAL_STATE_SD_READFILE ||
 			m_rx_block.type == SERIAL_STATE_SCREEN_CAPTURE ||
+			m_rx_block.type == SERIAL_STATE_SCREEN_FILL ||
+			m_rx_block.type == SERIAL_STATE_SCREEN_BULK ||
 			m_rx_block.type == SERIAL_STATE_FREQDATA_BIN ||
 			m_rx_block.type == SERIAL_STATE_FREQDATA_RAW)
 	{	// currently receiving binary data

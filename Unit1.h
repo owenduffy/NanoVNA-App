@@ -867,8 +867,61 @@ public:
 
 	void __fastcall sendBandwidthCommand()
 	{
-		if (connected() && data_unit.m_vna_data.type != UNIT_TYPE_NANOVNA_V2 && data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2)
+		if (!connected()) return;
+		if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2) {
+			nanovna2_comms.setAverageSetting(data_unit.m_bandwidth_Hz);
+			return;
+		}
+		if (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2)
 			nanovna1_comms.sendBandwidthCommand();
+	}
+
+	void __fastcall sendTimeCommand()
+	{
+		if (connected())
+		{
+			String s;
+			TDateTime now = Now();
+			unsigned short year;
+			unsigned short month;
+			unsigned short day;
+			unsigned short hour;
+			unsigned short min;
+			unsigned short sec;
+			unsigned short msec;
+			now.DecodeDate(&year, &month, &day);
+			now.DecodeTime(&hour, &min, &sec, &msec);
+			if (data_unit.m_vna_data.type == UNIT_TYPE_JANVNA_V2)
+			{
+
+			}
+			else
+			if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2)
+			{	// V2
+				nanovna2_comms.setTime(year, month, day, hour, min, sec);
+			}
+			else
+			{  // V1
+				// time b 0x200831 0x233315  .. set 2020/08/31 23:33:15
+				s.printf(L"time b 0x%02u%02u%02u 0x%02u%02u%02u", year % 100, month, day,hour, min, sec);
+				nanovna1_comms.addSerialTxCommand(s);
+				/*
+				s.printf(L"time y %u", (year >= 2000) ? year - 2000 : (year >= 1900) ? year - 1900 : year);
+				nanovna1_comms.addSerialTxCommand(s);
+				s.printf(L"time m %u", month);
+				nanovna1_comms.addSerialTxCommand(s);
+				s.printf(L"time d %u", day);
+				nanovna1_comms.addSerialTxCommand(s);
+				s.printf(L"time h %u", hour);
+				nanovna1_comms.addSerialTxCommand(s);
+				s.printf(L"time min %u", min);
+				nanovna1_comms.addSerialTxCommand(s);
+				s.printf(L"time sec %u", sec);
+				nanovna1_comms.addSerialTxCommand(s);
+				*/
+				nanovna1_comms.addSerialTxCommand("time");
+			}
+		}
 	}
 
 	void __fastcall disconnect();
@@ -880,6 +933,10 @@ public:
 	int __fastcall fetchCommsData(const bool clear_rx_buffer);
 
 	void __fastcall setStartStopHz(int64_t low_Hz, int64_t high_Hz, bool start_scan);
+
+	bool __fastcall requestMouseDown(int x, int y);
+	bool __fastcall requestMouseUp(void);
+	bool __fastcall autoRefresh(bool enable);
 
 	void __fastcall getVNAScreenCapture();
 

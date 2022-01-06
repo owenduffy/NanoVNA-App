@@ -532,7 +532,10 @@ void __fastcall CNanoVNA2Comms::requestScan()
 
 		// reset protocol to known state
 		addTxNulls();
-
+		if (settings.calibrationSelection == CAL_SELECT_VNA)
+			addTxWrite1(REG_V2_RAW_SAMPLES_MODE, 0x03);   // enter USB calibrated mode
+		else
+			addTxWrite1(REG_V2_RAW_SAMPLES_MODE, 0x00);   // enter USB mode
 		// clear the FIFO
 		//addTxWrite1(REG_V2_VALUES_FIFO, 0);
 

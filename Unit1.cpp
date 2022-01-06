@@ -7518,7 +7518,7 @@ void __fastcall TForm1::updateCalibrationSelectComboBox()
 	cb->Clear();
 
 	cb->AddItem("None", (TObject *)CAL_SELECT_NONE);
-	if (!connected() || (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2 && data_unit.m_vna_data.type != UNIT_TYPE_NANOVNA_V2))
+	if (!connected() || (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2))// && data_unit.m_vna_data.type != UNIT_TYPE_NANOVNA_V2))
 		cb->AddItem("VNA",  (TObject *)CAL_SELECT_VNA);
 	cb->AddItem("APP",  (TObject *)CAL_SELECT_APP);
 

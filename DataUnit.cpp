@@ -346,7 +346,7 @@ bool __fastcall CData::validFrequencySettings()
 
 void __fastcall CData::minMaxFreqHz(int64_t &min_Hz, int64_t &max_Hz)
 {
-	max_Hz = MAX_VNA_JANVNAV2_FREQ_HZ;
+	max_Hz = 19e9;//MAX_VNA_JANVNAV2_FREQ_HZ;
 	min_Hz = MIN_VNA_JANVNAV2_FREQ_HZ;
 
 	if (m_vna_data.type == UNIT_TYPE_JANVNA_V2)
@@ -357,7 +357,7 @@ void __fastcall CData::minMaxFreqHz(int64_t &min_Hz, int64_t &max_Hz)
 	else
 	if (m_vna_data.type == UNIT_TYPE_NANOVNA_V2)
 	{
-		max_Hz = MAX_VNA_V2_FREQ_HZ;
+		max_Hz = MAX_VNA_V2_FREQ_HZ*3;
 		min_Hz = MIN_VNA_V2_FREQ_HZ;
 	}
 	else

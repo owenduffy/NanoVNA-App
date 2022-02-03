@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " " + s + " by OneOfEleven (+OD01)";
+		common.title = Application->Title + " " + s + " by OneOfEleven (+OD02)";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -11908,9 +11908,11 @@ void __fastcall TForm1::setCalibrationSelection(t_calibration_selection cal_sele
 	{
 		case CAL_SELECT_NONE:
 			this->Caption = common.title;
+      settings.calibrationFile="";
 			break;
 		case CAL_SELECT_VNA:
 			this->Caption = common.title + "           cal: VNA";
+      settings.calibrationFile="";
 			break;
 		case CAL_SELECT_APP:
 			if (!calibration_module.m_calibration.name.IsEmpty())
@@ -11923,7 +11925,11 @@ void __fastcall TForm1::setCalibrationSelection(t_calibration_selection cal_sele
 				this->Caption = common.title + "           cal: " + s;
 			}
 			else
+      {
 				this->Caption = common.title + "           cal: NONE";
+	      if (CalibrationForm)
+          CalibrationForm->show();
+      }
 			break;
 	}
 

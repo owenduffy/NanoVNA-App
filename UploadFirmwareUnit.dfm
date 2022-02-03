@@ -202,84 +202,15 @@ object UploadFirmwareForm: TUploadFirmwareForm
         Value = 33.333333333333340000
       end
       item
-        Value = 33.333333333333340000
+        Value = 33.333333333333310000
       end>
-    ControlCollection = <
-      item
-        Column = 1
-        Control = Button2
-        Row = 0
-      end
-      item
-        Column = 2
-        Control = Button1
-        Row = 0
-      end
-      item
-        Column = 0
-        Control = OneOfElevenFirmwareButton
-        Row = 0
-      end>
+    ControlCollection = <>
     RowCollection = <
       item
         Value = 100.000000000000000000
       end>
     ShowCaption = False
     TabOrder = 6
-    object Button2: TButton
-      Left = 130
-      Top = 0
-      Width = 130
-      Height = 21
-      Cursor = crHandPoint
-      Align = alClient
-      Caption = 'DiSlord H v1.1.00'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 0
-      OnClick = Button2Click
-    end
-    object Button1: TButton
-      Left = 260
-      Top = 0
-      Width = 130
-      Height = 21
-      Cursor = crHandPoint
-      Align = alClient
-      Caption = 'DiSlord H4 v1.1.00'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 1
-      OnClick = Button1Click
-    end
-    object OneOfElevenFirmwareButton: TButton
-      Left = 0
-      Top = 0
-      Width = 130
-      Height = 21
-      Cursor = crHandPoint
-      Align = alClient
-      Caption = '1-of-11 H LSI'
-      Enabled = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 2
-      OnClick = OneOfElevenFirmwareButtonClick
-      ExplicitLeft = -6
-      ExplicitWidth = 75
-    end
   end
   object CloseBitBtn: TBitBtn
     Left = 600

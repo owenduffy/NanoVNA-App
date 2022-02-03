@@ -2344,65 +2344,6 @@ void __fastcall TUploadFirmwareForm::rebootUnit()
 //	LeaveDFUButton->Enabled = false;
 }
 
-void __fastcall TUploadFirmwareForm::OneOfElevenFirmwareButtonClick(TObject *Sender)
-{
-	/*
-	std::vector <uint8_t> firmware;
-
-	if (common.fetchResource("FIRMWARE_H_1OF11_LSI_DFU", firmware) <= 0)
-	{
-		String s = L"Firmware data not found";
-		Memo1->Lines->Add(s);
-
-		Application->NormalizeTopMosts();
-		Application->MessageBox(s.w_str(), L"Error", MB_ICONERROR | MB_OK);
-		Application->RestoreTopMosts();
-
-		return;
-	}
-
-	uploadFirmwareFile(firmware, ".dfu", UNIT_TYPE_NANOVNA_H);
-    */
-}
-
-void __fastcall TUploadFirmwareForm::Button1Click(TObject *Sender)
-{
-	std::vector <uint8_t> firmware;
-
-	if (common.fetchResource("FIRMWARE_H4_DISLORD_DFU", firmware) <= 0)
-	{
-		String s = L"Firmware data not found";
-		Memo1->Lines->Add(s);
-
-		Application->NormalizeTopMosts();
-		Application->MessageBox(s.w_str(), L"Error", MB_ICONERROR | MB_OK);
-		Application->RestoreTopMosts();
-
-		return;
-	}
-
-	uploadFirmwareFile(firmware, ".dfu", UNIT_TYPE_NANOVNA_H4);
-}
-
-void __fastcall TUploadFirmwareForm::Button2Click(TObject *Sender)
-{
-	std::vector <uint8_t> firmware;
-
-	if (common.fetchResource("FIRMWARE_H_DISLORD_DFU", firmware) <= 0)
-	{
-		String s = L"Firmware data not found";
-		Memo1->Lines->Add(s);
-
-		Application->NormalizeTopMosts();
-		Application->MessageBox(s.w_str(), L"Error", MB_ICONERROR | MB_OK);
-		Application->RestoreTopMosts();
-
-		return;
-	}
-
-	uploadFirmwareFile(firmware, ".dfu", UNIT_TYPE_NANOVNA_H);
-}
-
 void __fastcall TUploadFirmwareForm::OpenFileBitBtnClick(TObject *Sender)
 {
 	CCriticalSection cs(readWrite_cs, false);

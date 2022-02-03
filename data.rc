@@ -3,7 +3,3 @@ PHURP_WAV                        RCDATA  "phurp.wav"
 STEREOPHONIC_WAV                 RCDATA  "stereophonic.wav"
 SQUEAK_WAV                       RCDATA  "squeak.wav"
 
-//FIRMWARE_H_1OF11_LSI_DFU         RCDATA  "NanoVNA_H_1of11_LSI.dfu"
-
-FIRMWARE_H_DISLORD_DFU           RCDATA  "NanoVNA.H.v1.1.00.dfu"
-FIRMWARE_H4_DISLORD_DFU          RCDATA  "NanoVNA.H4.v1.1.00.dfu"

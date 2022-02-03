@@ -56,13 +56,10 @@ __published:	// IDE-managed Components
 	TBitBtn *OpenFileBitBtn;
 	TButton *LeaveDFUButton;
 	TGridPanel *GridPanel1;
-	TButton *Button2;
-	TButton *Button1;
 	TBitBtn *CloseBitBtn;
 	TBitBtn *SaveFlashBitBtn;
 	TSaveDialog *SaveDialog1;
 	TLabel *Label2;
-	TButton *OneOfElevenFirmwareButton;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -72,9 +69,6 @@ __published:	// IDE-managed Components
 	void __fastcall USBDeviceComboBoxChange(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
 			 TShiftState Shift);
-	void __fastcall OneOfElevenFirmwareButtonClick(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall OpenFileBitBtnClick(TObject *Sender);
 	void __fastcall FormHide(TObject *Sender);
 	void __fastcall LeaveDFUButtonClick(TObject *Sender);

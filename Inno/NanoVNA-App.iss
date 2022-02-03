@@ -30,6 +30,7 @@ LicenseFile=licence.txt
 OutputDir=inno
 ;OutputBaseFilename={#MyAppName2}Setup
 OutputBaseFilename={#MyAppName}-Setup
+;SetupIconFile={#MyAppName}.ico
 Compression=lzma2/max
 SolidCompression=yes
 

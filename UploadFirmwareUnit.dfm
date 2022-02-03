@@ -206,11 +206,6 @@ object UploadFirmwareForm: TUploadFirmwareForm
       end>
     ControlCollection = <
       item
-        Column = 0
-        Control = OneOfElevenFirmwareButton
-        Row = 0
-      end
-      item
         Column = 1
         Control = Button2
         Row = 0
@@ -219,6 +214,11 @@ object UploadFirmwareForm: TUploadFirmwareForm
         Column = 2
         Control = Button1
         Row = 0
+      end
+      item
+        Column = 0
+        Control = OneOfElevenFirmwareButton
+        Row = 0
       end>
     RowCollection = <
       item
@@ -226,23 +226,6 @@ object UploadFirmwareForm: TUploadFirmwareForm
       end>
     ShowCaption = False
     TabOrder = 6
-    object OneOfElevenFirmwareButton: TButton
-      Left = 0
-      Top = 0
-      Width = 130
-      Height = 21
-      Cursor = crHandPoint
-      Align = alClient
-      Caption = '1-of-11 H LSI'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 0
-      OnClick = OneOfElevenFirmwareButtonClick
-    end
     object Button2: TButton
       Left = 130
       Top = 0
@@ -250,14 +233,14 @@ object UploadFirmwareForm: TUploadFirmwareForm
       Height = 21
       Cursor = crHandPoint
       Align = alClient
-      Caption = 'DiSlord H v1.0.39'
+      Caption = 'DiSlord H v1.1.00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       OnClick = Button2Click
     end
     object Button1: TButton
@@ -267,7 +250,25 @@ object UploadFirmwareForm: TUploadFirmwareForm
       Height = 21
       Cursor = crHandPoint
       Align = alClient
-      Caption = 'DiSlord H4 v1.0.39'
+      Caption = 'DiSlord H4 v1.1.00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      OnClick = Button1Click
+    end
+    object OneOfElevenFirmwareButton: TButton
+      Left = 0
+      Top = 0
+      Width = 130
+      Height = 21
+      Cursor = crHandPoint
+      Align = alClient
+      Caption = '1-of-11 H LSI'
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -275,7 +276,9 @@ object UploadFirmwareForm: TUploadFirmwareForm
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
-      OnClick = Button1Click
+      OnClick = OneOfElevenFirmwareButtonClick
+      ExplicitLeft = -6
+      ExplicitWidth = 75
     end
   end
   object CloseBitBtn: TBitBtn

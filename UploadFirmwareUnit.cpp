@@ -2346,6 +2346,7 @@ void __fastcall TUploadFirmwareForm::rebootUnit()
 
 void __fastcall TUploadFirmwareForm::OneOfElevenFirmwareButtonClick(TObject *Sender)
 {
+	/*
 	std::vector <uint8_t> firmware;
 
 	if (common.fetchResource("FIRMWARE_H_1OF11_LSI_DFU", firmware) <= 0)
@@ -2361,6 +2362,7 @@ void __fastcall TUploadFirmwareForm::OneOfElevenFirmwareButtonClick(TObject *Sen
 	}
 
 	uploadFirmwareFile(firmware, ".dfu", UNIT_TYPE_NANOVNA_H);
+    */
 }
 
 void __fastcall TUploadFirmwareForm::Button1Click(TObject *Sender)

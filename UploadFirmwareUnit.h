@@ -56,13 +56,13 @@ __published:	// IDE-managed Components
 	TBitBtn *OpenFileBitBtn;
 	TButton *LeaveDFUButton;
 	TGridPanel *GridPanel1;
-	TButton *OneOfElevenFirmwareButton;
 	TButton *Button2;
 	TButton *Button1;
 	TBitBtn *CloseBitBtn;
 	TBitBtn *SaveFlashBitBtn;
 	TSaveDialog *SaveDialog1;
 	TLabel *Label2;
+	TButton *OneOfElevenFirmwareButton;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);

@@ -1955,6 +1955,8 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 	int64_t Hz = 0;
 
 	const int mem = (p_mem >= 0 && p_index >= 0) ? p_mem : data_unit.firstUsedMem(true, 0);
+	if(mem < 0)
+		return false;
 
 	if (smith_mode && re_im_dist > 1.0)
 	{
@@ -5117,7 +5119,7 @@ void __fastcall TForm1::scan()
 	{
 		const TNotifyEvent ne = MemorySpeedButton0->OnClick;
 		MemorySpeedButton0->OnClick = NULL;
-		MemorySpeedButton0->Down    = false;
+		MemorySpeedButton0->Down    = true;
 		MemorySpeedButton0->OnClick = ne;
 	}
 
@@ -9738,7 +9740,7 @@ void __fastcall TForm1::MemorySpeedButtonClick(TObject *Sender)
 			  sb->Down = false;
 	}
 	else
-	if (sb && sb != MemorySpeedButton0)
+	if (sb)
 		if (sb->Down)
 		  sb->Down = false;
 }

@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " " + s + " by OneOfEleven";
+		common.title = Application->Title + " " + s + " by OneOfEleven (+OD01)";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -2037,7 +2037,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 
 			const complexf imp            = data_unit.impedance(c0, ref_impedance);
 			const complexf imp_p          = data_unit.serialToParallel(imp);
-			const float return_loss       = data_unit.gain10(c0);
+			const float return_loss       = -data_unit.gain10(c0);
 			const float vswr              = data_unit.VSWR(c0);
 			const float s11_mag           = data_unit.magnitude(c0);
 			const float quality_factor    = data_unit.qualityFactor(c0, ref_impedance);
@@ -2108,24 +2108,23 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s = common.valueToStr(c0.real(), false, true, "", true) + " " + common.valueToStr(c0.imag(), false, true, "", true);
 			MarkerS11RealImagLabel->Caption = s;
 
-			//s.printf("%0.3f %cj%0.3f", imp.real(), (imp.imag() >= 0) ? '+' : '-', fabsf(imp.imag()));
 			s = res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
 			MarkerS11ImpedanceLabel->Caption = s;
-
-			//s.printf("%0.3f %cj%0.3f", imp_p.real(), (imp_p.imag() >= 0) ? '+' : '-', fabsf(imp_p.imag()));
-			s = resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+			res_str=common.valueToStr(1/imp_p.real(),  false, true).Trim();
+			resj_str=common.valueToStr(fabs(1/imp_p.imag()),  false, true).Trim();
+			s = res_str + " " + ((imp_p.imag() >= 0) ? "-j" : "+j") + resj_str;
 			MarkerS11AdmittanceLabel2->Caption = s;
 
 			s.printf("%0.3f", imp.real());
 			MarkerS11SeriesRLabel->Caption = s;
-			s = (imp.imag() < 0) ? cap_str : ind_str;
+			s.printf("%0.3f", imp.imag());
 			MarkerS11SeriesXLabel->Caption = s;
 			MarkerS11SeriesLLabel->Caption = ind_str;
 			MarkerS11SeriesCLabel->Caption = cap_str;
 
 			s.printf("%0.3f", imp_p.real());
 			MarkerS11ParallelRLabel->Caption = s;
-			s = (imp_p.imag() < 0) ? capp_str : indp_str;
+			s.printf("%0.3f", imp_p.imag());
 			MarkerS11ParallelXLabel->Caption = s;
 			MarkerS11ParallelLLabel->Caption = indp_str;
 			MarkerS11ParallelCLabel->Caption = capp_str;
@@ -2133,7 +2132,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f", vswr);
 			MarkerS11VSWRLabel->Caption = s;
 
-			s.printf("%+0.3fdB", return_loss);
+			s.printf("%0.3fdB", return_loss);
 			MarkerS11ReturnLossLabel->Caption = s;
 
 			s.printf("%0.3f", s11_mag);
@@ -2282,8 +2281,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s = res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
 			MarkerS11ImpedanceLabel->Caption = s;
 
-			//s.printf("%0.3f %cj%0.3f", imp_p.real(), (imp_p.imag() >= 0) ? '+' : '-', fabsf(imp_p.imag()));
-			s = resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+			s.printf("%0.7f %cj%0.7f", 1/imp_p.real(), (imp_p.imag() >= 0) ? '-' : '+', fabsf(1/imp_p.imag()));
 			MarkerS11AdmittanceLabel2->Caption = s;
 
 			s.printf("%0.3f", imp.real());
@@ -2303,7 +2301,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f", vswr);
 			MarkerS11VSWRLabel->Caption = s;
 
-			s.printf("%+0.3fdB", return_loss);
+			s.printf("%0.3fdB", return_loss);
 			MarkerS11ReturnLossLabel->Caption = s;
 
 			s.printf("%0.3f", s11_mag);

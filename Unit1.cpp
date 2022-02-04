@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " " + s + " by OneOfEleven (+OD03)";
+		common.title = Application->Title + " " + s + " by OneOfEleven (+OD04)";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -3031,8 +3031,8 @@ void __fastcall TForm1::init()
 	{
 		ne = VelocityFactorEdit->OnChange;
 		VelocityFactorEdit->OnChange = NULL;
-		s.printf(L"%0.6f", settings.velocityFactor);
-		VelocityFactorEdit->Text = common.trimTrailingZeros(s);
+		s.printf(L"%0.3f", settings.velocityFactor);
+		VelocityFactorEdit->Text = s;
 		VelocityFactorEdit->OnChange = ne;
 	}
 
@@ -6661,6 +6661,8 @@ void __fastcall TForm1::showWarnings()
 
 void __fastcall TForm1::VelocityFactorComboBoxChange(TObject *Sender)
 {
+	TNotifyEvent ne;
+	String s;
 	settings.velocityFactorName = VelocityFactorComboBox->Text;
 
 	int vf = VelocityFactorComboBox->ItemIndex;
@@ -6670,18 +6672,23 @@ void __fastcall TForm1::VelocityFactorComboBoxChange(TObject *Sender)
 
 		const float velocity_factor = (float)vf / 1000;
 
-		//const float velocity_factor = 1.0f / sqrtf(dialectric_constant);
-		const float dialectric_constant = SQR(1.0f / velocity_factor);
+		//const float velocity_factor = 1.0f / sqrtf(dielectric_constant);
+		const float dielectric_constant = SQR(1.0f / velocity_factor);
 
 		data_unit.m_velocity_factor = velocity_factor;
 		data_unit.m_max_distance_meters = (data_unit.m_freq_stop_Hz > 0) ? (5850000000.0f * data_unit.m_velocity_factor) / data_unit.m_freq_stop_Hz : 0;
 		//stop_freq_Hz          = (5850000000 * data_unit.m_velocity_factor) / data_unit.m_max_distance_meters;
 
 		String s;
-		s.printf(L" TDR \n Velocity factor %0.3f \n Dialectric constant %0.3f ", velocity_factor, dialectric_constant);
+		s.printf(L" TDR \n Velocity factor %0.3f \n dielectric constant %0.3f ", velocity_factor, dielectric_constant);
 		VelocityFactorComboBox->Hint = s;
 
 		VelocityFactorEdit->Enabled = false;
+        ne = VelocityFactorEdit->OnChange;
+		VelocityFactorEdit->OnChange = NULL;
+		s.printf(L"%0.3f", velocity_factor);
+		VelocityFactorEdit->Text = s;
+		VelocityFactorEdit->OnChange = ne;
 
 		if (Application->MainForm)
 			::PostMessage(Application->MainForm->Handle, WM_UPDATE_GRAPH, 0, 0);
@@ -6690,6 +6697,11 @@ void __fastcall TForm1::VelocityFactorComboBoxChange(TObject *Sender)
 	{
 		VelocityFactorComboBox->Hint = " TDR \n velocity Factor ";
 		VelocityFactorEdit->Enabled = true;
+        ne = VelocityFactorEdit->OnChange;
+		VelocityFactorEdit->OnChange = NULL;
+		s.printf(L"%0.6f", settings.velocityFactor);
+		VelocityFactorEdit->Text = common.trimTrailingZeros(s);
+		VelocityFactorEdit->OnChange = ne;
 		VelocityFactorEditChange(VelocityFactorEdit);
 	}
 }
@@ -6731,13 +6743,13 @@ void __fastcall TForm1::VelocityFactorEditChange(TObject *Sender)
 	data_unit.m_max_distance_meters = (data_unit.m_freq_stop_Hz > 0) ? (5850000000.0f * data_unit.m_velocity_factor) / data_unit.m_freq_stop_Hz : 0;
 //	stop_freq_Hz          = (5850000000 * data_unit.m_velocity_factor) / data_unit.m_max_distance_meters;
 
-	const float dialectric_constant = SQR(1.0f / velocity_factor);
-	//const float velocity_factor = 1.0f / sqrtf(dialectric_constant);
+	const float dielectric_constant = SQR(1.0f / velocity_factor);
+	//const float velocity_factor = 1.0f / sqrtf(dielectric_constant);
 
 	common.setWarning(VelocityFactorEdit, "");
 
 	String s;
-	s.printf(L" TDR \n Velocity factor %0.3f \n Dialectric constant %0.3f ", velocity_factor, dialectric_constant);
+	s.printf(L" TDR \n Velocity factor %0.3f \n dielectric constant %0.3f ", velocity_factor, dielectric_constant);
 	VelocityFactorEdit->Hint = s;
 
 	if (Application->MainForm)

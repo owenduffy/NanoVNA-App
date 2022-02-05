@@ -303,7 +303,8 @@ enum t_graph_arrange : int
 #define GRAPH_TYPE_CAL_LOGMAG   				38
 #define GRAPH_TYPE_PHASE_VECTOR_S11			39
 #define GRAPH_TYPE_PHASE_VECTOR_S21			40
-#define GRAPH_TYPE_SIZE                   41	// set this one to the number of graph types their are
+#define GRAPH_TYPE_GJB_S11               41
+#define GRAPH_TYPE_SIZE                   42	// set this one to the number of graph types their are
 
 // **************
 

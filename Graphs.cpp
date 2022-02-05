@@ -1135,6 +1135,7 @@ bool __fastcall CGraphs::isFrequencyGraph(const int graph_type)
 		case GRAPH_TYPE_IMPEDANCE_S11:
 		case GRAPH_TYPE_SERIES_RJX_S11:
 		case GRAPH_TYPE_PARALLEL_RJX_S11:
+		case GRAPH_TYPE_GJB_S11:
 		case GRAPH_TYPE_SERIES_RESISTANCE_S11:
 		case GRAPH_TYPE_SERIES_REACTANCE_S11:
 		case GRAPH_TYPE_QUALITY_FACTOR_S11:
@@ -10331,6 +10332,10 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 					m_levels[mem][chan + 0].resize(size);
 				if (mask & 2)
 					m_levels[mem][chan + 1].resize(size);
+				if (mask & 4)
+					m_levels[mem][chan + 0].resize(size);
+				if (mask & 8)
+					m_levels[mem][chan + 1].resize(size);
 				for (int i = 0; i < size; i++)
 				{
 					complexf sparam = data_unit.m_point_filt[mem][i].sParam[chan];
@@ -10346,6 +10351,10 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 						m_levels[mem][chan + 0][i] = zp.real();
 					if (mask & 2)
 						m_levels[mem][chan + 1][i] = zp.imag();
+					if (mask & 4)
+						m_levels[mem][chan + 0][i] = 1/zp.real();
+					if (mask & 8)
+						m_levels[mem][chan + 1][i] = -1/zp.imag();
 				}
 			}
 		}
@@ -10413,13 +10422,16 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 		{
 			for (int chan = 0; chan < MAX_CHANNELS; chan++)
 			{
-				drawMarkers(graph, m, chan, min_levels, max_levels, " Ohm", 1.0f, draw_v_line);
+				if (mask & 0xc)
+				  drawMarkers(graph, m, chan, min_levels, max_levels, " S", 1.0f, draw_v_line);
+        else
+				  drawMarkers(graph, m, chan, min_levels, max_levels, " Ohm", 1.0f, draw_v_line);
 				draw_v_line = false;
 			}
 
 			if (show_marker_text && settings.showMarkersOnGraph && settings.memoryEnable[m] && draw_on_graph)
 			{
-				switch (mask & 3)
+				switch (mask & 15)
 				{
 					default:
 						break;
@@ -10435,6 +10447,18 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 						drawMarkersOnGraph(graph, m, 0, 1, " Ohm", "Rp   ", "Xp   ");
 						draw_on_graph = false;
 						break;
+					case 4:
+						drawMarkersOnGraph(graph, m, 0, " S", "G   ");
+						draw_on_graph = false;
+						break;
+					case 8:
+						drawMarkersOnGraph(graph, m, 1, " S", "B   ");
+						draw_on_graph = false;
+						break;
+					case 12:
+						drawMarkersOnGraph(graph, m, 0, 1, " S", "G    ", "B    ");
+						draw_on_graph = false;
+						break;
 				}
 			}
 		}
@@ -10446,6 +10470,10 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 		s[0] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 Rp" : "line";
 	if (mask & 2)
 		s[1] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 Xp" : "line";
+	if (mask & 4)
+		s[0] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 G" : "line";
+	if (mask & 8)
+		s[1] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 B" : "line";
 
 	if (gs && gs->show_max_marker)
 		drawMaxMarkers(graph, graph_type, min_levels, max_levels, 1.0f, units, s[0], s[1]);
@@ -10485,14 +10513,18 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 		}
 
 		String title;
-		switch (mask & 3)
+		switch (mask & 15)
 		{
 			default: break;
 			case 1: title = "Freq Rp S11"; break;
 			case 2: title = "Freq Xp S11"; break;
-			case 3: title = "Freq Rp+jX S11"; break;
+			case 3: title = "Freq Rp||jXp S11"; break;
+			case 4: title = "Freq G S11"; break;
+			case 8: title = "Freq B S11"; break;
+			case 12: title = "Freq G+jB S11"; break;
 		}
-		drawDetails(graph, graph_type, mask, mem, index, title, units, s, s_value, "%#.6f");
+//owen
+		drawDetails(graph, graph_type, mask&0xc ? (mask&0xc)>>2 : mask, mem, index, title, units, s, s_value, "%#.6f");
 	}
 }
 
@@ -13715,6 +13747,7 @@ void __fastcall CGraphs::drawGraph(const int graph, const int graph_type, const 
 		case GRAPH_TYPE_CAL_LOGMAG:             drawLogMagCalibrations(graph, graph_type, 31, show_marker_text); break;
 		case GRAPH_TYPE_PHASE_VECTOR_S11:       drawPhaseVectorS11S21(graph, graph_type, 0, show_marker_text);   break;
 		case GRAPH_TYPE_PHASE_VECTOR_S21:       drawPhaseVectorS11S21(graph, graph_type, 1, show_marker_text);   break;
+		case GRAPH_TYPE_GJB_S11:                drawParallelRJX(graph, graph_type, 12, show_marker_text);        break;
 		default: break;
 	}
 }

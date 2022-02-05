@@ -2218,6 +2218,7 @@ void __fastcall CSettings::clipGraphMinMax(const int graph_type, double &max_val
 		case GRAPH_TYPE_PARALLEL_RJX_S11:
 		case GRAPH_TYPE_SERIES_RESISTANCE_S11:
 		case GRAPH_TYPE_SERIES_REACTANCE_S11:
+		case GRAPH_TYPE_GJB_S11:
 			if (min_val > RJX_MAX) min_val = RJX_MAX;
 			else
 			if (min_val < RJX_MIN) min_val = RJX_MIN;
@@ -2319,6 +2320,7 @@ void __fastcall CSettings::clipGraphMinMax(const int graph_type, double &max_val
 		case GRAPH_TYPE_PARALLEL_RJX_S11:
 		case GRAPH_TYPE_SERIES_RESISTANCE_S11:
 		case GRAPH_TYPE_SERIES_REACTANCE_S11:
+		case GRAPH_TYPE_GJB_S11:
 			if (max_val > RJX_MAX) max_val = RJX_MAX;
 			else
 			if (max_val < RJX_MIN) max_val = RJX_MIN;
@@ -2417,6 +2419,8 @@ void __fastcall CSettings::clipGraphMinMax(const int graph_type, double &max_val
 		case GRAPH_TYPE_PARALLEL_RJX_S11:
 		case GRAPH_TYPE_SERIES_RESISTANCE_S11:
 		case GRAPH_TYPE_SERIES_REACTANCE_S11:
+//check
+		case GRAPH_TYPE_GJB_S11:
 			if (max_val < (min_val + 1e-4))
 				 max_val =  min_val + 1e-4;
 			break;
@@ -2539,6 +2543,10 @@ void __fastcall CSettings::setDefaultGraphScales()
 			case GRAPH_TYPE_PARALLEL_RJX_S11:
 				gs->max =  1000.0;
 				gs->min = -1000.0;
+				break;
+			case GRAPH_TYPE_GJB_S11:
+				gs->max =  1/1000.0;
+				gs->min = -1/1000.0;
 				break;
 			case GRAPH_TYPE_QUALITY_FACTOR_S11:
 				gs->max = 150.0;

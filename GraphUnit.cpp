@@ -375,7 +375,7 @@ void __fastcall TGraphForm::createGraphTypeMenus()
 				case 17: graph_type = GRAPH_TYPE_VSWR_S11;               s = "VSWR S11";                 break;
 				case 18: graph_type = GRAPH_TYPE_IMPEDANCE_S11;          s = "Impedance S11";            break;
 				case 19: graph_type = GRAPH_TYPE_SERIES_RJX_S11;         s = "Series R+jX S11";          break;
-				case 20: graph_type = GRAPH_TYPE_PARALLEL_RJX_S11;       s = "Parallel R+jX S11";        break;
+				case 20: graph_type = GRAPH_TYPE_PARALLEL_RJX_S11;       s = "Parallel R||jX S11";        break;
 				case 21: graph_type = GRAPH_TYPE_SERIES_RESISTANCE_S11;  s = "Series resistance S11";    break;
 				case 22: graph_type = GRAPH_TYPE_SERIES_REACTANCE_S11;   s = "Series reactance S11";     break;
 				case 23: graph_type = GRAPH_TYPE_QUALITY_FACTOR_S11;     s = "Quality factor S11";       break;
@@ -396,6 +396,7 @@ void __fastcall TGraphForm::createGraphTypeMenus()
 				case 38: graph_type = GRAPH_TYPE_TDR_LOG_LP_IMPULSE_S11; s = "TDR log low pass impulse S11";    break;
 				case 39: graph_type = GRAPH_TYPE_TDR_LOG_BP_S11;         s = "TDR log band pass S11";           break;
 				case 40: graph_type = GRAPH_TYPE_TDR_IMPEDANCE_S11;      s = "TDR impedance S11";               break;
+				case 41: graph_type = GRAPH_TYPE_GJB_S11;                s = "Admittance G,jB S11";      break;
 			}
 
 			if (graph_type < 0)
@@ -404,7 +405,7 @@ void __fastcall TGraphForm::createGraphTypeMenus()
 			TMenuItem *menu_item;
 
 			const bool column_break = (i == ((3 + GRAPH_TYPE_SIZE) / 2)) ? true : false;
-			const bool line_break  = (graph_type == GRAPH_TYPE_SMITH_S11 || graph_type == GRAPH_TYPE_PHASE_VECTOR_S11 || graph_type == GRAPH_TYPE_TDR_LIN_LP_IMPULSE_S11) ? true : false;
+			const bool line_break  = (graph_type == GRAPH_TYPE_SMITH_S11 || graph_type == GRAPH_TYPE_PHASE_VECTOR_S11 || graph_type == GRAPH_TYPE_TDR_LIN_LP_IMPULSE_S11 || graph_type == GRAPH_TYPE_GJB_S11) ? true : false;
 
 			// add it to the graph popup menu
 			if (column_break || line_break)
@@ -647,6 +648,7 @@ void __fastcall TGraphForm::saveImage(const bool to_clipboard)
 			case GRAPH_TYPE_CAL_LOGMAG:              filename += "_CALIBRATIONS";           break;
 			case GRAPH_TYPE_PHASE_VECTOR_S11:        filename += "_PHASE_VECTOR_S11";       break;
 			case GRAPH_TYPE_PHASE_VECTOR_S21:        filename += "_PHASE_VECTOR_S21";       break;
+			case GRAPH_TYPE_GJB_S11:                 filename += "_GJB_S11";               break;
 		}
 	#endif
 
@@ -1394,6 +1396,7 @@ void __fastcall TGraphForm::GraphPaintBoxMouseMove(TObject *Sender, TShiftState 
 				case GRAPH_TYPE_PHASE_UNWRAP_S11S21:
 				case GRAPH_TYPE_SERIES_RJX_S11:
 				case GRAPH_TYPE_PARALLEL_RJX_S11:
+				case GRAPH_TYPE_GJB_S11:
 				case GRAPH_TYPE_SERIES_REACTANCE_S11:
 				case GRAPH_TYPE_GROUP_DELAY_S11:
 				case GRAPH_TYPE_GROUP_DELAY_S21:

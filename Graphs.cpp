@@ -10431,7 +10431,7 @@ void __fastcall CGraphs::drawParallelRJX(const int graph, const int graph_type, 
 
 			if (show_marker_text && settings.showMarkersOnGraph && settings.memoryEnable[m] && draw_on_graph)
 			{
-				switch (mask & 15)
+				switch (mask & 0xf)
 				{
 					default:
 						break;

@@ -243,7 +243,7 @@ class CGraphs
 		void __fastcall drawQLS11(const int graph, const int graph_type, const bool show_marker_text);
 		void __fastcall drawGroupDelayS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool show_marker_text);
 		void __fastcall drawSeriesRJX(const int graph, const int graph_type, const int mask, const bool show_marker_text);
-		void __fastcall drawParallelRJX(const int graph, const int graph_type, const int mask, const bool show_marker_text);
+		void __fastcall drawParallelRJX(const int graph, const int graph_type, const int mask, const bool show_marker_text, const bool gjb = false);
 		void __fastcall drawRealImag(const int graph, const int graph_type, const int channel, const bool show_marker_text);
 		void __fastcall drawCoaxLossS11(const int graph, const int graph_type, const bool show_marker_text);
 		void __fastcall drawSmithS11S21(const int graph, const int graph_type, const bool admittance, const int s_channel, const bool show_marker_text);

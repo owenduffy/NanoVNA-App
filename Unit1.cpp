@@ -2108,7 +2108,9 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			// S11 info
 
 
-			s = common.valueToStr(c0.real(), false, true, "", true) + " " + common.valueToStr(c0.imag(), false, true, "", true);
+			res_str=common.valueToStr(c.real(),  false, true).Trim();
+			resj_str=common.valueToStr(fabs(c.imag()),  false, true).Trim();
+			s = res_str + " " + ((c.imag() >= 0) ? "-j" : "+j") + resj_str;
 			MarkerS11RealImagLabel->Caption = s;
 
 			s = res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
@@ -2160,7 +2162,10 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			// S21 info
 
 
-			s = common.valueToStr(c1.real(), false, true, "", true) + " " + common.valueToStr(c1.imag(), false, true, "", true);
+//			s = common.valueToStr(c1.real(), false, true, "", true) + " " + common.valueToStr(c1.imag(), false, true, "", true);
+			res_str=common.valueToStr(c1.real(),  false, true).Trim();
+			resj_str=common.valueToStr(fabs(c1.imag()),  false, true).Trim();
+			s = res_str + " " + ((c1.imag() >= 0) ? "-j" : "+j") + resj_str;
 			MarkerS21RealImagLabel->Caption = s;
 
 			s.printf("%+0.3fdB", s21_gain);
@@ -2277,7 +2282,9 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			// S11 info
 
 
-			s = common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
+			res_str=common.valueToStr(c.real(),  false, true).Trim();
+			resj_str=common.valueToStr(fabs(c.imag()),  false, true).Trim();
+			s = res_str + " " + ((c.imag() >= 0) ? "-j" : "+j") + resj_str;
 			MarkerS11RealImagLabel->Caption = s;
 
 			//s.printf("%0.3f %cj%0.3f", imp.real(), (imp.imag() >= 0) ? '+' : '-', fabsf(imp.imag()));

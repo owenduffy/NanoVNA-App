@@ -8906,7 +8906,8 @@ void __fastcall CGraphs::drawVSWRReturnLossS11(const int graph, const int graph_
 
 	drawFreqLines(graph, graph_type);
 
-	const double gamma = settings.m_graph_setting[graph_type].gamma;
+//	const double gamma = settings.m_graph_setting[graph_type].gamma;
+	const double gamma = 1;
 
 	drawNoneLinMagLines(graph, true, min_levels, max_levels, gamma, 0.00001, "", "", true);
 

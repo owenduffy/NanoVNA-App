@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " " + s + " by OneOfEleven (+OD05)";
+		common.title = Application->Title + " by OneOfEleven " + s + " (+OD05) ";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -1722,7 +1722,7 @@ void __fastcall TForm1::createGraphTypeMenus()
 				case 39: graph_type = GRAPH_TYPE_TDR_LOG_BP_S11;         s = "TDR log band pass S11";           break;
 				case 40: graph_type = GRAPH_TYPE_TDR_IMPEDANCE_S11;      s = "TDR impedance S11";               break;
 				case 41: graph_type = GRAPH_TYPE_GJB_S11;                s = "Admittance G+jB S11";        break;
-				case 42: graph_type = GRAPH_TYPE_RETLOSS_S11;            s = "Return loss S11";            break;
+				case 42: graph_type = GRAPH_TYPE_RETLOSS_S11;            s = "Return Loss S11";            break;
 			}
 
 			if (graph_type < 0)
@@ -5977,6 +5977,7 @@ void __fastcall TForm1::saveImage(const bool to_clipboard)
 				case GRAPH_TYPE_PHASE_VECTOR_S11:        filename += "_PHASE_VECTOR_S11";       break;
 				case GRAPH_TYPE_PHASE_VECTOR_S21:        filename += "_PHASE_VECTOR_S21";       break;
 				case GRAPH_TYPE_GJB_S11:                 filename += "_GJB_S11";                break;
+				case GRAPH_TYPE_RETLOSS_S11:             filename += "_RETURNLOSS_S11";         break;
 				default:                                 filename += "_unknown";                break;
 			}
 		}
@@ -10728,6 +10729,7 @@ void __fastcall TForm1::Setmaxscale1Click(TObject *Sender)
 			case GRAPH_TYPE_LOGMAG_S11:
 			case GRAPH_TYPE_LOGMAG_S21:
 			case GRAPH_TYPE_LOGMAG_S11S21:
+			case GRAPH_TYPE_RETLOSS_S11:
 				units = "Max log magnitude (dB)";
 				break;
 			case GRAPH_TYPE_PHASE_S11:
@@ -10857,6 +10859,7 @@ void __fastcall TForm1::Setminscale1Click(TObject *Sender)
 			case GRAPH_TYPE_LOGMAG_S11:
 			case GRAPH_TYPE_LOGMAG_S21:
 			case GRAPH_TYPE_LOGMAG_S11S21:
+			case GRAPH_TYPE_RETLOSS_S11:
 				units = "Min log magnitude (dB)";
 				break;
 			case GRAPH_TYPE_PHASE_S11:

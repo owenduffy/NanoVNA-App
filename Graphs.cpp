@@ -1120,6 +1120,7 @@ bool __fastcall CGraphs::isFrequencyGraph(const int graph_type)
 	switch (graph_type)
 	{
 		case GRAPH_TYPE_LOGMAG_S11:
+		case GRAPH_TYPE_RETLOSS_S11:
 		case GRAPH_TYPE_LOGMAG_S21:
 		case GRAPH_TYPE_LOGMAG_S11S21:
 		case GRAPH_TYPE_LINMAG_S11:
@@ -8220,7 +8221,7 @@ void __fastcall CGraphs::drawLogMagCalibrations(const int graph, const int graph
 	}
 }
 
-void __fastcall CGraphs::drawLogMagS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool show_marker_text)
+void __fastcall CGraphs::drawLogMagS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool show_marker_text, const bool retloss)
 {
 	for (int mem = 0; mem < MAX_MEMORIES; mem++)
 	{
@@ -8263,7 +8264,9 @@ void __fastcall CGraphs::drawLogMagS11S21(const int graph, const int graph_type,
 					m_levels[mem][channel].resize(size);
 					for (int i = 0; i < size; i++)
 					{
-						float level = data_unit.gain10(data_unit.m_point_filt[mem][i].sParam[channel]);
+						float level;
+						if (retloss) level = -data_unit.gain10(data_unit.m_point_filt[mem][i].sParam[channel]);
+						else level = data_unit.gain10(data_unit.m_point_filt[mem][i].sParam[channel]);
 						if (normalise)
 							level -= data_unit.gain10(data_unit.m_point_norm[i].sParam[channel]);
 						m_levels[mem][channel][i] = level;
@@ -8403,7 +8406,9 @@ void __fastcall CGraphs::drawLogMagS11S21(const int graph, const int graph_type,
 			}
 		}
 
-		String title = String("Freq Log Mag " + units).Trim();
+		String title;
+		if (retloss) title = String("Return Loss " + units).Trim();
+		else title = String("Freq Log Mag " + units).Trim();
 		if (chan_mask & 1)
 			title += " S11";
 		if (chan_mask & 2)
@@ -13769,6 +13774,7 @@ void __fastcall CGraphs::drawGraph(const int graph, const int graph_type, const 
 		case GRAPH_TYPE_PHASE_VECTOR_S11:       drawPhaseVectorS11S21(graph, graph_type, 0, show_marker_text);   break;
 		case GRAPH_TYPE_PHASE_VECTOR_S21:       drawPhaseVectorS11S21(graph, graph_type, 1, show_marker_text);   break;
 		case GRAPH_TYPE_GJB_S11:                drawParallelRJX(graph, graph_type, 3, show_marker_text, true);        break;
+		case GRAPH_TYPE_RETLOSS_S11:            drawLogMagS11S21(graph, graph_type, 0x01, show_marker_text, true); break;
 		default: break;
 	}
 }

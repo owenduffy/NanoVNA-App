@@ -233,7 +233,7 @@ class CGraphs
 		void __fastcall drawDetails(const int graph, const int graph_type, const uint8_t chan_mask, const int mem, const int index, String title, String units, String s[], String s_value[], String min_max_fmt);
 
 		void __fastcall drawLogMagCalibrations(const int graph, const int graph_type, const uint8_t trace_mask, const bool show_marker_text);
-		void __fastcall drawLogMagS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool show_marker_text);
+		void __fastcall drawLogMagS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool show_marker_text, const bool retloss = false);
 		void __fastcall drawLinMagS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool show_marker_text);
 		void __fastcall drawPhaseS11S21(const int graph, const int graph_type, const uint8_t chan_mask, const bool unwrap, const bool show_marker_text);
 		void __fastcall drawVSWRReturnLossS11(const int graph, const int graph_type, const bool show_marker_text);

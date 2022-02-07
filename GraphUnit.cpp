@@ -397,6 +397,7 @@ void __fastcall TGraphForm::createGraphTypeMenus()
 				case 39: graph_type = GRAPH_TYPE_TDR_LOG_BP_S11;         s = "TDR log band pass S11";           break;
 				case 40: graph_type = GRAPH_TYPE_TDR_IMPEDANCE_S11;      s = "TDR impedance S11";               break;
 				case 41: graph_type = GRAPH_TYPE_GJB_S11;                s = "Admittance G,jB S11";      break;
+				case 42: graph_type = GRAPH_TYPE_RETLOSS_S11;            s = "Return Loss S11";          break;
 			}
 
 			if (graph_type < 0)
@@ -648,7 +649,8 @@ void __fastcall TGraphForm::saveImage(const bool to_clipboard)
 			case GRAPH_TYPE_CAL_LOGMAG:              filename += "_CALIBRATIONS";           break;
 			case GRAPH_TYPE_PHASE_VECTOR_S11:        filename += "_PHASE_VECTOR_S11";       break;
 			case GRAPH_TYPE_PHASE_VECTOR_S21:        filename += "_PHASE_VECTOR_S21";       break;
-			case GRAPH_TYPE_GJB_S11:                 filename += "_GJB_S11";               break;
+			case GRAPH_TYPE_GJB_S11:                 filename += "_GJB_S11";                break;
+			case GRAPH_TYPE_RETLOSS_S11:             filename += "_RETURNLOSS_S11";         break;
 		}
 	#endif
 
@@ -1386,6 +1388,7 @@ void __fastcall TGraphForm::GraphPaintBoxMouseMove(TObject *Sender, TShiftState 
 			switch (graph_type)
 			{
 				case GRAPH_TYPE_LOGMAG_S11:
+				case GRAPH_TYPE_RETLOSS_S11:
 				case GRAPH_TYPE_LOGMAG_S21:
 				case GRAPH_TYPE_LOGMAG_S11S21:
 				case GRAPH_TYPE_PHASE_S11:

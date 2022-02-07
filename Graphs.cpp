@@ -3634,9 +3634,9 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 
 				if (polar)
 				{	// polar
-					//s[j++].printf(L" Rs jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " Rs jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" Rs L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
+					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
@@ -3651,9 +3651,9 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 				}
 				else
 				{	// smith
-					//s[j++].printf(L" Rs jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " Rs jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" Rs L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
+					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
@@ -3734,9 +3734,9 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 
 				if (polar)
 				{	// polar
-					//s[j++].printf(L" Rs jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " Rs jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" Rs L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
+					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
@@ -3751,9 +3751,9 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 				}
 				else
 				{	// smith
-					//s[j++].printf(L" Rs jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " Rs jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" Rs L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
+					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
@@ -3888,9 +3888,9 @@ void __fastcall CGraphs::drawMarkersOnSmithPolarGraph(const int graph, const int
 		s[j++] =          " re im   " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
 		if (polar)
 		{	// polar
-			//s[j++].printf(L" Rs jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-			s[j++] =       " Rs jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-			s[j++].printf(L" Rs L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+			//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
+			s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+			s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 			s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 			s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 		}
@@ -3905,9 +3905,9 @@ void __fastcall CGraphs::drawMarkersOnSmithPolarGraph(const int graph, const int
 		}
 		else
 		{	// smith
-			//s[j++].printf(L" Rs jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-			s[j++] =       " Rs jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-			s[j++].printf(L" Rs L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+			//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
+			s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+			s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 			s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 			s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 		}
@@ -4065,8 +4065,8 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				s[str_count++] =          " re im     " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
 				if (polar)
 				{	// polar
-					s[str_count++] =       " Rs jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[str_count++].printf(L" Rs L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 				}
 				else
@@ -4079,8 +4079,8 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				}
 				else
 				{  // smith
-					s[str_count++] =       " Rs jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[str_count++].printf(L" Rs L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[str_count++] =       " Imp       " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
@@ -4156,8 +4156,8 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				s[str_count++] =          " re im     " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
 				if (polar)
 				{  // polar
-					s[str_count++] =       " Rs jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[str_count++].printf(L" Rs L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 				}
 				else
@@ -4170,8 +4170,8 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				}
 				else
 				{	// smith
-					s[str_count++] =       " Rs jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[str_count++].printf(L" Rs L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[str_count++] =       " Imp       " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
@@ -10220,15 +10220,15 @@ void __fastcall CGraphs::drawSeriesRJX(const int graph, const int graph_type, co
 					default:
 						break;
 					case 1:
-						drawMarkersOnGraph(graph, m, 0, " Ohm", "Rs   ");
+						drawMarkersOnGraph(graph, m, 0, " Ohm", "R   ");
 						draw_on_graph = false;
 						break;
 					case 2:
-						drawMarkersOnGraph(graph, m, 1, " Ohm", "Xs   ");
+						drawMarkersOnGraph(graph, m, 1, " Ohm", "X   ");
 						draw_on_graph = false;
 						break;
 					case 3:
-						drawMarkersOnGraph(graph, m, 0, 1, " Ohm", "Rs   ", "Xs   ");
+						drawMarkersOnGraph(graph, m, 0, 1, " Ohm", "R   ", "X   ");
 						draw_on_graph = false;
 						break;
 				}
@@ -10243,9 +10243,9 @@ void __fastcall CGraphs::drawSeriesRJX(const int graph, const int graph_type, co
 	String units = "";
 	String s[MAX_CHANNELS];
 	if (mask & 1)
-		s[0] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 Rs" : "line";
+		s[0] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 R" : "line";
 	if (mask & 2)
-		s[1] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 Xs" : "line";
+		s[1] = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 X" : "line";
 
 	if (gs && gs->show_max_marker)
 		drawMaxMarkers(graph, graph_type, min_levels, max_levels, 1.0f, units, s[0], s[1]);
@@ -10288,9 +10288,9 @@ void __fastcall CGraphs::drawSeriesRJX(const int graph, const int graph_type, co
 		switch (mask & 3)
 		{
 			default: break;
-			case 1: title = "Freq Rs S11"; break;
-			case 2: title = "Freq Xs S11"; break;
-			case 3: title = "Freq Rs+jX S11"; break;
+			case 1: title = "Freq R S11"; break;
+			case 2: title = "Freq X S11"; break;
+			case 3: title = "Freq R+jX S11"; break;
 		}
 		drawDetails(graph, graph_type, mask, mem, index, title, units, s, s_value, "%#.6f");
 	}

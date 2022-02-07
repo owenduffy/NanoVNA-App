@@ -1680,49 +1680,49 @@ void __fastcall TForm1::createGraphTypeMenus()
 
 			switch (i)
 			{
-				case  0: graph_type = GRAPH_TYPE_LOGMAG_S11;             s = "Log mag S11";               break;
-				case  1: graph_type = GRAPH_TYPE_LOGMAG_S21;             s = "Log mag S21";               break;
-				case  2: graph_type = GRAPH_TYPE_LOGMAG_S11S21;          s = "Log mag S11 and S21";       break;
-				case  3: graph_type = GRAPH_TYPE_LINMAG_S11;             s = "Lin mag S11";               break;
-				case  4: graph_type = GRAPH_TYPE_LINMAG_S21;             s = "Lin mag S21";               break;
-				case  5: graph_type = GRAPH_TYPE_LINMAG_S11S21;          s = "Lin mag S11 and S21";       break;
-				case  6: graph_type = GRAPH_TYPE_PHASE_S11;              s = "Phase S11";                 break;
-				case  7: graph_type = GRAPH_TYPE_PHASE_S21;              s = "Phase S21";                 break;
-				case  8: graph_type = GRAPH_TYPE_PHASE_S11S21;           s = "Phase S11 and S21";         break;
-				case  9: graph_type = GRAPH_TYPE_PHASE_UNWRAP_S11;       s = "Phase unwrap S11";          break;
-				case 10: graph_type = GRAPH_TYPE_PHASE_UNWRAP_S21;       s = "Phase unwrap S21";          break;
-				case 11: graph_type = GRAPH_TYPE_PHASE_UNWRAP_S11S21;    s = "Phase unwrap S11 and S21";  break;
-				case 12: graph_type = GRAPH_TYPE_GROUP_DELAY_S11;        s = "Group delay S11";           break;
-				case 13: graph_type = GRAPH_TYPE_GROUP_DELAY_S21;        s = "Group delay S21";           break;
-				case 14: graph_type = GRAPH_TYPE_GROUP_DELAY_S11S21;     s = "Group delay S11 and S21";   break;
-				case 15: graph_type = GRAPH_TYPE_REAL_IMAG_S11;          s = "S-Parameters S11";          break;
-				case 16: graph_type = GRAPH_TYPE_REAL_IMAG_S21;          s = "S-Parameters S21";          break;
-				case 17: graph_type = GRAPH_TYPE_VSWR_S11;               s = "VSWR S11";                  break;
-				case 18: graph_type = GRAPH_TYPE_IMPEDANCE_S11;          s = "Impedance S11";             break;
-				case 19: graph_type = GRAPH_TYPE_SERIES_RJX_S11;         s = "Series R+jX S11";           break;
-				case 20: graph_type = GRAPH_TYPE_PARALLEL_RJX_S11;       s = "Parallel R||jX S11";         break;
-				case 21: graph_type = GRAPH_TYPE_SERIES_RESISTANCE_S11;  s = "Series resistance S11";     break;
-				case 22: graph_type = GRAPH_TYPE_SERIES_REACTANCE_S11;   s = "Series reactance S11";      break;
-				case 23: graph_type = GRAPH_TYPE_QUALITY_FACTOR_S11;     s = "Quality factor S11";        break;
-				case 24: graph_type = GRAPH_TYPE_SERIES_CAPACITANCE_S11; s = "Series capacitance S11";    break;
-				case 25: graph_type = GRAPH_TYPE_SERIES_INDUCTANCE_S11;  s = "Series inductance S11";     break;
-				case 26: graph_type = GRAPH_TYPE_COAX_LOSS_S11;          s = "Coax loss S11";             break;
-				case 27: graph_type = GRAPH_TYPE_CAL_LOGMAG;             s = "Calibrations log mag";            break;
-				case 28: graph_type = GRAPH_TYPE_SMITH_S11;              s = "Smith S11";                       break;
-				case 29: graph_type = GRAPH_TYPE_SMITH_S21;              s = "Smith S21";                       break;
-				case 30: graph_type = GRAPH_TYPE_ADMITTANCE_S11;         s = "Admittance S11";                  break;
-				case 31: graph_type = GRAPH_TYPE_ADMITTANCE_S21;         s = "Admittance S21";                  break;
-				case 32: graph_type = GRAPH_TYPE_POLAR_S11;              s = "Polar S11";                       break;
-				case 33: graph_type = GRAPH_TYPE_POLAR_S21;              s = "Polar S21";                       break;
-//				case 34: graph_type = GRAPH_TYPE_PHASE_VECTOR_S11;       s = "Phase vector S11";                break;
-//				case 35: graph_type = GRAPH_TYPE_PHASE_VECTOR_S21;       s = "Phase vector S21";                break;
-				case 36: graph_type = GRAPH_TYPE_TDR_LIN_LP_IMPULSE_S11; s = "TDR linear low pass impulse S11"; break;
-				case 37: graph_type = GRAPH_TYPE_TDR_LIN_BP_S11;         s = "TDR linear band pass S11";        break;
-				case 38: graph_type = GRAPH_TYPE_TDR_LOG_LP_IMPULSE_S11; s = "TDR log low pass impulse S11";    break;
-				case 39: graph_type = GRAPH_TYPE_TDR_LOG_BP_S11;         s = "TDR log band pass S11";           break;
-				case 40: graph_type = GRAPH_TYPE_TDR_IMPEDANCE_S11;      s = "TDR impedance S11";               break;
-				case 41: graph_type = GRAPH_TYPE_GJB_S11;                s = "Admittance G+jB S11";        break;
-				case 42: graph_type = GRAPH_TYPE_RETLOSS_S11;            s = "Return Loss S11";            break;
+				case  1: graph_type = GRAPH_TYPE_LOGMAG_S11;             s = "Log mag S11";               break;
+				case  2: graph_type = GRAPH_TYPE_LOGMAG_S21;             s = "Log mag S21";               break;
+				case  3: graph_type = GRAPH_TYPE_LOGMAG_S11S21;          s = "Log mag S11 and S21";       break;
+				case  4: graph_type = GRAPH_TYPE_LINMAG_S11;             s = "Lin mag S11";               break;
+				case  5: graph_type = GRAPH_TYPE_LINMAG_S21;             s = "Lin mag S21";               break;
+				case  6: graph_type = GRAPH_TYPE_LINMAG_S11S21;          s = "Lin mag S11 and S21";       break;
+				case  7: graph_type = GRAPH_TYPE_PHASE_S11;              s = "Phase S11";                 break;
+				case  8: graph_type = GRAPH_TYPE_PHASE_S21;              s = "Phase S21";                 break;
+				case  9: graph_type = GRAPH_TYPE_PHASE_S11S21;           s = "Phase S11 and S21";         break;
+				case 10: graph_type = GRAPH_TYPE_PHASE_UNWRAP_S11;       s = "Phase unwrap S11";          break;
+				case 11: graph_type = GRAPH_TYPE_PHASE_UNWRAP_S21;       s = "Phase unwrap S21";          break;
+				case 12: graph_type = GRAPH_TYPE_PHASE_UNWRAP_S11S21;    s = "Phase unwrap S11 and S21";  break;
+				case 13: graph_type = GRAPH_TYPE_GROUP_DELAY_S11;        s = "Group delay S11";           break;
+				case 14: graph_type = GRAPH_TYPE_GROUP_DELAY_S21;        s = "Group delay S21";           break;
+				case 15: graph_type = GRAPH_TYPE_GROUP_DELAY_S11S21;     s = "Group delay S11 and S21";   break;
+				case 16: graph_type = GRAPH_TYPE_REAL_IMAG_S11;          s = "S-Parameters S11";          break;
+				case 17: graph_type = GRAPH_TYPE_REAL_IMAG_S21;          s = "S-Parameters S21";          break;
+				case 18: graph_type = GRAPH_TYPE_VSWR_S11;               s = "VSWR S11";                  break;
+				case 19: graph_type = GRAPH_TYPE_RETLOSS_S11;            s = "Return Loss S11";            break;
+				case 20: graph_type = GRAPH_TYPE_IMPEDANCE_S11;          s = "Impedance S11";             break;
+				case 21: graph_type = GRAPH_TYPE_SERIES_RJX_S11;         s = "Series R+jX S11";           break;
+				case 22: graph_type = GRAPH_TYPE_GJB_S11;                s = "Admittance G+jB S11";        break;
+				case 23: graph_type = GRAPH_TYPE_PARALLEL_RJX_S11;       s = "Parallel R||jX S11";         break;
+				case 24: graph_type = GRAPH_TYPE_SERIES_RESISTANCE_S11;  s = "Series resistance S11";     break;
+				case 25: graph_type = GRAPH_TYPE_SERIES_REACTANCE_S11;   s = "Series reactance S11";      break;
+				case 26: graph_type = GRAPH_TYPE_QUALITY_FACTOR_S11;     s = "Quality factor S11";        break;
+				case 27: graph_type = GRAPH_TYPE_SERIES_CAPACITANCE_S11; s = "Series capacitance S11";    break;
+				case 28: graph_type = GRAPH_TYPE_SERIES_INDUCTANCE_S11;  s = "Series inductance S11";     break;
+				case 29: graph_type = GRAPH_TYPE_COAX_LOSS_S11;          s = "Coax loss S11";             break;
+				case 30: graph_type = GRAPH_TYPE_CAL_LOGMAG;             s = "Calibrations log mag";            break;
+				case 31: graph_type = GRAPH_TYPE_SMITH_S11;              s = "Smith S11";                       break;
+				case 32: graph_type = GRAPH_TYPE_SMITH_S21;              s = "Smith S21";                       break;
+				case 33: graph_type = GRAPH_TYPE_ADMITTANCE_S11;         s = "Admittance S11";                  break;
+				case 34: graph_type = GRAPH_TYPE_ADMITTANCE_S21;         s = "Admittance S21";                  break;
+				case 35: graph_type = GRAPH_TYPE_POLAR_S11;              s = "Polar S11";                       break;
+				case 36: graph_type = GRAPH_TYPE_POLAR_S21;              s = "Polar S21";                       break;
+				case 37: graph_type = GRAPH_TYPE_TDR_LIN_LP_IMPULSE_S11; s = "TDR linear low pass impulse S11"; break;
+				case 38: graph_type = GRAPH_TYPE_TDR_LIN_BP_S11;         s = "TDR linear band pass S11";        break;
+				case 39: graph_type = GRAPH_TYPE_TDR_LOG_LP_IMPULSE_S11; s = "TDR log low pass impulse S11";    break;
+				case 40: graph_type = GRAPH_TYPE_TDR_LOG_BP_S11;         s = "TDR log band pass S11";           break;
+				case 41: graph_type = GRAPH_TYPE_TDR_IMPEDANCE_S11;      s = "TDR impedance S11";               break;
+//				case 42: graph_type = GRAPH_TYPE_PHASE_VECTOR_S11;       s = "Phase vector S11";                break;
+//				case 43: graph_type = GRAPH_TYPE_PHASE_VECTOR_S21;       s = "Phase vector S21";                break;
 			}
 
 			if (graph_type < 0)
@@ -1731,7 +1731,7 @@ void __fastcall TForm1::createGraphTypeMenus()
 			TMenuItem *menu_item;
 
 			const bool column_break = (i == ((3 + GRAPH_TYPE_SIZE) / 2)) ? true : false;
-			const bool line_break   = (graph_type == GRAPH_TYPE_SMITH_S11 || graph_type == GRAPH_TYPE_PHASE_VECTOR_S11 || graph_type == GRAPH_TYPE_TDR_LIN_LP_IMPULSE_S11 || graph_type == GRAPH_TYPE_GJB_S11) ? true : false;
+			const bool line_break   = (graph_type == GRAPH_TYPE_SMITH_S11 || graph_type == GRAPH_TYPE_PHASE_VECTOR_S11 || graph_type == GRAPH_TYPE_TDR_LIN_LP_IMPULSE_S11) ? true : false;
 
 			// add it to the graph popup menu
 			if (column_break || line_break)

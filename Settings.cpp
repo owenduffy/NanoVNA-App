@@ -2308,7 +2308,7 @@ void __fastcall CSettings::clipGraphMinMax(const int graph_type, double &max_val
 		case GRAPH_TYPE_VSWR_S11:
 			if (max_val > VSWR_MAX) max_val = VSWR_MAX;
 			else
-			if (max_val < (VSWR_MIN + 1)) max_val = VSWR_MIN + 1;
+			if (max_val < (VSWR_MIN + 0.05)) max_val = VSWR_MIN + 0.05;
 			break;
 		case GRAPH_TYPE_IMPEDANCE_S11:
 		case GRAPH_TYPE_TDR_IMPEDANCE_S11:
@@ -2407,8 +2407,8 @@ void __fastcall CSettings::clipGraphMinMax(const int graph_type, double &max_val
 				 max_val =  min_val + 1e-4;
 			break;
 		case GRAPH_TYPE_VSWR_S11:
-			if (max_val < (min_val + 1.0))
-				 max_val =  min_val + 1.0;
+			if (max_val < (min_val + 0.05))
+				 max_val =  min_val + 0.05;
 			break;
 		case GRAPH_TYPE_IMPEDANCE_S11:
 		case GRAPH_TYPE_TDR_IMPEDANCE_S11:

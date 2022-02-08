@@ -1618,7 +1618,7 @@ void __fastcall CGraphs::computeGraphMinMax(const int graph, const int graph_typ
 				gs->auto_max_hold_count = 0;
 			}
 		}
-	}
+  }
 
 	// sanity check
 	settings.clipGraphMinMax(graph_type, max_lev, min_lev);
@@ -8914,16 +8914,13 @@ void __fastcall CGraphs::drawVSWRReturnLossS11(const int graph, const int graph_
 //	const double gamma = settings.m_graph_setting[graph_type].gamma;
 	const double gamma = 1;
 
-	drawNoneLinMagLines(graph, true, min_levels, max_levels, gamma, 0.00001, "", "", true);
+	drawMagLines(graph, true, min_levels, max_levels, 0.00001, "%#.4f", "");
 
 	{	// compute the graph points
 		const double range_levels = fabs(max_levels - min_levels);
 
 		//const double x_scale = (double)gw / data_unit.m_freq_span_Hz;
-		const float  y_scale = (double)gh / range_levels;
-
-		const double pow_x_scale = 1.0 / range_levels;
-		const double pow_y = (gamma >= 1.0) ? 1.0 / gamma : 1.0;
+		const float y_scale = (double)gh / range_levels;
 
 		for (int mem = 0; mem < MAX_MEMORIES; mem++)
 		{
@@ -8935,22 +8932,12 @@ void __fastcall CGraphs::drawVSWRReturnLossS11(const int graph, const int graph_
 					m_line_points[graph][mem][channel].resize(size);
 					for (int i = 0; i < size; i++)
 					{
-						const int64_t Hz = data_unit.m_point_filt[mem][i].Hz;
-						double level = (double)m_levels[mem][channel][i] - min_levels;
-						if (gamma > GAMMA_MIN)
-						{	// non-linear scale
-							#ifdef NON_LIN_GAMMA
-								level = (level >= 0.0) ? pow(level * pow_x_scale, pow_y) * range_levels : 0.0;
-								// reverse
-								//level = min_levels + (pow(level * pow_x_scale, gamma) * range_levels);
-							#else
-								level = (level >= 0.0) ? min_levels + log(1.0 + level * gamma) * range_levels / log(1.0 + range_levels * gamma) : 0.0;
-							#endif
-						}
+						const int64_t Hz  = data_unit.m_point_filt[mem][i].Hz;
+						const float level = m_levels[mem][channel][i] - (float)min_levels;
 						m_line_points[graph][mem][channel][i].x = freqToX(graph, graph_type, Hz);
-						m_line_points[graph][mem][channel][i].y = (gy + gh) - ((float)level * y_scale);
+						m_line_points[graph][mem][channel][i].y = (gy + gh) - (level * y_scale);
 					}
-				}
+			  }
 			}
 		}
 	}

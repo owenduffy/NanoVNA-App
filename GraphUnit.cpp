@@ -1908,7 +1908,7 @@ void __fastcall TGraphForm::FormMouseWheel(TObject *Sender, TShiftState Shift,
 					case GRAPH_TYPE_VSWR_S11:
 						if (range > (VSWR_MAX - VSWR_MIN)) range = VSWR_MAX - VSWR_MIN;
 						else
-						if (range < 1.0) range = 1.0;
+						if (range < 0.1) range = 0.1;
 						gs->max = center + (range / 2);
 						gs->min = center - (range / 2);
 						//gs->min = VSWR_MIN;

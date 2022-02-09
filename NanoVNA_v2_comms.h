@@ -41,6 +41,8 @@
 #define REG_V2_SI5351_POWER              0x41    // uint8_t .. power (reserved)
 #define REG_V2_ADF4350_POWER             0x42    // uint8_t .. power
 
+#define REG_V2_UNIX_TIME                 0x58    // uint32_t .. unix time
+
 #define REG_V2_CAPTURE_SCREEN            0xEE    // t_v2_capture_screen_header followed by image data
 #define REG_V2_DEVICE_VARIANT            0xF0    // uint8 .... the type of device this is - always 0x02 for NanoVNA V2
 #define REG_V2_PROTCOL_VERSION           0xF1    // uint8 .... version of this wire protocol - always 0x01
@@ -189,6 +191,7 @@ class CNanoVNA2Comms
 		void __fastcall setAverageSetting(int value);
 		void __fastcall setSI5351OutputPower(int value);
 		void __fastcall setADF4350OutputPower(int value);
+		void __fastcall setTime(int year, int month, int day, int hour, int min, int sec);
 		bool __fastcall inDFUMode();
 		void __fastcall softReboot();
 		bool __fastcall requestCapture();

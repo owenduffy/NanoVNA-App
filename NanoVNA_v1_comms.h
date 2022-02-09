@@ -44,6 +44,14 @@ class CNanoVNA1Comms
 			CHighResolutionTick   timer;
 		} m_rx_block;
 
+		struct
+		{
+			int x;
+			int y;
+			int w;
+			int h;
+		} m_region;
+
 		String __fastcall getSerialStateString(t_serial_state state);
 
 		void __fastcall reset();

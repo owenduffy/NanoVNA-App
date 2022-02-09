@@ -1,14 +1,20 @@
 object VNAScreenCaptureForm: TVNAScreenCaptureForm
   Left = 0
   Top = 0
+  Margins.Left = 0
+  Margins.Top = 0
+  Margins.Right = 0
+  Margins.Bottom = 0
+  Anchors = []
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
   Caption = 'VNA Screen Capture'
-  ClientHeight = 292
-  ClientWidth = 335
+  ClientHeight = 288
+  ClientWidth = 334
   Color = clBtnFace
-  Constraints.MinHeight = 331
-  Constraints.MinWidth = 351
+  Constraints.MinHeight = 288
+  Constraints.MinWidth = 334
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -24,32 +30,27 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
   OnMouseEnter = FormMouseEnter
   OnShow = FormShow
   DesignSize = (
-    335
-    292)
+    334
+    288)
   PixelsPerInch = 96
   TextHeight = 13
-  object ActualSizeImage: TImage
-    Left = 8
-    Top = 42
-    Width = 324
-    Height = 244
-    AutoSize = True
-    Center = True
-    Proportional = True
+  object ActualSize: TLabel
+    Left = 142
+    Top = 0
+    Width = 52
+    Height = 13
+    Caption = 'Actual Size'
   end
-  object ResizeImage: TImage
-    Left = 8
-    Top = 42
-    Width = 320
-    Height = 240
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    Center = True
-    Proportional = True
-    Stretch = True
+  object Remote: TLabel
+    Left = 229
+    Top = 0
+    Width = 37
+    Height = 13
+    Caption = 'Remote'
   end
   object ActualSizeToggleSwitch: TToggleSwitch
     Left = 134
-    Top = 8
+    Top = 12
     Width = 73
     Height = 24
     Cursor = crHandPoint
@@ -72,11 +73,71 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     ThumbWidth = 20
     OnClick = ActualSizeToggleSwitchClick
   end
+  object Panel1: TPanel
+    Left = 4
+    Top = 38
+    Width = 326
+    Height = 246
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    BevelEdges = []
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    Caption = 'Panel1'
+    Color = clBlack
+    Ctl3D = False
+    FullRepaint = False
+    ParentBackground = False
+    ParentCtl3D = False
+    TabOrder = 6
+    DesignSize = (
+      326
+      246)
+    object ActualSizeImage: TImage
+      Left = 3
+      Top = 3
+      Width = 320
+      Height = 240
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Proportional = True
+      OnMouseDown = ActualSizeImageMouseDown
+      OnMouseLeave = ActualSizeImageMouseLeave
+      OnMouseMove = ActualSizeImageMouseMove
+      OnMouseUp = ActualSizeImageMouseUp
+    end
+    object ResizeImage: TImage
+      Left = 3
+      Top = 3
+      Width = 320
+      Height = 240
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Center = True
+      IncrementalDisplay = True
+      Stretch = True
+      Visible = False
+      OnMouseDown = ResizeImageMouseDown
+      OnMouseLeave = ResizeImageMouseLeave
+      OnMouseMove = ResizeImageMouseMove
+      OnMouseUp = ResizeImageMouseUp
+      ExplicitWidth = 320
+      ExplicitHeight = 240
+    end
+  end
   object CloseBitBtn: TBitBtn
     Left = 292
     Top = 8
     Width = 36
-    Height = 24
+    Height = 28
     Cursor = crHandPoint
     Anchors = [akTop, akRight]
     Glyph.Data = {
@@ -130,7 +191,7 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     Left = 8
     Top = 8
     Width = 36
-    Height = 24
+    Height = 28
     Cursor = crHandPoint
     Hint = 'Save the image to a file'
     Glyph.Data = {
@@ -151,7 +212,7 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     Left = 50
     Top = 8
     Width = 36
-    Height = 24
+    Height = 28
     Cursor = crHandPoint
     Hint = 'Copy the image to the clipboard'
     Glyph.Data = {
@@ -206,7 +267,7 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     Left = 92
     Top = 8
     Width = 36
-    Height = 24
+    Height = 28
     Cursor = crHandPoint
     Hint = 'Refresh the image'
     Glyph.Data = {
@@ -240,6 +301,30 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     ShowHint = True
     TabOrder = 4
     OnClick = RefreshImageBitBtnClick
+  end
+  object ToggleSwitch1: TToggleSwitch
+    Left = 213
+    Top = 12
+    Width = 73
+    Height = 24
+    Cursor = crHandPoint
+    Hint = 'Remote Display'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    FrameColor = clBtnFace
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    StateCaptions.CaptionOn = 'Yes'
+    StateCaptions.CaptionOff = 'No'
+    SwitchHeight = 24
+    TabOrder = 5
+    ThumbColor = clNavy
+    ThumbWidth = 20
+    OnClick = ToggleSwitch1Click
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = 'bmp'

@@ -533,7 +533,11 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
+<<<<<<< HEAD
 		common.title = Application->Title + " by OneOfEleven " + s + " (+OD07) ";
+=======
+		common.title = Application->Title + " " + s + " by OneOfEleven (mod from DiSlord)";
+>>>>>>> 476930fb7060954752d60b36184680bb85f6275a
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -3647,16 +3651,23 @@ void __fastcall TForm1::WMNewUnitType(TMessage &msg)
 	{
 		updatePointBandwidthComboBox();
 		PointBandwidthHzComboBox->Enabled = true;
+		PointBandwidthLabel->Caption = "Point RBW (Hz)";
+		PointBandwidthHzComboBox->TextHint = "Enter Hz";
 	}
 	else
 	if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2)
 	{	// V2
-		PointBandwidthHzComboBox->Enabled = false;
+		updatePointBandwidthComboBox();
+		PointBandwidthHzComboBox->Enabled = true;
+		PointBandwidthLabel->Caption = "Point Avg";
+		PointBandwidthHzComboBox->TextHint = "Enter avg";
 	}
 	else
 	{	// V1
 		updatePointBandwidthComboBox();
 		PointBandwidthHzComboBox->Enabled = true;
+		PointBandwidthLabel->Caption = "Point RBW (Hz)";
+		PointBandwidthHzComboBox->TextHint = "Enter Hz";
 	}
 
 	if (SettingsForm)
@@ -4384,6 +4395,42 @@ bool __fastcall TForm1::requestCapture()
 		return false;
 
 	return (data_unit.m_vna_data.type != UNIT_TYPE_NANOVNA_V2 && data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2) ? nanovna1_comms.requestCapture() : nanovna2_comms.requestCapture();
+}
+
+bool __fastcall TForm1::requestMouseDown(int x, int y)
+{
+	if (!connected() /*	|| m_comms.rx_block.type != SERIAL_STATE_IDLE */)
+		return false;
+	if (x > 0 && x <480 && y > 0 && y < 320 ) {
+		String s;
+		s.printf(L"touch %d %d", x, y);
+		addSerialTxCommand(s);
+	}
+	Sleep(30);
+	return true;
+}
+
+bool __fastcall TForm1::requestMouseUp(void)
+{
+	if (!connected() /*	|| m_comms.rx_block.type != SERIAL_STATE_IDLE */)
+		return false;
+	addSerialTxCommand("release");
+	Sleep(30);
+	return true;
+}
+
+bool __fastcall TForm1::autoRefresh(bool enable)
+{
+	if (!connected() /*	|| m_comms.rx_block.type != SERIAL_STATE_IDLE */)
+		return false;
+	if (enable) {
+		pauseComms(true);
+		addSerialTxCommand("refresh on");
+	} else {
+		addSerialTxCommand("refresh off");
+	}
+	Sleep(30);
+	return true;
 }
 
 void __fastcall TForm1::requestScan()
@@ -7216,68 +7263,82 @@ void __fastcall TForm1::updatePointBandwidthComboBox(const bool create)
 	}
 	else
 	{
-		int Hz = data_unit.m_vna_data.max_bandwidth_Hz;
-		if (Hz > 25000)
-		{
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 25000;
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 20000;
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 10000;
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 7500;
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 5000;
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 4000;
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz = 3000;
+		if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2) {
+			int avg;
+			avg = 1;cb->AddItem(IntToStr(avg), (TObject *)avg);
+			avg = 2;cb->AddItem(IntToStr(avg), (TObject *)avg); 
+			avg = 5;cb->AddItem(IntToStr(avg), (TObject *)avg); 
+			avg = 10;cb->AddItem(IntToStr(avg), (TObject *)avg); 
+			avg = 20;cb->AddItem(IntToStr(avg), (TObject *)avg); 
+			avg = 40;cb->AddItem(IntToStr(avg), (TObject *)avg); 
+			avg = 60;cb->AddItem(IntToStr(avg), (TObject *)avg); 
+			avg = 80;cb->AddItem(IntToStr(avg), (TObject *)avg);
+			cb->ItemIndex = 0;
+			cb->Text = data_unit.m_bandwidth_Hz;
 		}
-		if (Hz > 2000)
-		{
-			cb->AddItem(IntToStr(Hz), (TObject *)Hz);
-			Hz /= 2;
-			while (Hz > 2000)
+		else {
+			int Hz = data_unit.m_vna_data.max_bandwidth_Hz;
+			if (Hz > 25000)
+			{
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 25000;
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 20000;
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 10000;
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 7500;
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 5000;
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 4000;
+				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+				Hz = 3000;
+			}
+			if (Hz > 2000)
 			{
 				cb->AddItem(IntToStr(Hz), (TObject *)Hz);
 				Hz /= 2;
+				while (Hz > 2000)
+				{
+					cb->AddItem(IntToStr(Hz), (TObject *)Hz);
+					Hz /= 2;
+				}
+			}
+
+			if (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2)
+			{
+				if (Hz >= 2000)
+					cb->AddItem("2000", (TObject *)2000);
+				if (Hz >= 1000)
+					cb->AddItem("1000", (TObject *)1000);
+				if (Hz >= 333)
+					cb->AddItem("333",  (TObject *)333);
+				if (Hz >= 100)
+					cb->AddItem("100",  (TObject *)100);
+				if (Hz >= 30)
+					cb->AddItem("30",   (TObject *)30);
+			}
+			else
+			{
+				if (Hz >= 2000)
+					cb->AddItem("2500", (TObject *)2000);
+				if (Hz >= 1000)
+					cb->AddItem("1000", (TObject *)1000);
+				if (Hz >= 500)
+					cb->AddItem("500",  (TObject *)500);
+				if (Hz >= 200)
+					cb->AddItem("250",  (TObject *)200);
+				if (Hz >= 100)
+					cb->AddItem("100",  (TObject *)100);
+				if (Hz >= 50)
+					cb->AddItem("50",   (TObject *)50);
+				if (Hz >= 20)
+					cb->AddItem("25",   (TObject *)20);
+				if (Hz >= 10)
+					cb->AddItem("10",   (TObject *)10);
 			}
 		}
-
-		if (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2)
-		{
-			if (Hz >= 2000)
-				cb->AddItem("2000", (TObject *)2000);
-			if (Hz >= 1000)
-				cb->AddItem("1000", (TObject *)1000);
-			if (Hz >= 333)
-				cb->AddItem("333",  (TObject *)333);
-			if (Hz >= 100)
-				cb->AddItem("100",  (TObject *)100);
-			if (Hz >= 30)
-				cb->AddItem("30",   (TObject *)30);
-		}
-		else
-		{
-			if (Hz >= 2000)
-				cb->AddItem("2500", (TObject *)2000);
-			if (Hz >= 1000)
-				cb->AddItem("1000", (TObject *)1000);
-			if (Hz >= 500)
-				cb->AddItem("500",  (TObject *)500);
-			if (Hz >= 200)
-				cb->AddItem("250",  (TObject *)200);
-			if (Hz >= 100)
-				cb->AddItem("100",  (TObject *)100);
-			if (Hz >= 50)
-				cb->AddItem("50",   (TObject *)50);
-			if (Hz >= 20)
-				cb->AddItem("25",   (TObject *)20);
-			if (Hz >= 10)
-				cb->AddItem("10",   (TObject *)10);
-		}
-
 		if (!s.IsEmpty())
 		{
 			const int i = cb->Items->IndexOf(s);
@@ -7483,7 +7544,7 @@ void __fastcall TForm1::updateCalibrationSelectComboBox()
 	cb->Clear();
 
 	cb->AddItem("None", (TObject *)CAL_SELECT_NONE);
-	if (!connected() || (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2 && data_unit.m_vna_data.type != UNIT_TYPE_NANOVNA_V2))
+	if (!connected() || (data_unit.m_vna_data.type != UNIT_TYPE_JANVNA_V2))// && data_unit.m_vna_data.type != UNIT_TYPE_NANOVNA_V2))
 		cb->AddItem("VNA",  (TObject *)CAL_SELECT_VNA);
 	cb->AddItem("APP",  (TObject *)CAL_SELECT_APP);
 
@@ -8037,7 +8098,13 @@ bool __fastcall TForm1::processPointBandwidthHzComboBox()
 {
 	String s;
 	double d;
-
+	if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2){
+		int avg = 1;
+		TryStrToInt(PointBandwidthHzComboBox->Text, avg);
+		if (avg > 100) avg = 100;
+		data_unit.m_bandwidth_Hz = avg < 0 ? 1 : avg; 
+		return true;
+	}
 	if (!common.strToValue(PointBandwidthHzComboBox->Text, d, 1.0))
 	{
 		s.printf(L"Invalid bandwidth [10 to %d]", data_unit.m_vna_data.max_bandwidth_Hz);

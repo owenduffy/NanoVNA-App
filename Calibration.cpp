@@ -116,7 +116,7 @@ void __fastcall CCalibration::computeErrorTerms(t_calibration &calibration)
 		complexd e00;
 		complexd e11;
 		complexd delta_e;
-		complexd e30;
+		complexd e30 = gisoln;
 		complexd e10e32;
 
 		try

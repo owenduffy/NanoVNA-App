@@ -110,7 +110,7 @@ void __fastcall CNanoVNA2Comms::setMode(const t_mode mode)
 					Form1->pushCommMessage("tx: clearing FIFO buffer");
 					addTxNulls();
 					//addTxNulls(true, 0);
-					addTxWrite1(REG_V2_VALUES_FIFO, 0);
+					//addTxWrite1(REG_V2_VALUES_FIFO, 0);
 					sendData();
 					m_tx_cmd.resize(0);
 
@@ -404,6 +404,19 @@ void __fastcall CNanoVNA2Comms::setADF4350OutputPower(int value)
 	m_tx_cmd.resize(0);
 }
 
+void __fastcall CNanoVNA2Comms::setTime(int year, int month, int day, int hour, int min, int sec)
+{
+	uint32_t a=((14-month)/12);
+	uint32_t y=year+4800-a;
+	uint32_t m=month+(12*a)-3;
+	uint32_t Uday=(day+((153*m+2)/5)+365*y+(y/4)-(y/100)+(y/400)-32045)-2440588;
+	uint32_t time = Uday*60*60*24 + sec + min*60 + hour*3600;
+
+	Form1->printfCommMessage("tx: set UNIX time %u", time);
+	nanovna2_comms.addTxWrite4(REG_V2_UNIX_TIME, time);
+	sendData();
+	m_tx_cmd.resize(0);
+}
 void __fastcall CNanoVNA2Comms::softReboot()
 {
 	Form1->pushCommMessage("tx: request soft reboot");
@@ -519,9 +532,12 @@ void __fastcall CNanoVNA2Comms::requestScan()
 
 		// reset protocol to known state
 		addTxNulls();
-
+		if (settings.calibrationSelection == CAL_SELECT_VNA)
+			addTxWrite1(REG_V2_RAW_SAMPLES_MODE, 0x03);   // enter USB calibrated mode
+		else
+			addTxWrite1(REG_V2_RAW_SAMPLES_MODE, 0x00);   // enter USB mode
 		// clear the FIFO
-		addTxWrite1(REG_V2_VALUES_FIFO, 0);
+		//addTxWrite1(REG_V2_VALUES_FIFO, 0);
 
 		// start frequency
 		m_start = start;
@@ -563,12 +579,12 @@ int __fastcall CNanoVNA2Comms::requestPoints(int num_points)
 	addTxNulls(true, 0);
 
 	// clear the FIFO
-	addTxWrite1(REG_V2_VALUES_FIFO, 0);
+//	addTxWrite1(REG_V2_VALUES_FIFO, 0);
 
-//	m_tx_cmd.push_back(CMD_V2_READ_FIFO);
-//	m_tx_cmd.push_back(REG_V2_VALUES_FIFO);
-//	m_tx_cmd.push_back(0);	// tell it to send ALL the scan points in one go
-
+	m_tx_cmd.push_back(CMD_V2_READ_FIFO);
+	m_tx_cmd.push_back(REG_V2_VALUES_FIFO);
+	m_tx_cmd.push_back(0);	// tell it to send ALL the scan points in one go
+/*
 	int points = num_points;
 	while (points > 0)
 	{
@@ -586,7 +602,7 @@ int __fastcall CNanoVNA2Comms::requestPoints(int num_points)
 
 		points -= n;
 	}
-
+  */
 	sendData();
 	m_tx_cmd.resize(0);
 
@@ -785,23 +801,29 @@ void __fastcall CNanoVNA2Comms::newUnit()
 
 	data_unit.m_vna_data.type = UNIT_TYPE_NANOVNA_V2;
 
-	data_unit.m_vna_data.name = "NanoVNA-V";
+	data_unit.m_vna_data.name = "NanoVNA-";
 	switch (data_unit.m_vna_data.hardware_revision)
 	{
 		case REG_V2_HARDWARE_REVISION_ACK_2_2:
-			data_unit.m_vna_data.name += "2.2";
-			data_unit.m_vna_data.max_points = 1024;
+			if (data_unit.m_vna_data.firmware_major == 2) {
+				data_unit.m_vna_data.name += "LiteVNA";
+				data_unit.m_vna_data.max_points = 65535;
+//				data_unit.m_vna_data.hardware_revision = REG_V2_HARDWARE_REVISION_ACK_2_4;
+			} else {
+				data_unit.m_vna_data.name += "V2.2";
+				data_unit.m_vna_data.max_points = 1024;
+			}
 			break;
 		case REG_V2_HARDWARE_REVISION_ACK_2_3:
-			data_unit.m_vna_data.name += "2Plus";
+			data_unit.m_vna_data.name += "V2Plus";
 			data_unit.m_vna_data.max_points = 1024;
 			break;
 		case REG_V2_HARDWARE_REVISION_ACK_2_4:
-			data_unit.m_vna_data.name += "2Plus4";
+			data_unit.m_vna_data.name += "V2Plus4";
 			data_unit.m_vna_data.max_points = 65535;
 			break;
 		case REG_DFU_V2_HARDWARE_REVISION_ACK:
-			data_unit.m_vna_data.name += "2-DFU";
+			data_unit.m_vna_data.name += "V2-DFU";
 			data_unit.m_vna_data.max_points = 201;
 			break;
 		default:
@@ -1171,7 +1193,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 		{	// we have received the image data
 
 			// point to the image data
-			const uint8_t *image = (uint8_t *)(&serial_buffer.buffer[k]);
+			uint16_t *data = (uint16_t *)(&serial_buffer.buffer[k]);
 			k += image_size;
 
 			if (m_cap_header.pixel_format == 16)
@@ -1183,33 +1205,16 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 				{
 					m_capture_bm->Monochrome  = false;
 					m_capture_bm->Transparent = false;
-					m_capture_bm->PixelFormat = pf32bit;
+					m_capture_bm->PixelFormat = pf16bit;
 					m_capture_bm->Width       = m_cap_header.width;
 					m_capture_bm->Height      = m_cap_header.height;
 
-					for (int i = 0; i < image_size; i += 2)
-					{
-						// fetch the 16-bit pixel from the received image data
-						const uint16_t pixel = ((uint16_t)image[i + 1] << 8) | ((uint16_t)image[i + 0] << 0);
-
-						// convert from 16-bit pixel to 32-bit RGBA pixel
-						const uint8_t red =  (pixel >> 0) & 0xf8;
-						const uint8_t grn = ((pixel << 5) & 0xe0) | ((pixel >> 11) & 0x1c);
-						const uint8_t blu =  (pixel >> 5) & 0xf8;
-
-						// save the 32-bit RGBA pixel into the image we are creating
-						const int y = (i / 2) / m_capture_bm->Width;
-						const int x = (i / 2) % m_capture_bm->Width;
-						if (y < m_capture_bm->Height && x < m_capture_bm->Width)
-						{
-							uint8_t *p = (uint8_t *)m_capture_bm->ScanLine[y] + (x * 4);
-							p[0] = blu;
-							p[1] = grn;
-							p[2] = red;
-							p[3] = 255;
+					for (int y = 0; y < m_capture_bm->Height; y++) {
+						uint16_t *dst = (uint16_t *)m_capture_bm->ScanLine[y];
+						for (int x = 0; x < m_capture_bm->Width; x++, data++){
+							*dst++ = (*data<<8)|(*data>>8);
 						}
 					}
-
 					s.printf(L"screen captured OK %u*%u*%u, %d bytes", m_cap_header.width, m_cap_header.height, m_cap_header.pixel_format, image_size);
 					Form1->pushCommMessage("rx: " + s);
 

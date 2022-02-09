@@ -533,11 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-<<<<<<< HEAD
 		common.title = Application->Title + " by OneOfEleven " + s + " (+OD07) ";
-=======
-		common.title = Application->Title + " " + s + " by OneOfEleven (mod from DiSlord)";
->>>>>>> 476930fb7060954752d60b36184680bb85f6275a
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";

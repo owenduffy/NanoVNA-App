@@ -157,7 +157,7 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
         <TASM_FloatingPoint>Real</TASM_FloatingPoint>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.1.208.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.1.208;Comments=;PrivateBuild=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.1.209.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.1.208;Comments=;PrivateBuild=</VerInfo_Keys>
         <Icon_MainIcon>NanoVNA-App_Icon.ico</Icon_MainIcon>
         <LinkPackageStatics>rtl.lib;vcl.lib;vclwinx.lib;vclimg.lib;VclSmp.lib;vclx.lib;IndyCore.lib;IndySystem.lib;bcbsmp.lib;bindengine.lib</LinkPackageStatics>
         <UsePackages>false</UsePackages>
@@ -165,7 +165,7 @@
         <BCC_MonitorGlobalAndStackData>true</BCC_MonitorGlobalAndStackData>
         <BCC_MonitorThis>true</BCC_MonitorThis>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <VerInfo_Release>208</VerInfo_Release>
+        <VerInfo_Release>209</VerInfo_Release>
         <BCC_DataAlignment>Paragraph</BCC_DataAlignment>
         <ILINK_HeapReserveSize>0x07000000</ILINK_HeapReserveSize>
         <ILINK_StackReserveSize>0x00200000</ILINK_StackReserveSize>
@@ -174,7 +174,6 @@
         <BT_BuildType>Debug</BT_BuildType>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>1</VerInfo_Build>
         <VerInfo_Private>true</VerInfo_Private>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">

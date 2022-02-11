@@ -8348,7 +8348,9 @@ void __fastcall CGraphs::drawLogMagS11S21(const int graph, const int graph_type,
 			if (show_marker_text && settings.showMarkersOnGraph && settings.memoryEnable[m] && draw_on_graph)
 			{
 				String units      = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? " dB" : " dBm";
-				String line_type1 = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 " : "line ";
+				String line_type1;
+        if (retloss) line_type1 = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "RL " : "line ";
+        else line_type1 = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11 " : "line ";
 				String line_type2 = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S21 " : "line ";
 				switch (chan_mask & 3)
 				{
@@ -8968,7 +8970,7 @@ void __fastcall CGraphs::drawVSWRReturnLossS11(const int graph, const int graph_
 			if (show_marker_text && settings.showMarkersOnGraph && settings.memoryEnable[m] && draw_on_graph)
 			{
 				if (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA)
-					drawMarkersOnGraph(graph, m, channel, "", "S11  ");
+					drawMarkersOnGraph(graph, m, channel, "", "VSWR  ");
 				else
 					drawMarkersOnGraph(graph, m, channel, "", "Line ");
 				draw_on_graph = false;

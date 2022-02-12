@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD08) ";
+		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD09) ";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -2070,11 +2070,11 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			String resp_str  = common.valueToStr(resp,   false, true).Trim();
 			String respj_str = common.valueToStr(resp_j, false, true).Trim();
 
-			String cap_str   = common.valueToStr(cap,    false, true).Trim() + "F";
-			String capp_str  = common.valueToStr(cap_p,  false, true).Trim() + "F";
+			String cap_str   = common.valueToStr(cap,    false, true).Trim() + " F";
+			String capp_str  = common.valueToStr(cap_p,  false, true).Trim() + " F";
 
-			String ind_str   = common.valueToStr(ind,    false, true).Trim() + "H";
-			String indp_str  = common.valueToStr(ind_p,  false, true).Trim() + "H";
+			String ind_str   = common.valueToStr(ind,    false, true).Trim() + " H";
+			String indp_str  = common.valueToStr(ind_p,  false, true).Trim() + " H";
 
 			float s11_group_delay_sec;
 			float s21_group_delay_sec;
@@ -2156,7 +2156,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f %+0.3f\xb0", s11_mag, s11_phase * rad_2_deg);
 			MarkerS11PolarLabel->Caption = s;
 
-			s = common.valueToStr(s11_group_delay_sec, false, true) + "s";
+			s = common.valueToStr(s11_group_delay_sec, false, true) + " s";
 			MarkerS11GroupDelayLabel->Caption = s;
 
 
@@ -2180,7 +2180,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f %+0.3f\xb0", s21_mag, s21_phase * rad_2_deg);
 			MarkerS21PolarLabel->Caption = s;
 
-			s = common.valueToStr(s21_group_delay_sec, false, true) + "s";
+			s = common.valueToStr(s21_group_delay_sec, false, true) + " s";
 			MarkerS21GroupDelayLabel->Caption = s;
 
 
@@ -2243,11 +2243,11 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			String resp_str  = common.valueToStr(resp,   false, true).Trim();
 			String respj_str = common.valueToStr(resp_j, false, true).Trim();
 
-			String cap_str   = common.valueToStr(cap,    false, true).Trim() + "F";
-			String capp_str  = common.valueToStr(cap_p,  false, true).Trim() + "F";
+			String cap_str   = common.valueToStr(cap,    false, true).Trim() + " F";
+			String capp_str  = common.valueToStr(cap_p,  false, true).Trim() + " F";
 
-			String ind_str   = common.valueToStr(ind,    false, true).Trim() + "H";
-			String indp_str  = common.valueToStr(ind_p,  false, true).Trim() + "H";
+			String ind_str   = common.valueToStr(ind,    false, true).Trim() + " H";
+			String indp_str  = common.valueToStr(ind_p,  false, true).Trim() + " H";
 
 			float s11_group_delay_sec;
 			float s21_group_delay_sec;
@@ -2329,7 +2329,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f %+0.3f\xb0", s11_mag, s11_phase * rad_2_deg);
 			MarkerS11PolarLabel->Caption = s;
 
-			s = common.valueToStr(s11_group_delay_sec, false, true) + "s";
+			s = common.valueToStr(s11_group_delay_sec, false, true) + " s";
 			MarkerS11GroupDelayLabel->Caption = s;
 
 

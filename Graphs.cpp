@@ -3885,7 +3885,8 @@ void __fastcall CGraphs::drawMarkersOnSmithPolarGraph(const int graph, const int
 		else
 			s[j++] += ", memory " + IntToStr(mem);
 		s[j++] =          " Freq    " + common.freqToStr1(Hz - Hz_nd, true, true, 6, dm) + "Hz";
-		s[j++] =          " re im   " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
+				if (c.imag()<0) s[j++] = " re im   " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				else s[j++] = " re im   " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
 		if (polar)
 		{	// polar
 			//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
@@ -4062,7 +4063,8 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 
 				s[str_count++] =          " Mouse ";
 				s[str_count++] =          " Freq (CW) " + common.freqToStr1(Hz, true, true, 6, false) + "Hz";
-				s[str_count++] =          " re im     " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
+				if (c.imag()<0)  s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				else s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
 				if (polar)
 				{	// polar
 					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
@@ -4153,7 +4155,8 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				else
 					s[str_count++].printf(L" Point %d/%u, mem %d", 1 + index, line_points.size(), mem);
 				s[str_count++] =          " Freq      " + common.freqToStr1(Hz, true, true, 6, false) + "Hz";
-				s[str_count++] =          " re im     " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
+				if (c.imag()<0)  s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				else s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
 				if (polar)
 				{  // polar
 					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
@@ -9586,7 +9589,7 @@ void __fastcall CGraphs::drawQCS11(const int graph, const int graph_type, const 
 			if (show_marker_text && settings.showMarkersOnGraph && settings.memoryEnable[m] && draw_on_graph)
 			{
 				String line_type = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11  " : "line ";
-				drawMarkersOnGraph(graph, m, channel, " Cap", line_type);
+				drawMarkersOnGraph(graph, m, channel, " F", line_type);
 				draw_on_graph = false;
 			}
 		}
@@ -9793,7 +9796,7 @@ void __fastcall CGraphs::drawQLS11(const int graph, const int graph_type, const 
 			if (show_marker_text && settings.showMarkersOnGraph && settings.memoryEnable[m] && draw_on_graph)
 			{
 				String line_type = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? "S11  " : "line ";
-				drawMarkersOnGraph(graph, m, channel, " Ind", line_type);
+				drawMarkersOnGraph(graph, m, channel, " H", line_type);
 				draw_on_graph = false;
 			}
 		}

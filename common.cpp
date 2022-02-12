@@ -2565,8 +2565,8 @@ bool __fastcall CCommon::saveSParams(std::vector <t_data_point> &points, int num
 
 	String s;
 	std::vector <String> buffer;
-
-	s = "! " + Application->Title;
+  
+	s = "! " + common.title;
 	buffer.push_back(s);
 
 	s = "! Date: " + FormatDateTime("yyyy-mm-dd hh:nn:ss", Now());

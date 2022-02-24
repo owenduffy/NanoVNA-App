@@ -2191,6 +2191,7 @@ String __fastcall CCommon::loadSParams(std::vector <t_data_point> &s_params, Str
 
 		if (!TryStrToFloat(params[0], freq) || freq <= 0)
 		{
+            continue; //skip lines with invalid frequency
 			String s3;
 			s3.printf(L"Frequency error on line %u\r\n\n\"%s\"", line, s.c_str());
 			if (filename.IsEmpty())

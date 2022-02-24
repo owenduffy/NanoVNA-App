@@ -94,8 +94,8 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     ParentCtl3D = False
     TabOrder = 6
     DesignSize = (
-      326
-      246)
+      324
+      244)
     object ActualSizeImage: TImage
       Left = 3
       Top = 3
@@ -129,8 +129,6 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
       OnMouseLeave = ResizeImageMouseLeave
       OnMouseMove = ResizeImageMouseMove
       OnMouseUp = ResizeImageMouseUp
-      ExplicitWidth = 320
-      ExplicitHeight = 240
     end
   end
   object CloseBitBtn: TBitBtn

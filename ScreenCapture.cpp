@@ -253,8 +253,8 @@ void __fastcall TVNAScreenCaptureForm::addImage(Graphics::TBitmap *bitmap)
 	ActualSizeImage->Picture->Assign(m_bitmap);
 	ResizeImage->Picture->Assign(m_bitmap);
 
-	ActualSizeImage->Width = m_bitmap->Width;
-	ActualSizeImage->Height = m_bitmap->Height;
+	ActualSizeImage->Width = m_bitmap->Width + 6;
+	ActualSizeImage->Height = m_bitmap->Height + 6;
 
 	m_image_w = bitmap->Width;
 	m_image_h = bitmap->Height;

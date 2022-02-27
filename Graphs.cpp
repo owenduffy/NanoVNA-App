@@ -3612,6 +3612,9 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 			String resp_str  = common.valueToStr(resp, false, true);
 			String respj_str = common.valueToStr(resp_j, false, true);
 
+			String resa_str  = common.valueToStr(1/resp, false, true);
+			String resaj_str = common.valueToStr(1/resp_j, false, true);
+
 			String cap_str   = common.valueToStr(cap, false, true) + "F";
 			String capp_str  = common.valueToStr(cap_p, false, true) + "F";
 
@@ -3630,32 +3633,33 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 
 				s[j++] =          " Freq    " + common.freqToStr1(Hz - Hz_nd, true, true, 6, dm) + "Hz";
 
-				//s[j++] =          " re im     " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
+				//s[j++] =          " re im  " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
 
 				if (polar)
 				{	// polar
+					s[j++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[j++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[j++] =       " Imp   " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 				else
 				if (admittance)
 				{	// admittance
-					//s[j++].printf(L" Rp+jX    %#.4g %cj%#.4g ", imp_p.real(), (imp_p.imag() < 0) ? '-' : '+', fabsf(imp_p.imag()));
-					s[j++] =       " Rp jX    " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
-					s[j++].printf(L" Rp L/C   %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
-					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[j++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					//s[j++].printf(L" Rp jXp   %#.4g %cj%#.4g ", imp_p.real(), (imp_p.imag() < 0) ? '-' : '+', fabsf(imp_p.imag()));
+					s[j++] =       " G jB   " + resa_str + " " + ((imp_p.imag() >= 0) ? "-j" : "+j") + resaj_str;
+					s[j++] =       " Rp jXp " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+					s[j++].printf(L" Rp L/C %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
+					s[j++] =       " Imp    " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 				else
 				{	// smith
+					s[j++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[j++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[j++] =       " Imp   " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 			}
 			else
@@ -3730,32 +3734,32 @@ void __fastcall CGraphs::drawMarkersSmithPolar(const int graph, const int mem, c
 
 				s[j++] =          " Freq    " + common.freqToStr1(Hz - Hz_nd, true, true, 6, dm) + "Hz";
 
-				//s[j++] =          " re im     " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
+				//s[j++] =          " re im  " + common.valueToStr(c.real(), false, true, "", true) + " " + common.valueToStr(c.imag(), false, true, "", true);
 
 				if (polar)
 				{	// polar
+					s[j++].printf(L" M A%0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
 					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
 					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 				else
 				if (admittance)
 				{	// admittance
-					//s[j++].printf(L" Rp jX    %#.4g %cj%#.4g ", imp_p.real(), (imp_p.imag() < 0) ? '-' : '+', fabsf(imp_p.imag()));
-					s[j++] =       " Rp jX    " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
-					s[j++].printf(L" Rp L/C   %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
-					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[j++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					//s[j++].printf(L" Rp jXp   %#.4g %cj%#.4g ", imp_p.real(), (imp_p.imag() < 0) ? '-' : '+', fabsf(imp_p.imag()));
+					s[j++] =       " Rp jXp " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+					s[j++].printf(L" Rp L/C %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
+					s[j++] =       " Imp    " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 				else
 				{	// smith
+					s[j++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-					s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[j++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[j++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[j++] =       " Imp   " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 			}
 			else
@@ -3867,6 +3871,9 @@ void __fastcall CGraphs::drawMarkersOnSmithPolarGraph(const int graph, const int
 		String resp_str  = common.valueToStr(resp, false, true);
 		String respj_str = common.valueToStr(resp_j, false, true);
 
+		String resa_str  = common.valueToStr(1/resp, false, true);
+		String resaj_str = common.valueToStr(1/resp_j, false, true);
+
 		String cap_str   = common.valueToStr(cap, false, true) + "F";
 		String capp_str  = common.valueToStr(cap_p, false, true) + "F";
 
@@ -3884,33 +3891,34 @@ void __fastcall CGraphs::drawMarkersOnSmithPolarGraph(const int graph, const int
 			s[j++] += ", live";
 		else
 			s[j++] += ", memory " + IntToStr(mem);
-		s[j++] =          " Freq    " + common.freqToStr1(Hz - Hz_nd, true, true, 6, dm) + "Hz";
-				if (c.imag()<0) s[j++] = " re im   " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
-				else s[j++] = " re im   " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+		s[j++] =          " Freq   " + common.freqToStr1(Hz - Hz_nd, true, true, 6, dm) + "Hz";
+				if (c.imag()<0) s[j++] = " re im  " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				else s[j++] = " re im  " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
 		if (polar)
 		{	// polar
+			s[j++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 			//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-			s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-			s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-			s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-			s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+			s[j++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+			s[j++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+			s[j++] =       " Imp   " + common.valueToStr(data_unit.magnitude(imp), false, true);
 		}
 		else
 		if (admittance)
 		{	// admittance
-			//s[j++].printf(L" Rp jX    %#.4g %cj%#.4g ", imp_p.real(), (imp_p.imag() < 0) ? '-' : '+', fabsf(imp_p.imag()));
-			s[j++] =       " Rp jX    " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
-			s[j++].printf(L" Rp L/C   %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
-			s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-			s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp_p), false, true);
+			s[j++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+			//s[j++].printf(L" Rp jXp   %#.4g %cj%#.4g ", imp_p.real(), (imp_p.imag() < 0) ? '-' : '+', fabsf(imp_p.imag()));
+			s[j++] =       " G jB   " + resa_str + " " + ((imp_p.imag() >= 0) ? "-j" : "+j") + resaj_str;
+			s[j++] =       " Rp jXp " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+			s[j++].printf(L" Rp L/C %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
+			s[j++] =       " Imp    " + common.valueToStr(data_unit.magnitude(imp_p), false, true);
 		}
 		else
 		{	// smith
+			s[j++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 			//s[j++].printf(L" R jX    %#.4g %cj%#.4g ", imp.real(), (imp.imag() < 0) ? '-' : '+', fabsf(imp.imag()));
-			s[j++] =       " R jX    " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-			s[j++].printf(L" R L/C   %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-			s[j++].printf(L" Mag Ang  %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-			s[j++] =       " Imp      " + common.valueToStr(data_unit.magnitude(imp), false, true);
+			s[j++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+			s[j++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+			s[j++] =       " Imp   " + common.valueToStr(data_unit.magnitude(imp), false, true);
 		}
 
 		#ifndef USE_OPENGL
@@ -4055,6 +4063,9 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				String resp_str  = common.valueToStr(resp, false, true);
 				String respj_str = common.valueToStr(resp_j, false, true);
 
+				String resa_str  = common.valueToStr(1/resp, false, true);
+				String resaj_str = common.valueToStr(1/resp_j, false, true);
+
 				String cap_str   = common.valueToStr(cap, false, true) + "F";
 				String capp_str  = common.valueToStr(cap_p, false, true) + "F";
 
@@ -4062,28 +4073,29 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 				String indp_str  = common.valueToStr(ind_p, false, true) + "H";
 
 				s[str_count++] =          " Mouse ";
-				s[str_count++] =          " Freq (CW) " + common.freqToStr1(Hz, true, true, 6, false) + "Hz";
-				if (c.imag()<0)  s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
-				else s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+//				s[str_count++] =          " Freq (CW) " + common.freqToStr1(Hz, true, true, 6, false) + "Hz";
+				if (c.imag()<0)  s[str_count++] = " re im  " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				else s[str_count++] = " re im  " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
 				if (polar)
 				{	// polar
+					s[str_count++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
 					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 				}
 				else
 				if (admittance)
 				{  // admittance
-					s[str_count++] =       " Rp jX     " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
-					s[str_count++].printf(L" Rp L/C    %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
-					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[str_count++] =       " Imp       " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[str_count++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					s[str_count++] =       " G jB   " + resa_str + " " + ((imp_p.imag() >= 0) ? "-j" : "+j") + resaj_str;
+					s[str_count++] =       " Rp jXp " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+					s[str_count++].printf(L" Rp L/C %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
+					s[str_count++] =       " Imp    " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 				else
 				{  // smith
+					s[str_count++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
 					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
 					s[str_count++] =       " Imp       " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 
@@ -4149,40 +4161,45 @@ void __fastcall CGraphs::drawMouseSmithPolar(const int graph, const int graph_ty
 
 				String ind_str   = common.valueToStr(ind, false, true) + "H";
 				String indp_str  = common.valueToStr(ind_p, false, true) + "H";
-
+//od 100 call update here?
 				if (mem <= 0)
 					s[str_count++].printf(L" Point %d/%u, live", 1 + index, line_points.size());
 				else
 					s[str_count++].printf(L" Point %d/%u, mem %d", 1 + index, line_points.size(), mem);
 				s[str_count++] =          " Freq      " + common.freqToStr1(Hz, true, true, 6, false) + "Hz";
-				if (c.imag()<0)  s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
-				else s[str_count++] = " re im     " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				if (c.imag()<0)  s[str_count++] = " re im  " + common.valueToStr(c.real(), false, true, "", true) + " -j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
+				else s[str_count++] = " re im  " + common.valueToStr(c.real(), false, true, "", true) + " +j" + common.valueToStr(fabs(c.imag()), false, true, "", true);
 				if (polar)
 				{  // polar
-					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					s[str_count++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					s[str_count++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[str_count++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
 				}
 				else
 				if (admittance)
 				{	// admittance
-					s[str_count++] =       " Rp jX     " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
-					s[str_count++].printf(L" Rp L/C    %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
-					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[str_count++] =       " Imp       " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[str_count++].printf(L" M A    %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					s[str_count++] =       " Rp jXp " + resp_str + " " + ((imp_p.imag() >= 0) ? "+j" : "-j") + respj_str;
+					s[str_count++].printf(L" Rp L/C %#.4g %s ", imp_p.real(), ((imp_p.imag() < 0) ? capp_str : indp_str).c_str());
+					s[str_count++] =       " Imp    " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 				else
 				{	// smith
-					s[str_count++] =       " R jX     " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
-					s[str_count++].printf(L" R L/C    %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
-					s[str_count++].printf(L" Mag Ang   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
-					s[str_count++] =       " Imp       " + common.valueToStr(data_unit.magnitude(imp), false, true);
+					s[str_count++].printf(L" M A   %0.4f %#.4g\xb0 ", mag, phase * rad_2_deg);
+					s[str_count++] =       " R jX  " + res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
+					s[str_count++].printf(L" R L/C %#.4g %s ", imp.real(), ((imp.imag() < 0) ? cap_str : ind_str).c_str());
+					s[str_count++] =       " Imp   " + common.valueToStr(data_unit.magnitude(imp), false, true);
 				}
 
 				if (tx < 0)
 					tx = x;
 				if (ty < 0)
 					ty = y;
+//od
+//        updateInfoPanel();
+//		if (Application->MainForm)
+//				::PostMessage(Application->MainForm->Handle, WM_UPDATE_GRAPH, 0, 0);
+
 			}
 		}
 		else
@@ -10282,7 +10299,7 @@ void __fastcall CGraphs::drawSeriesRJX(const int graph, const int graph_type, co
 			default: break;
 			case 1: title = "Freq R S11"; break;
 			case 2: title = "Freq X S11"; break;
-			case 3: title = "Freq R+jX S11"; break;
+			case 3: title = "Freq R jX S11"; break;
 		}
 		drawDetails(graph, graph_type, mask, mem, index, title, units, s, s_value, "%#.6f");
 	}
@@ -12540,7 +12557,7 @@ void __fastcall CGraphs::drawTDRImpedance(const int graph, const int graph_type,
 								s[0].printf(L"index %d/%d, live", 1 + index, size);
 							else
 								s[0].printf(L"index %d/%d, mem-%d", 1 + index, size, mem);
-//	   			   	s[1] =          "R+jX  " + common.valueToStr(imp.real(), false, true) + " " + ((imp.imag() >= 0) ? "+j" : "-j") + common.valueToStr(fabs(imp.imag()), false, true);
+//	   			   	s[1] =          "R jX  " + common.valueToStr(imp.real(), false, true) + " " + ((imp.imag() >= 0) ? "+j" : "-j") + common.valueToStr(fabs(imp.imag()), false, true);
 							s[1] =          "Imp   " + common.valueToStr(level, false, true);
 							s[2].printf(   L"time  %s", common.secsToStr(secs).c_str());
 							s[3].printf(   L"dist  %s %#.3fft", common.distToStr(dist).c_str(), dist * (float)METERS_TO_FEET);
@@ -12606,7 +12623,7 @@ void __fastcall CGraphs::drawTDRImpedance(const int graph, const int graph_type,
 										s[0].printf(L"index %d/%d, live", 1 + index, size);
 									else
 										s[0].printf(L"index %d/%d, mem-%d", 1 + index, size, mem);
-//	   				   		s[1] =          "R+jX  " + common.valueToStr(imp.real(), false, true) + " " + ((imp.imag() >= 0) ? "+j" : "-j") + common.valueToStr(fabs(imp.imag()), false, true);
+//	   				   		s[1] =          "R jX  " + common.valueToStr(imp.real(), false, true) + " " + ((imp.imag() >= 0) ? "+j" : "-j") + common.valueToStr(fabs(imp.imag()), false, true);
 									s[1] =          "Imp   " + common.valueToStr(level, false, true);
 								}
 
@@ -13024,7 +13041,7 @@ void __fastcall CGraphs::setGraphPos(const int graph, const int x, const int y, 
 		return;
 
 	const int left_border  = m_graph_bm->Canvas->TextWidth(" -0.00000 ");
-	const int right_border = 20;
+	const int right_border = 30;
 	const int upper_border = 5 + (m_graph_bm->Canvas->TextHeight("Hq|") * 2) + 2;
 	const int lower_border = 5 + (m_graph_bm->Canvas->TextHeight("Hq|") * 2) + 2;
 

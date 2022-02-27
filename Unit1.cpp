@@ -1955,6 +1955,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 	const float re_im_dist = sqrtf((re * re) + (im * im));
 
 	int64_t Hz = 0;
+  boolean markerflag=false;
 
 	const int mem = (p_mem >= 0 && p_index >= 0) ? p_mem : data_unit.firstUsedMem(true, 0);
 	if(mem < 0)
@@ -1997,7 +1998,8 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			{
 				if (mi >= 0)
 				{
-					Hz = settings.m_markers_freq[mi].Hz;
+					markerflag=true;
+          Hz = settings.m_markers_freq[mi].Hz;
 
 					s.printf(" Marker %d", 1 + mi);
 					if (mem <= 0)
@@ -2031,13 +2033,14 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			return false;
 
 		if (index >= 0 && index < size)
+//		if (1)
 		{  // mouse is over a graph line
 
 			const complexf c(re, im);
 
 			const float ref_impedance = 50;
-			const complexf c0 = (smith_mode && re_im_dist <= 1.0f) ? c : data_unit.m_point_filt[mem][index].s11;
-			const complexf c1 = (smith_mode && re_im_dist <= 1.0f) ? c : data_unit.m_point_filt[mem][index].s21;
+			const complexf c0 = (smith_mode && p_index<0) ? c : data_unit.m_point_filt[mem][index].s11;
+			const complexf c1 = (smith_mode && p_index<0) ? c : data_unit.m_point_filt[mem][index].s21;
 
 			const complexf imp            = data_unit.impedance(c0, ref_impedance);
 			const complexf imp_p          = data_unit.serialToParallel(imp);
@@ -2098,15 +2101,18 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 				s21_group_delay_sec         = (cpx.imag() == 0 || delta_freq == 0) ? 0.0f : (float)(atan2(cpx.real(), cpx.imag()) / (2 * M_PI * delta_freq));
 			}
 
+			if(p_index > 0 || markerflag) {
+			  MarkerFrequencyLabel->Caption = common.freqToStrMHz(Hz) + " MHz";
+			  MarkerWavelengthLabel1->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / Hz, false, true, "") + "m" : String("");
+			  MarkerWavelengthLabel2->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / (Hz * 4), false, true, "") + "m" : String("");
+			}
 
-
-			MarkerFrequencyLabel->Caption = common.freqToStrMHz(Hz) + " MHz";
-
-			MarkerWavelengthLabel1->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / Hz, false, true, "") + "m" : String("");
-			MarkerWavelengthLabel2->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / (Hz * 4), false, true, "") + "m" : String("");
-
-
-			// S11 info
+			else{
+			MarkerFrequencyLabel->Caption = "";
+			MarkerWavelengthLabel1->Caption = "";
+			MarkerWavelengthLabel2->Caption = "";
+			}
+			// S11 info
 
 
 			s = res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
@@ -2135,10 +2141,10 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			MarkerS11ParallelLLabel->Caption = indp_str;
 			MarkerS11ParallelCLabel->Caption = capp_str;
 
-			s.printf("%0.3f", vswr);
+			s.printf("%0.2f", vswr);
 			MarkerS11VSWRLabel->Caption = s;
 
-			s.printf("%0.3fdB", return_loss);
+			s.printf("%0.2fdB", return_loss);
 			MarkerS11ReturnLossLabel->Caption = s;
 
 			s.printf("%0.3f", s11_mag);
@@ -2271,13 +2277,16 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 				s21_group_delay_sec         = (cpx.imag() == 0 || delta_freq == 0) ? 0.0f : (float)(atan2(cpx.real(), cpx.imag()) / (2 * M_PI * delta_freq));
 			}
 
-
-
-			MarkerFrequencyLabel->Caption = common.freqToStrMHz(Hz) + " MHz";
-
-			MarkerWavelengthLabel1->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / Hz, false, true, "") + "m" : String("");
-			MarkerWavelengthLabel2->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / (Hz * 4), false, true, "") + "m" : String("");
-
+			if(p_index > 0 || markerflag) {
+			  MarkerFrequencyLabel->Caption = common.freqToStrMHz(Hz) + " MHz";
+			  MarkerWavelengthLabel1->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / Hz, false, true, "") + "m" : String("");
+			  MarkerWavelengthLabel2->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / (Hz * 4), false, true, "") + "m" : String("");
+			}
+			else{
+			MarkerFrequencyLabel->Caption = "";
+			MarkerWavelengthLabel1->Caption = "";
+			MarkerWavelengthLabel2->Caption = "";
+			}
 
 			// S11 info
 
@@ -2308,7 +2317,7 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			MarkerS11ParallelLLabel->Caption = indp_str;
 			MarkerS11ParallelCLabel->Caption = capp_str;
 
-			s.printf("%0.3f", vswr);
+			s.printf("%0.2f", vswr);
 			MarkerS11VSWRLabel->Caption = s;
 
 			s.printf("%0.3fdB", return_loss);

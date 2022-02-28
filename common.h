@@ -120,6 +120,7 @@ class CCommon
 
 		int __fastcall saveFile(const String name, std::vector <uint8_t> &buffer);
 		int __fastcall saveFile(const String name, std::vector <String> &buffer);
+		int __fastcall saveFileAnsi(const String name, std::vector <String> &buffer);
 
 		void __fastcall saveBitmap(Graphics::TBitmap *bm, String ID, String dialog_title, const bool ask_filename);
 

@@ -1482,6 +1482,32 @@ int __fastcall CCommon::saveFile(const String name, std::vector <String> &buffer
 	return saved;
 }
 
+int __fastcall CCommon::saveFileAnsi(const String name, std::vector <String> &buffer)
+{
+	int saved = 0;
+
+	const int file_handle = FileCreate(name);
+	if (file_handle <= 0)
+		return -1;
+
+	for (unsigned int i = 0; i < buffer.size(); i++)
+	{
+		AnsiString s = AnsiString(buffer[i]) + "\r\n";
+		const int bytes_written = FileWrite(file_handle, s.c_str(), s.Length());
+		if (bytes_written != s.Length())
+		{
+			FileClose(file_handle);
+			DeleteFile(name);
+			return -2;
+		}
+		saved += bytes_written;
+	}
+
+	FileClose(file_handle);
+
+	return saved;
+}
+
 String __fastcall CCommon::cleanFilename(String filename, const bool contains_dir, const bool trim)
 {
 	String drive;
@@ -2615,7 +2641,7 @@ bool __fastcall CCommon::saveSParams(std::vector <t_data_point> &points, int num
 		buffer.push_back(s);
 	}
 
-	const int res = saveFile(name, buffer);
+	const int res = saveFileAnsi(name, buffer);
 	if (res <= 0)
 	{
 		Application->NormalizeTopMosts();
@@ -3649,7 +3675,7 @@ String __fastcall CCommon::saveCalibrationFile(String filename, std::vector <t_c
 		lines.push_back(s);
 	}
 
-	const int res = saveFile(filename, lines);
+	const int res = saveFileAnsi(filename, lines);
 	if (res <= 0)
 	{
 		Application->NormalizeTopMosts();

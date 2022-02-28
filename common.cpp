@@ -1412,7 +1412,7 @@ int __fastcall CCommon::loadFile(const String name, std::vector <String> &buffer
 	}
 
 	{	// extract each line
-		String s;
+		UTF8String s;
 		unsigned int i = 0;
 		while (i < buffer2.size())
 		{
@@ -1422,11 +1422,11 @@ int __fastcall CCommon::loadFile(const String name, std::vector <String> &buffer
 				buffer.push_back(s);
 				s = "";
 
-				if (c == '\r' && i < buffer2.size())
-					if (buffer2[i] == '\n')
+				if (c == '\r' && (i+1) < buffer2.size())
+					if (buffer2[i+1] == '\n')
 						i++;	// skip over the following '\n'
 			}
-			if (c >= 32)
+      else
 				s += c;
 		}
 
@@ -1466,7 +1466,7 @@ int __fastcall CCommon::saveFile(const String name, std::vector <String> &buffer
 
 	for (unsigned int i = 0; i < buffer.size(); i++)
 	{
-		AnsiString s = AnsiString(buffer[i]) + "\r\n";
+		UTF8String s = UTF8String(buffer[i]) + "\r\n";
 		const int bytes_written = FileWrite(file_handle, s.c_str(), s.Length());
 		if (bytes_written != s.Length())
 		{

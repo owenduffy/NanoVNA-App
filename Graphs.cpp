@@ -11747,7 +11747,7 @@ void __fastcall CGraphs::drawTDRLinear(const int graph, const int graph_type, co
 					s = common.secsToStr(m_mouse.secs, false);
 					m_graph_bm->Canvas->TextOut(mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy - 2 - (th * 2), s);
 
-					s.printf(L"%s %#.3fft", common.distToStr(dist, false).c_str(), dist * (float)METERS_TO_FEET);
+					s.printf(L"%s", common.distToStr(dist, false).c_str());
 					m_graph_bm->Canvas->TextOut(mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy + gh + 3 + th, s);
 				#else
 					GLrgba back_col = colourToGLcolour(settings.m_colours.background);
@@ -11758,7 +11758,7 @@ void __fastcall CGraphs::drawTDRLinear(const int graph, const int graph_type, co
 					s = common.secsToStr(m_mouse.secs, false);
 					glTextOut(0, mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy - 2 - (th * 2), s);
 
-					s.printf(L"%s %#.3fft", common.distToStr(dist, false).c_str(), dist * (float)METERS_TO_FEET);
+					s.printf(L"%s", common.distToStr(dist, false).c_str());
 					glTextOut(0, mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy + gh + 3 + th, s);
 				#endif
 			}
@@ -11797,7 +11797,7 @@ void __fastcall CGraphs::drawTDRLinear(const int graph, const int graph_type, co
 								s[0].printf(L"index %d/%d, mem-%d", 1 + index, size, mem);
 							s[1].printf(   L"mag   %#.4f", level);
 							s[2].printf(   L"time  %s", common.secsToStr(secs).c_str());
-							s[3].printf(   L"dist  %s %#.3fft", common.distToStr(dist).c_str(), dist * (float)METERS_TO_FEET);
+							s[3].printf(   L"dist  %s", common.distToStr(dist).c_str());
 						}
 
 						if (gamma > GAMMA_MIN)
@@ -11925,7 +11925,7 @@ void __fastcall CGraphs::drawTDRLinear(const int graph, const int graph_type, co
 								s[0].printf(L"index %d/%d, mem-%d", 1 + p_index, size, mem);
 							s[1].printf(   L"mag   %#.4f", level);
 							s[2].printf(   L"time  %s", common.secsToStr(n * mem_max_time).c_str());
-							s[3].printf(   L"dist  %s %#.3fft", common.distToStr(n * mem_max_dist).c_str(), n * mem_max_dist * (float)METERS_TO_FEET);
+							s[3].printf(   L"dist  %s", common.distToStr(n * mem_max_dist).c_str());
 						}
 
 						if (gamma > GAMMA_MIN)
@@ -12129,7 +12129,7 @@ void __fastcall CGraphs::drawTDRLog(const int graph, const int graph_type, const
 					s = common.secsToStr(m_mouse.secs, false);
 					m_graph_bm->Canvas->TextOut(mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy - 2 - (th * 2), s);
 
-					s.printf(L"%s %#.3fft", common.distToStr(dist, false).c_str(), dist * (float)METERS_TO_FEET);
+					s.printf(L"%s", common.distToStr(dist, false).c_str());
 					m_graph_bm->Canvas->TextOut(mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy + gh + 3 + th, s);
 				#else
 					GLrgba back_col = colourToGLcolour(settings.m_colours.background);
@@ -12140,7 +12140,7 @@ void __fastcall CGraphs::drawTDRLog(const int graph, const int graph_type, const
 					s = common.secsToStr(m_mouse.secs, false);
 					glTextOut(0, mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy - 2 - (th * 2), s);
 
-					s.printf(L"%s %#.3fft", common.distToStr(dist, false).c_str(), dist * (float)METERS_TO_FEET);
+					s.printf(L"%s", common.distToStr(dist, false).c_str());
 					glTextOut(0, mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy + gh + 3 + th, s);
 				#endif
 			}
@@ -12179,7 +12179,7 @@ void __fastcall CGraphs::drawTDRLog(const int graph, const int graph_type, const
 								s[0].printf(L"index %d/%d, mem-%d", 1 + index, size, mem);
 							s[1].printf(L"mag   %#.3f dB", level);
 							s[2].printf(   L"time  %s", common.secsToStr(secs).c_str());
-							s[3].printf(   L"dist  %s %#.3fft", common.distToStr(dist).c_str(), dist * (float)METERS_TO_FEET);
+							s[3].printf(   L"dist  %s", common.distToStr(dist).c_str());
 						}
 
 						int x = gx + IROUND(gw * index * mem_max_time / (max_time * (size - 1)));
@@ -12289,7 +12289,7 @@ void __fastcall CGraphs::drawTDRLog(const int graph, const int graph_type, const
 								s[0].printf(L"index %d/%d, mem-%d", 1 + p_index, size, mem);
 							s[1].printf(L"mag   %#.3f dB", level);
 							s[2].printf(L"time  %s", common.secsToStr(n * mem_max_time).c_str());
-							s[3].printf(L"dist  %s %#.3fft", common.distToStr(n * mem_max_dist).c_str(), n * mem_max_dist * (float)METERS_TO_FEET);
+							s[3].printf(L"dist  %s", common.distToStr(n * mem_max_dist).c_str());
 						}
 
 						int x = gx + IROUND(p_index * time_scale);
@@ -12508,7 +12508,7 @@ void __fastcall CGraphs::drawTDRImpedance(const int graph, const int graph_type,
 					s = common.secsToStr(m_mouse.secs, false);
 					m_graph_bm->Canvas->TextOut(mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy - 2 - (th * 2), s);
 
-					s.printf(L"%s %#.3fft", common.distToStr(dist, false).c_str(), dist * (float)METERS_TO_FEET);
+					s.printf(L"%s", common.distToStr(dist, false).c_str());
 					m_graph_bm->Canvas->TextOut(mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy + gh + 3 + th, s);
 				#else
 					GLrgba back_col = colourToGLcolour(settings.m_colours.background);
@@ -12519,7 +12519,6 @@ void __fastcall CGraphs::drawTDRImpedance(const int graph, const int graph_type,
 					s = common.secsToStr(m_mouse.secs, false);
 					glTextOut(0, mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy - 2 - (th * 2), s);
 
-					s.printf(L"%s %#.3fft", common.distToStr(dist, false).c_str(), dist * (float)METERS_TO_FEET);
 					glTextOut(0, mx - (m_graph_bm->Canvas->TextWidth(s) / 2), gy + gh + 3 + th, s);
 				#endif
 			}
@@ -12560,7 +12559,7 @@ void __fastcall CGraphs::drawTDRImpedance(const int graph, const int graph_type,
 //	   			   	s[1] =          "R jX  " + common.valueToStr(imp.real(), false, true) + " " + ((imp.imag() >= 0) ? "+j" : "-j") + common.valueToStr(fabs(imp.imag()), false, true);
 							s[1] =          "Imp   " + common.valueToStr(level, false, true);
 							s[2].printf(   L"time  %s", common.secsToStr(secs).c_str());
-							s[3].printf(   L"dist  %s %#.3fft", common.distToStr(dist).c_str(), dist * (float)METERS_TO_FEET);
+							s[3].printf(   L"dist  %s", common.distToStr(dist).c_str());
 						}
 
 						if (gamma > GAMMA_MIN)

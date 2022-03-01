@@ -13,7 +13,7 @@ object GraphForm: TGraphForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -31,7 +31,7 @@ object GraphForm: TGraphForm
     491
     463)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object GraphPaintBox: TPaintBox
     Left = 0
     Top = 0
@@ -43,7 +43,7 @@ object GraphForm: TGraphForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Pitch = fpFixed
     Font.Style = []
     Font.Quality = fqAntialiased
@@ -364,7 +364,7 @@ object GraphForm: TGraphForm
     Left = 340
     Top = 108
     Bitmap = {
-      494C0101020008003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102000800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

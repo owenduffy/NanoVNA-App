@@ -13,10 +13,10 @@ object Form1: TForm1
   Constraints.MinHeight = 700
   Constraints.MinWidth = 900
   DoubleBuffered = True
-  Font.Charset = ANSI_CHARSET
+  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
@@ -33,18 +33,18 @@ object Form1: TForm1
     884
     661)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label12: TLabel
-    Left = 19
+    Left = 9
     Top = 307
-    Width = 76
-    Height = 13
+    Width = 86
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Time averaging '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -61,7 +61,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -85,7 +85,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -108,7 +108,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -121,152 +121,152 @@ object Form1: TForm1
   object TDRWindowLabel2: TLabel
     Left = 101
     Top = 376
-    Width = 14
-    Height = 13
+    Width = 16
+    Height = 15
     Caption = 'XX'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object TDRWindowLabel1: TLabel
-    Left = 33
+    Left = 27
     Top = 377
-    Width = 62
-    Height = 13
+    Width = 68
+    Height = 15
     Alignment = taRightJustify
     Caption = 'TDR window '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 83
+    Left = 79
     Top = 92
-    Width = 58
-    Height = 13
+    Width = 62
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Start (MHz) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 74
+    Left = 68
     Top = 140
-    Width = 67
-    Height = 13
+    Width = 73
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Center (MHz) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 83
+    Left = 78
     Top = 164
-    Width = 58
-    Height = 13
+    Width = 63
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Span (MHz) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 85
+    Left = 80
     Top = 116
-    Width = 56
-    Height = 13
+    Width = 61
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Stop (MHz) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label13: TLabel
-    Left = 90
+    Left = 87
     Top = 188
-    Width = 51
-    Height = 13
+    Width = 54
+    Height = 15
     Alignment = taRightJustify
     Caption = 'CW (MHz) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object PointBandwidthLabel: TLabel
-    Left = 65
+    Left = 61
     Top = 236
-    Width = 76
-    Height = 13
+    Width = 80
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Point RBW (Hz) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object PointsPerSegmentLabel: TLabel
-    Left = 56
+    Left = 43
     Top = 211
-    Width = 85
-    Height = 13
+    Width = 98
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Number of points '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label33: TLabel
-    Left = 450
+    Left = 444
     Top = 35
-    Width = 57
-    Height = 13
+    Width = 63
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Freq bands '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object SweepNameFontLabel: TLabel
     Left = 13
     Top = 246
-    Width = 167
+    Width = 180
     Height = 18
     Caption = 'SweepNameFontLabel'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -15
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Pitch = fpFixed
     Font.Style = [fsBold]
     Font.Quality = fqAntialiased
@@ -274,18 +274,20 @@ object Form1: TForm1
     Visible = False
   end
   object LCMatchingLabel: TLabel
-    Left = 565
+    Left = 555
     Top = 35
-    Width = 61
-    Height = 13
+    Width = 71
+    Height = 15
     Alignment = taRightJustify
     Caption = 'LC matching '
-    Font.Charset = ANSI_CHARSET
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
+    Visible = False
   end
   object ScanOnceSpeedButton: TSpeedButton
     Left = 62
@@ -299,7 +301,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -316,29 +318,29 @@ object Form1: TForm1
     OnClick = ScanOnceSpeedButtonClick
   end
   object Label40: TLabel
-    Left = 13
+    Left = 0
     Top = 331
-    Width = 82
-    Height = 13
+    Width = 95
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Trace smoothing '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object CurveSmoothingLabel: TLabel
     Left = 101
     Top = 330
-    Width = 21
-    Height = 13
+    Width = 24
+    Height = 15
     Caption = 'XXX'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -346,26 +348,26 @@ object Form1: TForm1
     Left = 101
     Top = 399
     Width = 28
-    Height = 13
+    Height = 15
     Caption = 'XXXX'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Name = 'Lucida Sans Unicode'
+    Font.Style = []
     ParentFont = False
   end
   object OutputPowerLabel1: TLabel
-    Left = 25
+    Left = 18
     Top = 400
-    Width = 70
-    Height = 13
+    Width = 77
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Output power '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -382,7 +384,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -403,7 +405,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -424,7 +426,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -453,7 +455,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -470,72 +472,72 @@ object Form1: TForm1
     OnClick = ScanSpeedButtonClick
   end
   object InfoPanelLabel2: TLabel
-    Left = 811
+    Left = 810
     Top = 35
-    Width = 23
-    Height = 13
+    Width = 24
+    Height = 15
     Alignment = taRightJustify
     Anchors = [akTop, akRight]
     Caption = 'Info '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object EDelayLabel: TLabel
-    Left = 80
+    Left = 74
     Top = 259
-    Width = 61
-    Height = 13
+    Width = 67
+    Height = 15
     Alignment = taRightJustify
     Caption = 'e-delay (ps) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object S21OffsetLabel: TLabel
-    Left = 65
+    Left = 60
     Top = 283
-    Width = 76
-    Height = 13
+    Width = 81
+    Height = 15
     Alignment = taRightJustify
     Caption = 'S21 offset (dB) '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 33
+    Left = 26
     Top = 354
-    Width = 62
-    Height = 13
+    Width = 69
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Median filter '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object MedianFilterLabel: TLabel
     Left = 101
     Top = 353
-    Width = 14
-    Height = 13
+    Width = 16
+    Height = 15
     Caption = 'XX'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -552,7 +554,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -574,7 +576,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -584,27 +586,27 @@ object Form1: TForm1
   object MovingAverageFilterLabel: TLabel
     Left = 101
     Top = 307
-    Width = 14
-    Height = 13
+    Width = 16
+    Height = 15
     Caption = 'XX'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label18: TLabel
-    Left = 341
+    Left = 339
     Top = 35
-    Width = 18
-    Height = 13
+    Width = 20
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Cal '
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -621,7 +623,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -704,7 +706,7 @@ object Form1: TForm1
     Left = 220
     Top = 4
     Width = 80
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = 'Serial port baudrate - ignored in USB VCP mode'
     AutoDropDown = True
@@ -720,7 +722,7 @@ object Form1: TForm1
     Left = 8
     Top = 4
     Width = 208
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = 'Device to connect too'
     AutoDropDown = True
@@ -739,10 +741,10 @@ object Form1: TForm1
     Top = 642
     Width = 884
     Height = 19
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
     Font.Height = -11
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Panels = <
       item
@@ -787,7 +789,7 @@ object Form1: TForm1
     Left = 684
     Top = 4
     Width = 131
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = ' TDR \n Velocity factor '
     AutoDropDown = True
@@ -804,7 +806,7 @@ object Form1: TForm1
     Left = 821
     Top = 4
     Width = 55
-    Height = 21
+    Height = 23
     Alignment = taCenter
     Anchors = [akTop, akRight]
     ParentShowHint = False
@@ -836,7 +838,7 @@ object Form1: TForm1
     Left = 144
     Top = 184
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     TabOrder = 24
     Text = '150'
@@ -848,7 +850,7 @@ object Form1: TForm1
     Left = 144
     Top = 112
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     Ctl3D = True
     ParentCtl3D = False
@@ -862,7 +864,7 @@ object Form1: TForm1
     Left = 144
     Top = 160
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     TabOrder = 23
     Text = '10'
@@ -874,7 +876,7 @@ object Form1: TForm1
     Left = 144
     Top = 136
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     TabOrder = 22
     Text = '145'
@@ -886,7 +888,7 @@ object Form1: TForm1
     Left = 144
     Top = 88
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     ParentShowHint = False
     ShowHint = True
@@ -918,10 +920,10 @@ object Form1: TForm1
       Hint = 'No hint'
       Align = alClient
       Color = clGray
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -11
-      Font.Name = 'Consolas'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Pitch = fpFixed
       Font.Style = []
       ParentColor = False
@@ -950,715 +952,715 @@ object Form1: TForm1
       Align = alRight
       BevelOuter = bvLowered
       Caption = 'InfoPanel'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentColor = True
       ParentFont = False
       TabOrder = 0
       VerticalAlignment = taAlignTop
       object Label14: TLabel
-        Left = 69
+        Left = 70
         Top = 25
-        Width = 60
-        Height = 13
+        Width = 59
+        Height = 15
         Alignment = taRightJustify
         Caption = 'Frequency '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label16: TLabel
-        Left = 45
+        Left = 51
         Top = 87
-        Width = 84
-        Height = 13
+        Width = 78
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Real Imag '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label23: TLabel
-        Left = 51
+        Left = 61
         Top = 104
-        Width = 78
-        Height = 13
+        Width = 68
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Series R '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label19: TLabel
-        Left = 51
+        Left = 61
         Top = 121
-        Width = 78
-        Height = 13
+        Width = 68
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Series X '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label22: TLabel
-        Left = 51
+        Left = 62
         Top = 138
-        Width = 78
-        Height = 13
+        Width = 67
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Series L '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label25: TLabel
-        Left = 51
+        Left = 60
         Top = 155
-        Width = 78
-        Height = 13
+        Width = 69
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Series C '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label27: TLabel
-        Left = 39
+        Left = 55
         Top = 172
-        Width = 90
-        Height = 13
+        Width = 74
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Parallel R '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label29: TLabel
-        Left = 39
+        Left = 55
         Top = 189
-        Width = 90
-        Height = 13
+        Width = 74
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Parallel X '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label35: TLabel
-        Left = 39
+        Left = 56
         Top = 206
-        Width = 90
-        Height = 13
+        Width = 73
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Parallel L '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label31: TLabel
-        Left = 39
+        Left = 54
         Top = 223
-        Width = 90
-        Height = 13
+        Width = 75
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Parallel C '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label20: TLabel
-        Left = 45
+        Left = 51
         Top = 420
-        Width = 84
-        Height = 13
+        Width = 78
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S21 Real Imag '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label53: TLabel
-        Left = 45
+        Left = 47
         Top = 437
-        Width = 84
-        Height = 13
+        Width = 82
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S21 Magnitude '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label51: TLabel
-        Left = 75
+        Left = 79
         Top = 454
-        Width = 54
-        Height = 13
+        Width = 50
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S21 Gain '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object MarkerS21GainLabel: TLabel
         Left = 136
         Top = 454
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS21Label: TLabel
         Left = 136
         Top = 437
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS21RealImagLabel: TLabel
         Left = 136
         Top = 420
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ParallelCLabel: TLabel
         Left = 136
         Top = 223
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ParallelLLabel: TLabel
         Left = 136
         Top = 206
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ParallelXLabel: TLabel
         Left = 136
         Top = 189
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ParallelRLabel: TLabel
         Left = 136
         Top = 172
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11SeriesCLabel: TLabel
         Left = 136
         Top = 155
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11SeriesLLabel: TLabel
         Left = 136
         Top = 138
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11SeriesXLabel: TLabel
         Left = 136
         Top = 121
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11SeriesRLabel: TLabel
         Left = 136
         Top = 104
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11RealImagLabel: TLabel
         Left = 136
         Top = 87
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerFrequencyLabel: TLabel
         Left = 136
         Top = 25
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object Label37: TLabel
-        Left = 33
+        Left = 39
         Top = 240
-        Width = 96
-        Height = 13
+        Width = 90
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Return Loss '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label39: TLabel
-        Left = 45
+        Left = 47
         Top = 257
-        Width = 84
-        Height = 13
+        Width = 82
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Magnitude '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label47: TLabel
-        Left = 81
+        Left = 88
         Top = 291
-        Width = 48
-        Height = 13
+        Width = 41
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 |Z| '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label41: TLabel
-        Left = 15
+        Left = 28
         Top = 274
-        Width = 114
-        Height = 13
+        Width = 101
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Quality Factor '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label43: TLabel
-        Left = 69
+        Left = 72
         Top = 308
-        Width = 60
-        Height = 13
+        Width = 57
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Phase '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label46: TLabel
-        Left = 69
+        Left = 76
         Top = 325
-        Width = 60
-        Height = 13
+        Width = 53
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Polar '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label49: TLabel
-        Left = 33
+        Left = 37
         Top = 342
-        Width = 96
-        Height = 13
+        Width = 92
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Group Delay '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label34: TLabel
-        Left = 75
+        Left = 74
         Top = 359
-        Width = 54
-        Height = 13
+        Width = 55
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 VSWR '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label15: TLabel
-        Left = 45
+        Left = 44
         Top = 376
-        Width = 84
-        Height = 13
+        Width = 85
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Impedance '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object MarkerS11AdmittanceLabel1: TLabel
-        Left = 39
+        Left = 41
         Top = 393
-        Width = 90
-        Height = 13
+        Width = 88
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S11 Admittance '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label59: TLabel
-        Left = 69
+        Left = 72
         Top = 471
-        Width = 60
-        Height = 13
+        Width = 57
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S21 Phase '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label55: TLabel
-        Left = 69
+        Left = 76
         Top = 488
-        Width = 60
-        Height = 13
+        Width = 53
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S21 Polar '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object Label58: TLabel
-        Left = 33
+        Left = 37
         Top = 505
-        Width = 96
-        Height = 13
+        Width = 92
+        Height = 15
         Alignment = taRightJustify
         Caption = 'S21 Group Delay '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object MarkerS21GroupDelayLabel: TLabel
         Left = 136
         Top = 505
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS21PolarLabel: TLabel
         Left = 136
         Top = 488
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS21PhaseLabel: TLabel
         Left = 136
         Top = 471
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ImpedanceLabel: TLabel
         Left = 136
         Top = 376
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11AdmittanceLabel2: TLabel
         Left = 136
         Top = 393
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11GroupDelayLabel: TLabel
         Left = 136
         Top = 342
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11PolarLabel: TLabel
         Left = 136
         Top = 325
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11PhaseLabel: TLabel
         Left = 136
         Top = 308
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ZLabel: TLabel
         Left = 136
         Top = 291
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11QualityFactorLabel: TLabel
         Left = 136
         Top = 274
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11Label: TLabel
         Left = 136
         Top = 257
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11ReturnLossLabel: TLabel
         Left = 136
         Top = 240
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object MarkerS11VSWRLabel: TLabel
         Left = 136
         Top = 359
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object Bevel1: TBevel
@@ -1686,57 +1688,57 @@ object Form1: TForm1
         Visible = False
       end
       object Label6: TLabel
-        Left = 63
+        Left = 65
         Top = 42
-        Width = 66
-        Height = 13
+        Width = 64
+        Height = 15
         Alignment = taRightJustify
         Caption = 'Wavelength '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object MarkerWavelengthLabel1: TLabel
         Left = 136
         Top = 42
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
       object Label8: TLabel
-        Left = 39
+        Left = 42
         Top = 59
-        Width = 90
-        Height = 13
+        Width = 87
+        Height = 15
         Alignment = taRightJustify
         Caption = '1/4 Wavelength '
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clNavy
         Font.Height = -11
-        Font.Name = 'Consolas'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
       end
       object MarkerWavelengthLabel2: TLabel
         Left = 136
         Top = 59
-        Width = 61
-        Height = 13
+        Width = 70
+        Height = 15
         Caption = 'xxxxxxxxxx'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
         ParentFont = False
       end
     end
@@ -1783,10 +1785,10 @@ object Form1: TForm1
         Height = 25
         Cursor = crHandPoint
         Hint = 'Clear the history buffer'
-        Font.Charset = ANSI_CHARSET
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
-        Font.Name = 'Tahoma'
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         Glyph.Data = {
           F6000000424DF600000000000000760000002800000010000000100000000100
@@ -1814,10 +1816,10 @@ object Form1: TForm1
       Caption = 'GLPanel'
       Color = clNone
       FullRepaint = False
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Consolas'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentBackground = False
       ParentFont = False
@@ -1843,10 +1845,10 @@ object Form1: TForm1
     Width = 40
     Height = 20
     Cursor = crHandPoint
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -1862,7 +1864,7 @@ object Form1: TForm1
     Left = 684
     Top = 31
     Width = 117
-    Height = 21
+    Height = 23
     Hint = 'Sweep name - added to top of saved image'
     Anchors = [akLeft, akTop, akRight]
     ParentShowHint = False
@@ -1875,7 +1877,7 @@ object Form1: TForm1
     Left = 144
     Top = 208
     Width = 76
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     AutoDropDown = True
     AutoCloseUp = True
@@ -1890,7 +1892,7 @@ object Form1: TForm1
     Left = 144
     Top = 232
     Width = 76
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     AutoDropDown = True
     AutoCloseUp = True
@@ -1911,10 +1913,11 @@ object Form1: TForm1
     Hint = 
       'Uses selected marker or mouse position to calculate approximate ' +
       'LC matching values'
-    Font.Charset = ANSI_CHARSET
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -1925,6 +1928,7 @@ object Form1: TForm1
     TabOrder = 10
     ThumbColor = clNavy
     ThumbWidth = 20
+    Visible = False
     OnClick = LCMatchingToggleSwitchClick
   end
   object CurveSmoothingTrackBar: TTrackBar
@@ -1986,10 +1990,10 @@ object Form1: TForm1
           MinWidth = 100
           Width = 100
         end>
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Consolas'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       GridLines = True
       OwnerData = True
@@ -2011,12 +2015,12 @@ object Form1: TForm1
       Height = 34
       Cursor = crHandPoint
       Anchors = [akLeft, akTop, akRight, akBottom]
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Consolas'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
-      ItemHeight = 13
+      ItemHeight = 15
       ParentFont = False
       PopupMenu = MarkersListBoxPopupMenu
       TabOrder = 2
@@ -2032,10 +2036,10 @@ object Form1: TForm1
       Height = 20
       Cursor = crHandPoint
       Hint = 'Marker display mode'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       FrameColor = clBtnFace
       ParentFont = False
@@ -2055,10 +2059,10 @@ object Form1: TForm1
       Height = 20
       Cursor = crHandPoint
       Hint = 'Show marker text'
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       FrameColor = clBtnFace
       ParentFont = False
@@ -2080,10 +2084,10 @@ object Form1: TForm1
       Cursor = crHandPoint
       Hint = 'Delete all the markers'
       Anchors = [akTop, akRight]
-      Font.Charset = ANSI_CHARSET
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       Glyph.Data = {
         F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2540,10 +2544,10 @@ object Form1: TForm1
     Height = 20
     Cursor = crHandPoint
     Anchors = [akTop, akRight]
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -2565,7 +2569,7 @@ object Form1: TForm1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -2577,7 +2581,7 @@ object Form1: TForm1
     Left = 144
     Top = 256
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     TabOrder = 27
     Text = '0'
@@ -2588,7 +2592,7 @@ object Form1: TForm1
     Left = 144
     Top = 280
     Width = 76
-    Height = 21
+    Height = 23
     Alignment = taCenter
     TabOrder = 28
     Text = '0'
@@ -2599,7 +2603,7 @@ object Form1: TForm1
     Left = 112
     Top = 31
     Width = 153
-    Height = 21
+    Height = 23
     Hint = 'TCP IP address'
     Alignment = taCenter
     Ctl3D = True
@@ -2613,7 +2617,7 @@ object Form1: TForm1
     Left = 268
     Top = 31
     Width = 61
-    Height = 21
+    Height = 23
     Hint = 'TCP IP port'
     Alignment = taCenter
     Ctl3D = True
@@ -2668,10 +2672,10 @@ object Form1: TForm1
     Cursor = crHandPoint
     Hint = 'Save graph image'
     Caption = 'Graph'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2696,10 +2700,10 @@ object Form1: TForm1
     Cursor = crHandPoint
     Hint = 'Save s1p file'
     Caption = 'S1P'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2724,10 +2728,10 @@ object Form1: TForm1
     Cursor = crHandPoint
     Hint = 'Save s2p file'
     Caption = 'S2P'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2752,10 +2756,10 @@ object Form1: TForm1
     Cursor = crHandPoint
     Hint = 'Save csv file'
     Caption = 'CSV'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2780,10 +2784,10 @@ object Form1: TForm1
     Cursor = crHandPoint
     Hint = 'Copy graph image'
     Caption = 'Graph'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       36050000424D3605000000000000360400002800000010000000100000000100
@@ -2841,10 +2845,10 @@ object Form1: TForm1
     Height = 27
     Cursor = crHandPoint
     Hint = 'Stop scan'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2869,10 +2873,10 @@ object Form1: TForm1
     Cursor = crHandPoint
     Hint = 'Save form image'
     Caption = 'Form'
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       F6000000424DF600000000000000760000002800000010000000100000000100
@@ -2894,10 +2898,10 @@ object Form1: TForm1
     Top = 623
     Width = 884
     Height = 19
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
     Font.Height = -11
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Panels = <
       item
@@ -2940,7 +2944,7 @@ object Form1: TForm1
     Left = 363
     Top = 31
     Width = 70
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = 
       'Select the desired calibration you want - None, the VNA'#39's own or' +

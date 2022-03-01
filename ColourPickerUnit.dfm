@@ -11,7 +11,7 @@ object ColourPickerForm: TColourPickerForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   OldCreateOrder = False
@@ -32,7 +32,7 @@ object ColourPickerForm: TColourPickerForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -46,7 +46,7 @@ object ColourPickerForm: TColourPickerForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -60,7 +60,7 @@ object ColourPickerForm: TColourPickerForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -74,7 +74,7 @@ object ColourPickerForm: TColourPickerForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -87,7 +87,7 @@ object ColourPickerForm: TColourPickerForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end

@@ -13,7 +13,7 @@ object BatteryVoltageForm: TBatteryVoltageForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -38,7 +38,7 @@ object BatteryVoltageForm: TBatteryVoltageForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentColor = False
     ParentFont = False
@@ -58,7 +58,7 @@ object BatteryVoltageForm: TBatteryVoltageForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -71,7 +71,7 @@ object BatteryVoltageForm: TBatteryVoltageForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end

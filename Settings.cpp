@@ -121,7 +121,7 @@ CSettings::CSettings()
 	m_graph_font = new TFont();
 	if (m_graph_font)
 	{
-		m_graph_font->Name    = "Consolas";							// string
+		m_graph_font->Name    = "Lucida Sans Unicode";							// string
 		m_graph_font->Charset = ANSI_CHARSET;						// int
 		m_graph_font->Color   = clBlack;       					// int
 		m_graph_font->Size    = 8;             					// int
@@ -1033,13 +1033,17 @@ void __fastcall CSettings::load()
 			continue;
 		}
 
+		/*
 		if (params[0] == "graph_font_name")
 		{
 			if (params.size() >= 2)
 				if (m_graph_font)
 					m_graph_font->Name = params[1];
+
 			continue;
 		}
+		*/
+		m_graph_font->Name = "Lucida Sans Unicode";
 		if (params[0] == "graph_font_charset")
 		{
 			if (params.size() >= 2)

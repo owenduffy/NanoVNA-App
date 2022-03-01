@@ -13,7 +13,7 @@ object CommsForm: TCommsForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -40,7 +40,7 @@ object CommsForm: TCommsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
     ExplicitTop = 437
@@ -56,7 +56,7 @@ object CommsForm: TCommsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
     ExplicitTop = 467
@@ -70,7 +70,7 @@ object CommsForm: TCommsForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Lines.Strings = (
       'Memo1')
@@ -92,7 +92,7 @@ object CommsForm: TCommsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 4
@@ -109,7 +109,7 @@ object CommsForm: TCommsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 3
@@ -126,7 +126,7 @@ object CommsForm: TCommsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
@@ -257,7 +257,7 @@ object CommsForm: TCommsForm
     object CommandsButton3: TButton
       Left = 184
       Top = 0
-      Width = 92
+      Width = 93
       Height = 25
       Cursor = crHandPoint
       Align = alClient
@@ -273,9 +273,9 @@ object CommsForm: TCommsForm
       OnDropDownClick = CommandsButtonDropDownClick
     end
     object CommandsButton4: TButton
-      Left = 276
+      Left = 277
       Top = 0
-      Width = 93
+      Width = 92
       Height = 25
       Cursor = crHandPoint
       Align = alClient

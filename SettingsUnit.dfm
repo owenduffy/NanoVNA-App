@@ -14,7 +14,7 @@ object SettingsForm: TSettingsForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -31,32 +31,32 @@ object SettingsForm: TSettingsForm
     824
     531)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label7: TLabel
     Left = 763
     Top = 26
-    Width = 51
-    Height = 13
+    Width = 58
+    Height = 15
     Anchors = [akTop, akRight]
     Caption = 'Firmware'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 12
+    Left = 6
     Top = 14
-    Width = 62
-    Height = 13
+    Width = 68
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Record path '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -68,16 +68,16 @@ object SettingsForm: TSettingsForm
     Anchors = [akLeft, akTop, akBottom]
   end
   object Label9: TLabel
-    Left = 17
+    Left = 15
     Top = 54
-    Width = 48
-    Height = 13
+    Width = 50
+    Height = 15
     Alignment = taRightJustify
     Caption = 'GUI Style '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -91,7 +91,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -9
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
     OnMouseDown = GraphColourPaintBoxMouseDown
@@ -103,78 +103,78 @@ object SettingsForm: TSettingsForm
   object Label14: TLabel
     Left = 297
     Top = 221
-    Width = 48
-    Height = 13
+    Width = 54
+    Height = 15
     Caption = 'Line alpha'
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label5: TLabel
     Left = 297
     Top = 259
-    Width = 51
-    Height = 13
+    Width = 57
+    Height = 15
     Caption = 'Line width '
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label15: TLabel
     Left = 297
     Top = 300
-    Width = 46
-    Height = 13
+    Width = 53
+    Height = 15
     Caption = 'Marker fill'
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label16: TLabel
     Left = 297
     Top = 183
-    Width = 64
-    Height = 13
+    Width = 71
+    Height = 15
     Caption = 'Border width '
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label17: TLabel
     Left = 297
     Top = 338
-    Width = 99
-    Height = 13
+    Width = 111
+    Height = 15
     Caption = 'Auto scale peak hold'
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
   object Label18: TLabel
     Left = 297
     Top = 376
-    Width = 83
-    Height = 13
+    Width = 95
+    Height = 15
     Caption = 'Smith both scales'
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -188,7 +188,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Lines.Strings = (
       'Memo1')
@@ -209,7 +209,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
@@ -217,44 +217,44 @@ object SettingsForm: TSettingsForm
       399
       362)
     object Label10: TLabel
-      Left = 16
+      Left = 14
       Top = 48
-      Width = 48
-      Height = 13
+      Width = 50
+      Height = 15
       Alignment = taRightJustify
       Caption = 'Low MHz '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 174
+      Left = 170
       Top = 48
-      Width = 50
-      Height = 13
+      Width = 54
+      Height = 15
       Alignment = taRightJustify
       Caption = 'High MHz '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
     object Label12: TLabel
-      Left = 33
+      Left = 30
       Top = 24
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Alignment = taRightJustify
       Caption = 'Name '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
@@ -262,13 +262,13 @@ object SettingsForm: TSettingsForm
       Left = 287
       Top = 76
       Width = 22
-      Height = 13
+      Height = 15
       Alignment = taRightJustify
       Caption = 'Pad '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
@@ -276,11 +276,11 @@ object SettingsForm: TSettingsForm
       Left = 68
       Top = 44
       Width = 77
-      Height = 21
+      Height = 23
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
       TabOrder = 1
@@ -289,11 +289,11 @@ object SettingsForm: TSettingsForm
       Left = 228
       Top = 44
       Width = 77
-      Height = 21
+      Height = 23
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
       TabOrder = 2
@@ -308,9 +308,9 @@ object SettingsForm: TSettingsForm
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'Consolas'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
-      ItemHeight = 13
+      ItemHeight = 15
       ParentFont = False
       TabOrder = 7
       OnClick = FreqBandListBoxClick
@@ -327,7 +327,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 3
@@ -343,7 +343,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 4
@@ -353,11 +353,11 @@ object SettingsForm: TSettingsForm
       Left = 68
       Top = 20
       Width = 77
-      Height = 21
+      Height = 23
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       MaxLength = 12
       ParentFont = False
@@ -373,7 +373,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 5
@@ -383,13 +383,13 @@ object SettingsForm: TSettingsForm
       Left = 312
       Top = 72
       Width = 77
-      Height = 21
+      Height = 23
       Cursor = crHandPoint
       Style = csDropDownList
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
       TabOrder = 6
@@ -408,7 +408,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       ParentShowHint = False
@@ -417,16 +417,16 @@ object SettingsForm: TSettingsForm
       OnClick = FreqBandDefaultButtonClick
     end
     object FreqBandEnableToggleSwitch: TToggleSwitch
-      Left = 196
+      Left = 194
       Top = 18
-      Width = 67
+      Width = 69
       Height = 20
       Cursor = crHandPoint
       Alignment = taLeftJustify
       Font.Charset = ANSI_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       FrameColor = clBtnFace
       ParentFont = False
@@ -450,7 +450,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
@@ -458,16 +458,16 @@ object SettingsForm: TSettingsForm
       377
       94)
     object Label1: TLabel
-      Left = 26
+      Left = 18
       Top = 20
-      Width = 50
-      Height = 13
+      Width = 58
+      Height = 15
       Alignment = taRightJustify
       Caption = 'Threshold '
       Font.Charset = ANSI_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
@@ -475,48 +475,47 @@ object SettingsForm: TSettingsForm
       Left = -400
       Top = 20
       Width = 26
-      Height = 13
+      Height = 15
       Anchors = [akTop, akRight]
       Caption = 'MHz'
-      ExplicitLeft = -396
     end
     object Label3: TLabel
-      Left = 14
+      Left = 9
       Top = 44
-      Width = 62
-      Height = 13
+      Width = 67
+      Height = 15
       Alignment = taRightJustify
       Caption = 'VBAT Offset '
       Font.Charset = ANSI_CHARSET
       Font.Color = clNavy
       Font.Height = -11
-      Font.Name = 'Tahoma'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
     object Label4: TLabel
       Left = 154
       Top = 44
-      Width = 15
-      Height = 13
+      Width = 18
+      Height = 15
       Caption = 'mV'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
     object Label13: TLabel
       Left = 154
       Top = 20
-      Width = 22
-      Height = 13
+      Width = 23
+      Height = 15
       Caption = 'MHz'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = []
       ParentFont = False
     end
@@ -524,11 +523,11 @@ object SettingsForm: TSettingsForm
       Left = 79
       Top = 16
       Width = 69
-      Height = 21
+      Height = 23
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clMaroon
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
@@ -546,7 +545,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       ParentShowHint = False
@@ -565,7 +564,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       ParentShowHint = False
@@ -584,7 +583,7 @@ object SettingsForm: TSettingsForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       ParentShowHint = False
@@ -596,7 +595,7 @@ object SettingsForm: TSettingsForm
       Left = 79
       Top = 40
       Width = 69
-      Height = 22
+      Height = 24
       MaxValue = 1000
       MinValue = 0
       TabOrder = 1
@@ -608,7 +607,7 @@ object SettingsForm: TSettingsForm
     Left = 78
     Top = 10
     Width = 588
-    Height = 21
+    Height = 23
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
     Text = 'RecordPathEdit'
@@ -739,7 +738,7 @@ object SettingsForm: TSettingsForm
     Left = 69
     Top = 50
     Width = 216
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = 'Set the GUI style'
     AutoDropDown = True
@@ -760,7 +759,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -779,7 +778,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -795,15 +794,17 @@ object SettingsForm: TSettingsForm
     Cursor = crHandPoint
     Hint = 'Select graph font'
     Caption = 'Graph Font'
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 9
+    Visible = False
     OnClick = FontButtonClick
   end
   object LineAlphaTrackBar: TTrackBar
@@ -849,13 +850,13 @@ object SettingsForm: TSettingsForm
   object MarkerFillToggleSwitch: TToggleSwitch
     Left = 301
     Top = 318
-    Width = 63
-    Height = 15
+    Width = 65
+    Height = 17
     Cursor = crHandPoint
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -898,7 +899,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -917,7 +918,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False
@@ -928,13 +929,13 @@ object SettingsForm: TSettingsForm
   object AutoScalePeakHoldToggleSwitch: TToggleSwitch
     Left = 301
     Top = 356
-    Width = 63
-    Height = 15
+    Width = 65
+    Height = 17
     Cursor = crHandPoint
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -951,13 +952,13 @@ object SettingsForm: TSettingsForm
   object SmithBothScalesToggleSwitch: TToggleSwitch
     Left = 301
     Top = 394
-    Width = 63
-    Height = 15
+    Width = 65
+    Height = 17
     Cursor = crHandPoint
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -980,7 +981,7 @@ object SettingsForm: TSettingsForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Options = [fdFixedPitchOnly, fdForceFontExist, fdNoVectorFonts, fdWysiwyg, fdApplyButton]
     OnApply = FontDialog1Apply

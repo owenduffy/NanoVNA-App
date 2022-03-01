@@ -13,7 +13,7 @@ object CalibrationForm: TCalibrationForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -40,7 +40,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -130,7 +130,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -143,7 +143,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -156,7 +156,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -170,7 +170,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -183,7 +183,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -197,7 +197,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -213,7 +213,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -227,7 +227,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
@@ -259,7 +259,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
@@ -349,7 +349,7 @@ object CalibrationForm: TCalibrationForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
@@ -368,7 +368,7 @@ object CalibrationForm: TCalibrationForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       Layout = blGlyphRight
       ParentFont = False
@@ -392,7 +392,7 @@ object CalibrationForm: TCalibrationForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       Layout = blGlyphRight
       ParentFont = False
@@ -416,7 +416,7 @@ object CalibrationForm: TCalibrationForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       Layout = blGlyphRight
       ParentFont = False
@@ -442,7 +442,7 @@ object CalibrationForm: TCalibrationForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Lucida Sans Unicode'
       Font.Style = [fsBold]
       Layout = blGlyphRight
       ParentFont = False
@@ -543,7 +543,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
@@ -575,7 +575,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
@@ -665,7 +665,7 @@ object CalibrationForm: TCalibrationForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False

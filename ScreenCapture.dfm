@@ -18,7 +18,7 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -58,7 +58,7 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False
@@ -310,7 +310,7 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     FrameColor = clBtnFace
     ParentFont = False

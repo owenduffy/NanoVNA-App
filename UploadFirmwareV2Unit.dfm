@@ -13,7 +13,7 @@ object UploadFirmwareV2Form: TUploadFirmwareV2Form
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
@@ -40,7 +40,7 @@ object UploadFirmwareV2Form: TUploadFirmwareV2Form
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
   end
@@ -64,7 +64,7 @@ object UploadFirmwareV2Form: TUploadFirmwareV2Form
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
-    Font.Name = 'Consolas'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     Lines.Strings = (
       'Memo1')
@@ -86,7 +86,7 @@ object UploadFirmwareV2Form: TUploadFirmwareV2Form
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
@@ -102,7 +102,7 @@ object UploadFirmwareV2Form: TUploadFirmwareV2Form
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
@@ -135,7 +135,7 @@ object UploadFirmwareV2Form: TUploadFirmwareV2Form
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
     ParentShowHint = False

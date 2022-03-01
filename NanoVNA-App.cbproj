@@ -158,7 +158,7 @@
         <TASM_FloatingPoint>Real</TASM_FloatingPoint>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.1.209.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.1.208;Comments=;PrivateBuild=</VerInfo_Keys>
-        <Icon_MainIcon>NanoVNA-App_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>NanoVNA-App_Icon1.ico</Icon_MainIcon>
         <LinkPackageStatics>rtl.lib;vcl.lib;vclwinx.lib;vclimg.lib;VclSmp.lib;vclx.lib;IndyCore.lib;IndySystem.lib;bcbsmp.lib;bindengine.lib</LinkPackageStatics>
         <UsePackages>false</UsePackages>
         <BCC_MonitorInlinePtrAccess>true</BCC_MonitorInlinePtrAccess>

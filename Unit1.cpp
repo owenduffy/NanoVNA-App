@@ -1925,6 +1925,7 @@ void __fastcall TForm1::saveFormImage()
 bool __fastcall TForm1::updateInfoPanel2(const int graph)
 {
 	AnsiString s;
+	String ws;
 
 	const int p_graph = graphs.m_mouse.graph;
 	const int p_mem   = graphs.m_mouse.point_mem;
@@ -2156,11 +2157,11 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f", s11_z);
 			MarkerS11ZLabel->Caption = s;
 
-			s.printf("%+0.3f\xb0", s11_phase * rad_2_deg);
+			s.printf("%+0.1f\xb0", s11_phase * rad_2_deg);
 			MarkerS11PhaseLabel->Caption = s;
 
-			s.printf("%0.3f %+0.3f\xb0", s11_mag, s11_phase * rad_2_deg);
-			MarkerS11PolarLabel->Caption = s;
+			ws.printf(L"%0.3g\u2220%+0.1f\xb0", s11_mag, s11_phase * rad_2_deg);
+			MarkerS11PolarLabel->Caption = ws;
 
 			s = common.valueToStr(s11_group_delay_sec, false, true) + " s";
 			MarkerS11GroupDelayLabel->Caption = s;
@@ -2180,11 +2181,11 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f", s21_mag);
 			MarkerS21Label->Caption = s;
 
-			s.printf("%+0.3f\xb0", s21_phase * rad_2_deg);
+			s.printf("%+0.1f\xb0", s21_phase * rad_2_deg);
 			MarkerS21PhaseLabel->Caption = s;
 
-			s.printf("%0.3f %+0.3f\xb0", s21_mag, s21_phase * rad_2_deg);
-			MarkerS21PolarLabel->Caption = s;
+			ws.printf(L"%0.3g\u2220%+0.1f\xb0", s21_mag, s21_phase * rad_2_deg);
+			MarkerS21PolarLabel->Caption = ws;
 
 			s = common.valueToStr(s21_group_delay_sec, false, true) + " s";
 			MarkerS21GroupDelayLabel->Caption = s;
@@ -2199,9 +2200,12 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			{
 				TControl *control = InfoPanel->Controls[i];
 				TLabel *label = dynamic_cast<TLabel *>(control);
-				if (label)
+				if (label){
+					TFont *my_font = settings.graphFont;
+					label->Font=my_font;
 					if (!label->Visible)
 						label->Visible = true;
+				}
 			}
 
 			//InfoPanel->Visible = true;
@@ -2332,11 +2336,11 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			s.printf("%0.3f", s11_z);
 			MarkerS11ZLabel->Caption = s;
 
-			s.printf("%+0.3f\xb0", s11_phase * rad_2_deg);
+			s.printf("%+0.1f\xb0", s11_phase * rad_2_deg);
 			MarkerS11PhaseLabel->Caption = s;
 
-			s.printf("%0.3f %+0.3f\xb0", s11_mag, s11_phase * rad_2_deg);
-			MarkerS11PolarLabel->Caption = s;
+			ws.printf(L"%0.3g\u2220%+0.1f\xb0", s11_mag, s11_phase * rad_2_deg);
+			MarkerS11PolarLabel->Caption = ws;
 
 			s = common.valueToStr(s11_group_delay_sec, false, true) + " s";
 			MarkerS11GroupDelayLabel->Caption = s;
@@ -7174,8 +7178,8 @@ void __fastcall TForm1::configGUI()
 		MarkerS11AdmittanceLabel1->Visible = false;
 		MarkerS11AdmittanceLabel2->Visible = false;
 
-		LCMatchingLabel->Visible           = false;
-		LCMatchingToggleSwitch->Visible    = false;
+		//LCMatchingLabel->Visible           = false;
+		//LCMatchingToggleSwitch->Visible    = false;
 
 		InfoPanelLabel2->Visible           = false;
 		InfoPanelToggleSwitch->Visible     = false;
@@ -7209,8 +7213,8 @@ void __fastcall TForm1::configGUI()
 		MarkerS11AdmittanceLabel1->Visible = true;
 		MarkerS11AdmittanceLabel2->Visible = true;
 
-		LCMatchingLabel->Visible           = true;
-		LCMatchingToggleSwitch->Visible    = true;
+		//LCMatchingLabel->Visible           = true;
+		//LCMatchingToggleSwitch->Visible    = true;
 
 		InfoPanelLabel2->Visible           = true;
 		InfoPanelToggleSwitch->Visible     = true;

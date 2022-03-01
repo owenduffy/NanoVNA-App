@@ -137,15 +137,14 @@ void __fastcall TUploadFirmwareForm::FormCreate(TObject *Sender)
 	Memo1->Lines->Add("");
 	Memo1->Lines->Add("You need to ensure your NanoVNA V1 is in DFU mode before uploading new firmware.");
 	Memo1->Lines->Add("");
-	Memo1->Lines->Add("NanoVNA-H ... go into the CONFIG/DFU menu and enable DFU mode.");
-	Memo1->Lines->Add("NanoVNA-H4 .. turn VNA off, press & hold down the joy button whilst turning the unit back on.");
+	Memo1->Lines->Add("On supporting units go into the menu and enable DFU mode.");
 	Memo1->Lines->Add("");
-	Memo1->Lines->Add("Then press the \"open folder\" button above this memo to find the correct firmware file.");
-	Memo1->Lines->Add("Or select one of the built-in firmwares shown in the above row of buttons.");
+	Memo1->Lines->Add("Some later hardware can be booted in DFU mode by pressing the jog button in while powering on.");
+	Memo1->Lines->Add("");
+	Memo1->Lines->Add("Then press the \"open folder\" button above this memo to select the required .dfu firmware file.");
 	Memo1->Lines->Add("");
 	Memo1->Lines->Add("If you uploaded the wrong firmware or the upload fails for whatever reason, don't worry, you");
-	Memo1->Lines->Add("can easily recover the unit by shorting the 'BOOT0' and 'VDD' pin's/pads together on the VNA's");
-	Memo1->Lines->Add("PCB whilst turning the unit back on if need be.");
+	Memo1->Lines->Add("can usually recover the unit by repeating the process");
 
 	OpenDialog1->InitialDir = ExtractFilePath(Application->ExeName);
 	SaveDialog1->InitialDir = ExtractFilePath(Application->ExeName);

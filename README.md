@@ -30,11 +30,11 @@ https://www.embarcadero.com/products/cbuilder/starter/free-download
 
 * [@OneOfEleven](https://github.com/OneOfEleven/)
 * [@DiSLord](https://github.com/DiSlord)
-* [owenduffy](https://github.com/owenduffy/)
+* [@owenduffy](https://github.com/owenduffy/)
 
 ### Firmware upload drivers
 
 NanoVNA-App contains a facility to upload / download NanoVNA flash memory. The appropriate Windows driver filename is STTub30.sys (or later?) from ST. 
 If you wish to use it, make sure that you have not replaced the bootloader driver with something else.
-The driver is packaged with ST's [@DfuseDemo](https://www.st.com/en/development-tools/stsw-stm32080.html).
+The driver is packaged with ST's [DfuseDemo](https://www.st.com/en/development-tools/stsw-stm32080.html).
 

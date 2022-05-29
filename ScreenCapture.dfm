@@ -33,19 +33,19 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
     334
     288)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object ActualSize: TLabel
     Left = 142
     Top = 0
-    Width = 52
-    Height = 13
+    Width = 58
+    Height = 15
     Caption = 'Actual Size'
   end
   object Remote: TLabel
     Left = 229
     Top = 0
-    Width = 37
-    Height = 13
+    Width = 41
+    Height = 15
     Caption = 'Remote'
   end
   object ActualSizeToggleSwitch: TToggleSwitch

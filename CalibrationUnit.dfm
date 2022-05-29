@@ -29,14 +29,14 @@ object CalibrationForm: TCalibrationForm
     559
     360)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label6: TLabel
-    Left = 8
+    Left = 19
     Top = 155
-    Width = 92
-    Height = 13
+    Width = 81
+    Height = 15
     Alignment = taRightJustify
-    Caption = 'Calibration file path '
+    Caption = 'Calibration file '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
@@ -121,10 +121,10 @@ object CalibrationForm: TCalibrationForm
     Visible = False
   end
   object Label2: TLabel
-    Left = 14
+    Left = 10
     Top = 123
-    Width = 43
-    Height = 13
+    Width = 47
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Average '
     Font.Charset = DEFAULT_CHARSET
@@ -137,8 +137,8 @@ object CalibrationForm: TCalibrationForm
   object AverageLabel: TLabel
     Left = 159
     Top = 123
-    Width = 21
-    Height = 13
+    Width = 24
+    Height = 15
     Caption = 'XXX'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -150,8 +150,8 @@ object CalibrationForm: TCalibrationForm
   object SmoothingLabel: TLabel
     Left = 350
     Top = 123
-    Width = 21
-    Height = 13
+    Width = 24
+    Height = 15
     Caption = 'XXX'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -161,10 +161,10 @@ object CalibrationForm: TCalibrationForm
     ParentFont = False
   end
   object Label40: TLabel
-    Left = 195
+    Left = 186
     Top = 123
-    Width = 53
-    Height = 13
+    Width = 62
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Smoothing '
     Font.Charset = ANSI_CHARSET
@@ -177,8 +177,8 @@ object CalibrationForm: TCalibrationForm
   object MedianLabel: TLabel
     Left = 528
     Top = 123
-    Width = 21
-    Height = 13
+    Width = 24
+    Height = 15
     Caption = 'XXX'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -188,10 +188,10 @@ object CalibrationForm: TCalibrationForm
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 389
+    Left = 385
     Top = 123
-    Width = 37
-    Height = 13
+    Width = 41
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Median '
     Font.Charset = ANSI_CHARSET
@@ -357,9 +357,9 @@ object CalibrationForm: TCalibrationForm
       OnClick = ClearCalibrationButtonClick
     end
     object LoadBitBtn: TBitBtn
-      Left = 327
+      Left = 328
       Top = 0
-      Width = 109
+      Width = 110
       Height = 37
       Cursor = crHandPoint
       Hint = 'Attach 50R LOAD cal-standards onto both S11 and S21 ports'
@@ -383,7 +383,7 @@ object CalibrationForm: TCalibrationForm
     object ShortBitBtn: TBitBtn
       Left = 109
       Top = 0
-      Width = 109
+      Width = 110
       Height = 37
       Cursor = crHandPoint
       Hint = 'Attach SHORT cal-standard onto S11 port'
@@ -405,7 +405,7 @@ object CalibrationForm: TCalibrationForm
       OnMouseDown = CalButtonBitBtnMouseDown
     end
     object OpenBitBtn: TBitBtn
-      Left = 218
+      Left = 219
       Top = 0
       Width = 109
       Height = 37
@@ -429,9 +429,9 @@ object CalibrationForm: TCalibrationForm
       OnMouseDown = CalButtonBitBtnMouseDown
     end
     object ThroughBitBtn: TBitBtn
-      Left = 436
+      Left = 438
       Top = 0
-      Width = 111
+      Width = 109
       Height = 37
       Cursor = crHandPoint
       Hint = 
@@ -459,7 +459,7 @@ object CalibrationForm: TCalibrationForm
     Left = 116
     Top = 152
     Width = 394
-    Height = 21
+    Height = 23
     Anchors = [akLeft, akTop, akRight]
     ReadOnly = True
     TabOrder = 5

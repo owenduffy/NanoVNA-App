@@ -155,9 +155,9 @@ object SettingsForm: TSettingsForm
   object Label17: TLabel
     Left = 297
     Top = 338
-    Width = 111
+    Width = 99
     Height = 15
-    Caption = 'Auto scale peak hold'
+    Caption = 'Auto scale pk hold'
     Font.Charset = ANSI_CHARSET
     Font.Color = clNavy
     Font.Height = -11

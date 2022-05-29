@@ -41,6 +41,8 @@ void __fastcall TVNAScreenCaptureForm::FormCreate(TObject *Sender)
 	m_mouse.down = false;
 	m_title = Application->Title + " " + this->Caption;
 	Caption = m_title;
+	ToggleSwitch1->State = tssOff;
+	ToggleSwitch1->Enabled = false;
 
 	this->DoubleBuffered = true;
 
@@ -71,6 +73,7 @@ void __fastcall TVNAScreenCaptureForm::FormDestroy(TObject *Sender)
 void __fastcall TVNAScreenCaptureForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	//
+    ToggleSwitch1->State = tssOff;
 }
 
 #define ABS(x)  (((x) >= 0) ? (x) : -(x))

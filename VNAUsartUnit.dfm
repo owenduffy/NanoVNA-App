@@ -28,15 +28,15 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     516
     382)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label1: TLabel
-    Left = 19
     Top = 332
-    Width = 74
-    Height = 13
+    Left = 8
+    Width = 55
+    Height = 15
     Alignment = taRightJustify
     Anchors = [akLeft, akBottom]
-    Caption = 'User command '
+    Caption = 'User cmd '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
@@ -45,13 +45,13 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 14
+    Left = 8
     Top = 359
-    Width = 79
-    Height = 13
+    Width = 61
+    Height = 15
     Alignment = taRightJustify
     Anchors = [akLeft, akBottom]
-    Caption = 'User commands '
+    Caption = 'User cmds '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
@@ -60,10 +60,10 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 374
+    Left = 361
     Top = 332
-    Width = 63
-    Height = 13
+    Width = 76
+    Height = 15
     Alignment = taRightJustify
     Anchors = [akRight, akBottom]
     Caption = 'Timeout (ms) '
@@ -146,10 +146,10 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     WordWrap = False
   end
   object CommandEdit: TEdit
-    Left = 95
+    Left = 69
     Top = 328
-    Width = 274
-    Height = 21
+    Width = 286
+    Height = 23
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 6
     OnChange = CommandEditChange
@@ -161,7 +161,7 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     Left = 105
     Top = 8
     Width = 89
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = 'VNA usart port baudrate'
     Style = csDropDownList
@@ -174,7 +174,7 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
   object ScrollToggleSwitch: TToggleSwitch
     Left = 16
     Top = 8
-    Width = 72
+    Width = 76
     Height = 20
     FrameColor = clBtnFace
     StateCaptions.CaptionOn = 'Hold'
@@ -252,7 +252,7 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     object CommandsButton2: TButton
       Left = 103
       Top = 0
-      Width = 103
+      Width = 104
       Height = 25
       Cursor = crHandPoint
       Align = alClient
@@ -268,7 +268,7 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
       OnDropDownClick = CommandsButtonDropDownClick
     end
     object CommandsButton3: TButton
-      Left = 206
+      Left = 207
       Top = 0
       Width = 103
       Height = 25
@@ -286,9 +286,9 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
       OnDropDownClick = CommandsButtonDropDownClick
     end
     object CommandsButton4: TButton
-      Left = 309
+      Left = 310
       Top = 0
-      Width = 104
+      Width = 103
       Height = 25
       Cursor = crHandPoint
       Align = alClient
@@ -308,7 +308,7 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     Left = 206
     Top = 8
     Width = 56
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Hint = 'Command line ends'
     Style = csDropDownList
@@ -330,7 +330,7 @@ object VNAUsartCommsForm: TVNAUsartCommsForm
     Left = 440
     Top = 328
     Width = 68
-    Height = 21
+    Height = 23
     Anchors = [akRight, akBottom]
     NumbersOnly = True
     TabOrder = 9

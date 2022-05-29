@@ -28,38 +28,36 @@ object CommsForm: TCommsForm
     469
     397)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label1: TLabel
-    Left = 15
     Top = 344
-    Width = 74
-    Height = 13
+    Left = 8
+    Width = 55
+    Height = 15
     Alignment = taRightJustify
     Anchors = [akLeft, akBottom]
-    Caption = 'User command '
+    Caption = 'User cmd '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
     Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
-    ExplicitTop = 437
   end
   object Label2: TLabel
-    Left = 10
+    Left = 8
     Top = 374
-    Width = 79
-    Height = 13
+    Width = 61
+    Height = 15
     Alignment = taRightJustify
     Anchors = [akLeft, akBottom]
-    Caption = 'User commands '
+    Caption = 'User cmds '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -11
     Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
-    ExplicitTop = 467
   end
   object Memo1: TMemo
     Left = 6
@@ -136,7 +134,7 @@ object CommsForm: TCommsForm
     Left = 95
     Top = 340
     Width = 369
-    Height = 21
+    Height = 23
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 6
     OnChange = CommandEditChange
@@ -147,7 +145,7 @@ object CommsForm: TCommsForm
   object PauseCommsToggleSwitch: TToggleSwitch
     Left = 112
     Top = 8
-    Width = 98
+    Width = 106
     Height = 20
     FrameColor = clBtnFace
     StateCaptions.CaptionOn = 'Paused'
@@ -161,7 +159,7 @@ object CommsForm: TCommsForm
   object ScrollToggleSwitch: TToggleSwitch
     Left = 16
     Top = 8
-    Width = 72
+    Width = 76
     Height = 20
     FrameColor = clBtnFace
     StateCaptions.CaptionOn = 'Hold'

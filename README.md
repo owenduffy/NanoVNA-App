@@ -1,10 +1,6 @@
 # NanoVNA-App
 
 <div align="center">
-<img src="/NanoVNA1.png">
-</div>
-
-<div align="center">
 <img src="/Image1.png">
 </div>
 

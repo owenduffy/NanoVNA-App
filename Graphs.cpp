@@ -9257,7 +9257,7 @@ void __fastcall CGraphs::drawImpedanceS11(const int graph, const int graph_type,
 			}
 		}
 
-		String title = "Freq Impedance S11";
+		String title = "Freq |Impedance S11|";
 		drawDetails(graph, graph_type, 1, mem, index, title, units, s, s_value, "%#.6f");
 	}
 }
@@ -12659,7 +12659,7 @@ void __fastcall CGraphs::drawTDRImpedance(const int graph, const int graph_type,
 	}
 
 	{
-		String title = "Time Impedance S11";
+		String title = "Time |Impedance S11}";
 		drawDetails(graph, graph_type, title);
 	}
 }

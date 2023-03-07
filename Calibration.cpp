@@ -290,8 +290,8 @@ void __fastcall CCalibration::correct(std::vector <t_data_point> &points)
 	if (m_inter_cal.empty())	// create interpolated calibration data .. this is only done the once when the number of points and/or frequency range changes
 	{
 		computeErrorTerms(m_calibration);
-//		interpolateErrorTerms(m_calibration, points, true);	// linear interpolation
-		interpolateErrorTerms(m_calibration, points, false);	// spline interpolation
+		interpolateErrorTerms(m_calibration, points, true);	// linear interpolation
+//		interpolateErrorTerms(m_calibration, points, false);	// spline interpolation
 	}
 
 	if ((int)m_inter_cal.size() == size)

@@ -2122,7 +2122,7 @@ String __fastcall CCommon::loadSParams(std::vector <t_data_point> &s_params, Str
 		if (s[1] == '!')
 			continue;      // comment marker
 
-		s = localiseDecimalPoint(s);
+//		s = localiseDecimalPoint(s);
 
 		std::vector <String> params;
 		parseString(s, " ", params);
@@ -2191,7 +2191,7 @@ String __fastcall CCommon::loadSParams(std::vector <t_data_point> &s_params, Str
 //			continue;
 			break;
 
-		s = localiseDecimalPoint(s);
+//		s = localiseDecimalPoint(s);
 
 		std::vector <String> params;
 		parseString(s, " ", params);

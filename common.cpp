@@ -2191,7 +2191,7 @@ String __fastcall CCommon::loadSParams(std::vector <t_data_point> &s_params, Str
 //			continue;
 			break;
 
-//		s = localiseDecimalPoint(s);
+		s = localiseDecimalPoint(s);
 
 		std::vector <String> params;
 		parseString(s, " ", params);
@@ -2624,6 +2624,12 @@ bool __fastcall CCommon::saveSParams(std::vector <t_data_point> &points, int num
 	}
 	buffer.push_back(s);
 
+  //make a "deep copy" of current locale name.
+//#include <cstddef>
+  std::string prev_loc = std::setlocale(LC_ALL,NULL);
+  // set numeric decilmal for Touchstone
+  std::setlocale(LC_NUMERIC, "en_US.UTF-8");
+
 	for (unsigned int i = 0; i < points.size(); i++)
 	{
 		String str;
@@ -2640,6 +2646,8 @@ bool __fastcall CCommon::saveSParams(std::vector <t_data_point> &points, int num
 		}
 		buffer.push_back(s);
 	}
+  //restore the previous locale.
+  std::setlocale(LC_ALL, prev_loc.c_str());
 
 	const int res = saveFileAnsi(name, buffer);
 	if (res <= 0)

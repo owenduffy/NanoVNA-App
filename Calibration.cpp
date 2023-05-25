@@ -136,8 +136,8 @@ void __fastcall CCalibration::computeErrorTerms(t_calibration &calibration)
 		const complexd throughCal = calibration.point[i].throughCal;
 		try
 		{
-//			e10e32 = ((throughCal / gthru) - e30) * (complexf(1, 0) - (e11 * e11));
-			e10e32 = ((throughCal / gthru) - e30);	// this one drops the load calibration from S21 but produces flat through cable calibrations
+			e10e32 = ((throughCal / gthru) - e30) * (complexd(1, 0) - (e11 * e11));
+//			e10e32 = ((throughCal / gthru) - e30);	// this one drops the load calibration from S21 but produces flat through cable calibrations
 
 			// inverse to let allow live corrections use faster multiply instead of slower divide
 			e10e32 = complexd(1, 0) / e10e32;

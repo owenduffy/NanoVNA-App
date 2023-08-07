@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD16) ";
+		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD17) ";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -2309,14 +2309,14 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 
 			s.printf("%0.3f", imp.real());
 			MarkerS11SeriesRLabel->Caption = s;
-			s = (imp.imag() < 0) ? cap_str : ind_str;
+			s.printf("%0.3f", imp.imag());
 			MarkerS11SeriesXLabel->Caption = s;
 			MarkerS11SeriesLLabel->Caption = ind_str;
 			MarkerS11SeriesCLabel->Caption = cap_str;
 
 			s.printf("%0.3f", imp_p.real());
 			MarkerS11ParallelRLabel->Caption = s;
-			s = (imp_p.imag() < 0) ? capp_str : indp_str;
+			s.printf("%0.3f", imp_p.imag());
 			MarkerS11ParallelXLabel->Caption = s;
 			MarkerS11ParallelLLabel->Caption = indp_str;
 			MarkerS11ParallelCLabel->Caption = capp_str;

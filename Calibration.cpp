@@ -136,8 +136,8 @@ void __fastcall CCalibration::computeErrorTerms(t_calibration &calibration)
 		const complexd throughCal = calibration.point[i].throughCal;
 		try
 		{
-			e10e32 = ((throughCal / gthru) - e30) * (complexd(1, 0) - (e11 * e11));
-//			e10e32 = ((throughCal / gthru) - e30);	// this one drops the load calibration from S21 but produces flat through cable calibrations
+//			e10e32 = ((throughCal / gthru) - e30) * (complexd(1, 0) - (e11 * e11));
+			e10e32 = ((throughCal / gthru) - e30);	// this one drops the load calibration from S21 but produces flat through cable calibrations
 
 			// inverse to let allow live corrections use faster multiply instead of slower divide
 			e10e32 = complexd(1, 0) / e10e32;
@@ -303,7 +303,8 @@ void __fastcall CCalibration::correct(std::vector <t_data_point> &points)
 			s11 = (s11 - m_inter_cal[i].e00) / ((s11 * m_inter_cal[i].e11) - m_inter_cal[i].delta_e);
 			s21 -= m_inter_cal[i].e30;
 //			s21 /= e10e32;
-			s21 *= m_inter_cal[i].e10e32;	// multiply is faster - we inversed 'e10e32' before using it here
+//Enhanced response correction s21 /= e10e32*(1-s11*e11)
+			s21 *= m_inter_cal[i].e10e32*(complexf(1, 0)-s11*m_inter_cal[i].e11);	// multiply is faster - we inversed 'e10e32' before using it here
 			points[i].s11 = s11;
 			points[i].s21 = s21;
 		}

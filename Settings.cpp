@@ -76,10 +76,6 @@ const t_style_names styles[] =
 	{"Lavender Classico",   false},
 	{"Light",               false},
 	{"Luna",                false},
-	{"Metropolis UI Black", true},
-	{"Metropolis UI Blue",  false},
-	{"Metropolis UI Dark",  true},
-	{"Metropolis UI Green", false},
 	{"Obsidian",            true},
 	{"Onyx Blue",           true},
 	{"Ruby Graphite",       true},
@@ -117,7 +113,6 @@ CSettings::CSettings()
 
 	//m_field_sep   = ',';
 	//m_decimal_point = '.';
-
 	m_graph_font = new TFont();
 	if (m_graph_font)
 	{
@@ -369,7 +364,6 @@ void __fastcall CSettings::load()
 					m_field_sep = params[1][1];
 				continue;
 			}
-
 			if (params[0] == "decimal_dot")
 			{
 				if (params.size() >= 2)
@@ -1449,10 +1443,8 @@ void __fastcall CSettings::save()
 /*
 	s.printf(L"field_sep %c", m_field_sep);
 	buffer.push_back(s);
-
 	s.printf(L"decimal_dot %c", m_decimal_point);
 	buffer.push_back(s);
-
 	buffer.push_back("");
 */
 	s.printf(L"main_form %d %d %d %d",

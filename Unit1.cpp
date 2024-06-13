@@ -533,7 +533,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD17) ";
+		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD18) ";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -2087,15 +2087,13 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 				complexf v;
 				complexf cpx;
 
-				const int m                 = (index == 0) ? 0 : index - 1;
+				const int m                 = (index == 0) ? 0 : index - 1;
 				const int n                 = (index >= (size - 1)) ? size - 1 : index + 1;
 				const int64_t delta_freq    = data_unit.m_point_filt[mem][n].Hz - data_unit.m_point_filt[mem][m].Hz;
-
 				w                           = data_unit.m_point_filt[mem][m].s11;
 				v                           = data_unit.m_point_filt[mem][n].s11;
 				cpx                         = w * v;
 				s11_group_delay_sec         = (cpx.imag() == 0 || delta_freq == 0) ? 0.0f : (float)(atan2(cpx.real(), cpx.imag()) / (2 * M_PI * delta_freq));
-
 				w                           = data_unit.m_point_filt[mem][m].s21;
 				v                           = data_unit.m_point_filt[mem][n].s21;
 				cpx                         = w * v;
@@ -2113,7 +2111,8 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			MarkerWavelengthLabel1->Caption = "";
 			MarkerWavelengthLabel2->Caption = "";
 			}
-			// S11 info
+
+			// S11 info
 
 
 			s = res_str + " " + ((imp.imag() >= 0) ? "+j" : "-j") + resj_str;
@@ -2266,15 +2265,13 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 				complexf v;
 				complexf cpx;
 
-				const int m                 = (index == 0) ? 0 : index - 1;
+				const int m                 = (index == 0) ? 0 : index - 1;
 				const int n                 = (index >= (size - 1)) ? size - 1 : index + 1;
 				const int64_t delta_freq    = data_unit.m_point_filt[mem][n].Hz - data_unit.m_point_filt[mem][m].Hz;
-
 				w                           = data_unit.m_point_filt[mem][m].s11;
 				v                           = data_unit.m_point_filt[mem][n].s11;
 				cpx                         = w * v;
 				s11_group_delay_sec         = (cpx.imag() == 0 || delta_freq == 0) ? 0.0f : (float)(atan2(cpx.real(), cpx.imag()) / (2 * M_PI * delta_freq));
-
 				w                           = data_unit.m_point_filt[mem][m].s21;
 				v                           = data_unit.m_point_filt[mem][n].s21;
 				cpx                         = w * v;
@@ -2286,7 +2283,8 @@ bool __fastcall TForm1::updateInfoPanel2(const int graph)
 			  MarkerWavelengthLabel1->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / Hz, false, true, "") + "m" : String("");
 			  MarkerWavelengthLabel2->Caption = (Hz > 0) ? common.valueToStr((double)SPEED_OF_LIGHT / (Hz * 4), false, true, "") + "m" : String("");
 			}
-			else{
+
+			else{
 			MarkerFrequencyLabel->Caption = "";
 			MarkerWavelengthLabel1->Caption = "";
 			MarkerWavelengthLabel2->Caption = "";
@@ -4418,7 +4416,6 @@ bool __fastcall TForm1::requestMouseDown(int x, int y)
 	Sleep(30);
 	return true;
 }
-
 bool __fastcall TForm1::requestMouseUp(void)
 {
 	if (!connected() /*	|| m_comms.rx_block.type != SERIAL_STATE_IDLE */)
@@ -4427,7 +4424,6 @@ bool __fastcall TForm1::requestMouseUp(void)
 	Sleep(30);
 	return true;
 }
-
 bool __fastcall TForm1::autoRefresh(bool enable)
 {
 	if (!connected() /*	|| m_comms.rx_block.type != SERIAL_STATE_IDLE */)
@@ -6642,21 +6638,16 @@ void TForm1::printfCommMessage(const char *fmt, ...)
 
 	va_list ap;
 	char tmp;
-
 	va_start(ap, fmt);
 		int buf_size = vsnprintf(&tmp, 0, fmt, ap);
 	va_end(ap);
-
 	if (buf_size == 0)
 		return;
-
 	if (buf_size == -1)
 		buf_size = 512;
-
 	char *buf = new char [buf_size + 1];
 	if (buf == NULL)
 		return;
-
 	va_start(ap, fmt);
 		vsnprintf_s(buf, buf_size + 1, fmt, ap);
 	va_end(ap);
@@ -7158,32 +7149,23 @@ void __fastcall TForm1::configGUI()
 //	 	VelocityFactorLabel->Visible       = false;
 		VelocityFactorComboBox->Visible    = false;
 		VelocityFactorEdit->Visible        = false;
-
 		PointBandwidthLabel->Visible       = false;
-
 		EDelayLabel->Visible               = false;
 		EDelayEdit->Visible                = false;
-
 		S21OffsetLabel->Visible            = false;
 		S21OffsetEdit->Visible             = false;
-
 		TDRWindowLabel1->Visible           = false;
 		TDRWindowLabel2->Visible           = false;
 		TDRWindowTrackBar->Visible         = false;
-
 		OutputPowerLabel1->Visible         = false;
 		OutputPowerLabel2->Visible         = false;
 		OutputPowerTrackBar->Visible       = false;
-
 		MarkerS11AdmittanceLabel1->Visible = false;
 		MarkerS11AdmittanceLabel2->Visible = false;
-
 		//LCMatchingLabel->Visible           = false;
 		//LCMatchingToggleSwitch->Visible    = false;
-
 		InfoPanelLabel2->Visible           = false;
 		InfoPanelToggleSwitch->Visible     = false;
-
 		BatteryVoltageBitBtn->Enabled      = true;
 		VNAUsartCommsBitBtn->Enabled       = true;
 	}
@@ -7193,32 +7175,25 @@ void __fastcall TForm1::configGUI()
 		VelocityFactorComboBox->Visible    = true;
 		VelocityFactorEdit->Visible        = true;
 		VelocityFactorEdit->Enabled        = (VelocityFactorComboBox->ItemIndex <= 0) ? true : false;
-
 		PointBandwidthLabel->Visible       = true;
-
 		EDelayLabel->Visible               = true;
 		EDelayEdit->Visible                = true;
-
 		S21OffsetLabel->Visible            = true;
 		S21OffsetEdit->Visible             = true;
-
 		TDRWindowLabel1->Visible           = true;
 		TDRWindowLabel2->Visible           = true;
 		TDRWindowTrackBar->Visible         = true;
-
 		OutputPowerLabel1->Visible         = true;
 		OutputPowerLabel2->Visible         = true;
 		OutputPowerTrackBar->Visible       = true;
-
 		MarkerS11AdmittanceLabel1->Visible = true;
 		MarkerS11AdmittanceLabel2->Visible = true;
-
 		//LCMatchingLabel->Visible           = true;
-		//LCMatchingToggleSwitch->Visible    = true;
 
-		InfoPanelLabel2->Visible           = true;
+		//LCMatchingToggleSwitch->Visible    = true;
+
+		InfoPanelLabel2->Visible           = true;
 		InfoPanelToggleSwitch->Visible     = true;
-
 		if (data_unit.m_vna_data.type == UNIT_TYPE_JANVNA_V2)
 		{
 			PointBandwidthHzComboBox->Enabled = true;
@@ -7229,7 +7204,6 @@ void __fastcall TForm1::configGUI()
 		if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2)
 		{	// V2
 			PointBandwidthHzComboBox->Enabled = false;
-
 			BatteryVoltageBitBtn->Enabled = false;
 			if (BatteryVoltageForm)
 				if (BatteryVoltageForm->Showing)
@@ -7390,60 +7364,91 @@ void __fastcall TForm1::updateNumberOfPointsComboBox(const bool process)
 			{
 				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V1); i++)
 				{
-					const int num = NUM_POINTS_V1[i];
-					cb->AddItem(IntToStr(num), (TObject *)num);
-				}
-			}
-			break;
+
+					const int num = NUM_POINTS_V1[i];
+
+					cb->AddItem(IntToStr(num), (TObject *)num);
+
+				}
+
+			}
+
+			break;
 
 		case UNIT_TYPE_NANOVNA_V2:
 			if (data_unit.m_vna_data.hardware_revision != REG_V2_HARDWARE_REVISION_ACK_2_4)
 			{
 				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V2); i++)
 				{
-					const int num = NUM_POINTS_V2[i];
-					cb->AddItem(IntToStr(num), (TObject *)num);
-				}
-			}
-			else
-			{
+
+					const int num = NUM_POINTS_V2[i];
+
+					cb->AddItem(IntToStr(num), (TObject *)num);
+
+				}
+
+			}
+
+			else
+
+			{
 				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V2PLUS4); i++)
 				{
-					const int num = NUM_POINTS_V2PLUS4[i];
-					cb->AddItem(IntToStr(num), (TObject *)num);
-				}
-			}
-			break;
+
+					const int num = NUM_POINTS_V2PLUS4[i];
+
+					cb->AddItem(IntToStr(num), (TObject *)num);
+
+				}
+
+			}
+
+			break;
 
 		case UNIT_TYPE_JANVNA_V2:
 			{
 				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_JANVNA_V2); i++)
 				{
-					const int num = NUM_POINTS_JANVNA_V2[i];
-					cb->AddItem(IntToStr(num), (TObject *)num);
-				}
-			}
-			break;
-
+
+					const int num = NUM_POINTS_JANVNA_V2[i];
+
+					cb->AddItem(IntToStr(num), (TObject *)num);
+
+				}
+
+			}
+
+			break;
+
+
 		case UNIT_TYPE_TINYSA:
 			{
 				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_TINYSA); i++)
 				{
 					const int num = NUM_POINTS_TINYSA[i];
-					cb->AddItem(IntToStr(num), (TObject *)num);
-				}
-			}
-			break;
+
+					cb->AddItem(IntToStr(num), (TObject *)num);
+
+				}
+
+			}
+
+			break;
 
 		default:
 			{
 				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_DEFAULT); i++)
 				{
-					const int num = NUM_POINTS_DEFAULT[i];
-					cb->AddItem(IntToStr(num), (TObject *)num);
-				}
-			}
-			break;
+
+					const int num = NUM_POINTS_DEFAULT[i];
+
+					cb->AddItem(IntToStr(num), (TObject *)num);
+
+				}
+
+			}
+
+			break;
 	}
 
 	int item_index = 0;
@@ -7533,7 +7538,6 @@ void __fastcall TForm1::updateVelocityFactorComboBox()
 	cb->OnChange = ne;
 
 	common.comboBoxAutoWidth(cb);
-
 	VelocityFactorEdit->Enabled = (cb->ItemIndex <= 0) ? true : false;
 	VelocityFactorEdit->Visible = true;
 }

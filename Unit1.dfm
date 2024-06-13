@@ -19,7 +19,6 @@ object Form1: TForm1
   Font.Name = 'Lucida Sans Unicode'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
   Touch.InteractiveGestures = [igPressAndTap]
   OnClose = FormClose
   OnCreate = FormCreate
@@ -32,7 +31,6 @@ object Form1: TForm1
   DesignSize = (
     884
     661)
-  PixelsPerInch = 96
   TextHeight = 15
   object Label12: TLabel
     Left = 9

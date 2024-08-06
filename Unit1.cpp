@@ -3752,7 +3752,7 @@ void __fastcall TForm1::WMNewData(TMessage &msg)
 //			if (!settings.useVNACalibration && data_unit.m_vna_data.type != UNIT_TYPE_TINYSA)
 //				calibration.correct(calibration_module.m_calibration, points, true, true, true);	// use calibrations to correct
 
-			recordDataToFile(new_points);	// stream the incoming (raw uncorrected) sparams to files
+			recordDataToFile(new_points);	// stream the incoming sparams to files
 		}
 
 		updateHistoryFramesInfo();
@@ -4026,6 +4026,13 @@ void __fastcall TForm1::recordDataToFile(std::vector <t_data_point> &points)
 	if (size <= 0)
 		return;
 
+	std::vector <t_data_point> points_corrected = points;
+
+	// Calibrate the points
+	if (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA)
+		if (settings.calibrationSelection == CAL_SELECT_APP)
+			calibration_module.correct(points_corrected);
+
 /*
 	int hist_index = (data_unit.m_history_frames > 0) ? data_unit.m_history_index - 1 : 0;
 	if (hist_index < 0)
@@ -4061,7 +4068,7 @@ void __fastcall TForm1::recordDataToFile(std::vector <t_data_point> &points)
 		filename += m_record.filename + "_";
 	filename += IntToStr(m_record.file_number) + ".s2p";
 
-	if (!common.saveSParams(points, 4, filename))
+	if (!common.saveSParams(points_corrected, 4, filename))
 	//if (!common.saveSParams(m_record.points, 4, filename))
 	{
 

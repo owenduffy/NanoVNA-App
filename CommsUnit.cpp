@@ -1075,6 +1075,7 @@ void __fastcall TCommsForm::CommandsButtonClick(TObject *Sender)
 				{
 					if (s[k] == '\t')
 						s = ' ';							// replace tab with space
+						
 					if (s[k] < 32)
 						s = s.Delete(k, 1).Trim();	// remove control character from the line
 					else

@@ -28,7 +28,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
-TVNAScreenCaptureForm *VNAScreenCaptureForm = NULL;
+TVNAScreenCaptureForm *VNAScreenCaptureForm  = NULL;
 
 __fastcall TVNAScreenCaptureForm::TVNAScreenCaptureForm(TComponent* Owner)
 	: TForm(Owner)
@@ -553,6 +553,8 @@ void __fastcall TVNAScreenCaptureForm::ResizeImageMouseLeave(TObject *Sender)
 
 void __fastcall TVNAScreenCaptureForm::ToggleSwitch1Click(TObject *Sender)
 {
+	Form1->pushCommMessage("auyoREfresh");
+
 	if (ToggleSwitch1->State == tssOn)
 		Form1->autoRefresh(true);
 	else

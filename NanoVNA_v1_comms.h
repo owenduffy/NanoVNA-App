@@ -1,4 +1,4 @@
-
+﻿
 #ifndef NanoVNA_v1_commsH
 #define NanoVNA_v1_commsH
 
@@ -52,6 +52,9 @@ class CNanoVNA1Comms
 			int h;
 		} m_region;
 
+
+		
+
 		String __fastcall getSerialStateString(t_serial_state state);
 
 		void __fastcall reset();
@@ -78,6 +81,8 @@ class CNanoVNA1Comms
 		void __fastcall extractPower(String s);
 
 		int __fastcall processRx(t_serial_buffer &serial_buffer);
+
+		// void __fastcall OUTPUT_STATE(String s);//MODIFY  Print supported commands
 
 		__property t_mode mode = {read = m_mode, write = setMode};
 };

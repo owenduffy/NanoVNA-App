@@ -805,11 +805,14 @@ void __fastcall CNanoVNA2Comms::newUnit()
 	switch (data_unit.m_vna_data.hardware_revision)
 	{
 		case REG_V2_HARDWARE_REVISION_ACK_2_2:
-			if (data_unit.m_vna_data.firmware_major == 2) {
+			if (data_unit.m_vna_data.firmware_major == 2) 
+			{
 				data_unit.m_vna_data.name += "LiteVNA";
 				data_unit.m_vna_data.max_points = 65535;
 //				data_unit.m_vna_data.hardware_revision = REG_V2_HARDWARE_REVISION_ACK_2_4;
-			} else {
+			} 
+			else 
+			{
 				data_unit.m_vna_data.name += "V2.2";
 				data_unit.m_vna_data.max_points = 1024;
 			}
@@ -893,8 +896,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 		}
 
 	}
-	else
-	if (m_mode == MODE_INIT2)
+	else if (m_mode == MODE_INIT2)
 	{	// fetching the device variant
 
 		const uint8_t b = serial_buffer.buffer[k++];		// fetch an RX byte
@@ -913,8 +915,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 		}
 
 	}
-	else
-	if (m_mode == MODE_INIT3)
+	else if (m_mode == MODE_INIT3)
 	{	// fetching the serial protocol version
 
 		const uint8_t b = serial_buffer.buffer[k++];		// fetch an RX byte
@@ -934,8 +935,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 		}
 
 	}
-	else
-	if (m_mode == MODE_INIT4)
+	else if (m_mode == MODE_INIT4)
 	{	// fetching the hardware revision
 
 		if (size >= 3)
@@ -953,8 +953,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 			newUnit();
 		}
 	}
-	else
-	if (m_mode == MODE_IDLE)
+	else if (m_mode == MODE_IDLE)
 	{	// we're not doing anything with the VNA, just idling along
 
 		#if 1
@@ -981,8 +980,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 		#endif
 
 	}
-	else
-	if (m_mode == MODE_POLL)
+	else if (m_mode == MODE_POLL)
 	{	// we are polling the VNA to see if it's still there and working OK
 
 		if (size >= 3)
@@ -1014,8 +1012,7 @@ int __fastcall CNanoVNA2Comms::processRx(t_serial_buffer &serial_buffer)
 			}
 		}
 	}
-	else
-	if (m_mode == MODE_SINGLE_SCAN || m_mode == MODE_SCAN || m_mode == MODE_GENERATOR)
+	else if (m_mode == MODE_SINGLE_SCAN || m_mode == MODE_SCAN || m_mode == MODE_GENERATOR)
 	{	// we are in scan/generator mode - lots of s-param points coming in
 
 		const bool generating = (m_mode == MODE_GENERATOR) ? true : false;

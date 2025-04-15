@@ -17,7 +17,6 @@ object UploadFirmwareForm: TUploadFirmwareForm
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
-  OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -28,13 +27,12 @@ object UploadFirmwareForm: TUploadFirmwareForm
   DesignSize = (
     644
     345)
-  PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label1: TLabel
-    Left = 34
+    Left = 33
     Top = 8
-    Width = 62
-    Height = 13
+    Width = 63
+    Height = 15
     Alignment = taRightJustify
     Caption = 'DFU Device '
     Font.Charset = DEFAULT_CHARSET
@@ -45,10 +43,10 @@ object UploadFirmwareForm: TUploadFirmwareForm
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 14
+    Left = 2
     Top = 34
-    Width = 82
-    Height = 13
+    Width = 94
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Upload Firmware '
     Font.Charset = DEFAULT_CHARSET
@@ -59,10 +57,10 @@ object UploadFirmwareForm: TUploadFirmwareForm
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 40
+    Left = 38
     Top = 61
-    Width = 56
-    Height = 13
+    Width = 58
+    Height = 15
     Alignment = taRightJustify
     Caption = 'Save Flash '
     Font.Charset = DEFAULT_CHARSET
@@ -125,7 +123,7 @@ object UploadFirmwareForm: TUploadFirmwareForm
     Left = 100
     Top = 4
     Width = 536
-    Height = 21
+    Height = 23
     Cursor = crHandPoint
     Style = csDropDownList
     Anchors = [akLeft, akTop, akRight]

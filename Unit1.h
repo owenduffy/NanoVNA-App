@@ -1,4 +1,4 @@
-
+﻿
 // (c) OneOfEleven 2020
 //
 // This code can be used on terms of WTFPL Version 2 (http://www.wtfpl.net)
@@ -207,7 +207,6 @@ __published:
 	TToggleSwitch *FreqBandEnableToggleSwitch;
 	TLabel *Label33;
 	TEdit *SweepNameEdit;
-	TLabel *SweepNameFontLabel;
 	TComboBox *NumberOfPointsComboBox;
 	TComboBox *PointBandwidthHzComboBox;
 	TToggleSwitch *LCMatchingToggleSwitch;
@@ -357,6 +356,7 @@ __published:
 	TComboBox *CalibrationSelectComboBox;
 	TSpeedButton *CWModeSpeedButton;
 	TPanel *GLPanel;
+	TLabel *SweepNameFontLabel;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -805,6 +805,7 @@ public:
 	bool __fastcall connected();
 	bool __fastcall scanning();
 	bool __fastcall generating();
+
 	t_mode __fastcall commsMode();
 
 	void __fastcall waitTxCommandEmpty(const DWORD max_ms)

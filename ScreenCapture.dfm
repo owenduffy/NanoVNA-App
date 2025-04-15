@@ -22,7 +22,6 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
-  OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -32,7 +31,6 @@ object VNAScreenCaptureForm: TVNAScreenCaptureForm
   DesignSize = (
     334
     288)
-  PixelsPerInch = 96
   TextHeight = 15
   object ActualSize: TLabel
     Left = 142

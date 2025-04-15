@@ -7,8 +7,8 @@ object Form1: TForm1
   VertScrollBar.Visible = False
   AlphaBlendValue = 128
   Caption = 'Form1'
-  ClientHeight = 661
-  ClientWidth = 884
+  ClientHeight = 749
+  ClientWidth = 1066
   Color = clBtnFace
   Constraints.MinHeight = 700
   Constraints.MinWidth = 900
@@ -29,8 +29,8 @@ object Form1: TForm1
   OnMouseWheel = FormMouseWheel
   OnShow = FormShow
   DesignSize = (
-    884
-    661)
+    1066
+    749)
   TextHeight = 15
   object Label12: TLabel
     Left = 9
@@ -255,22 +255,6 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
   end
-  object SweepNameFontLabel: TLabel
-    Left = 13
-    Top = 246
-    Width = 180
-    Height = 18
-    Caption = 'SweepNameFontLabel'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -15
-    Font.Name = 'Lucida Sans Unicode'
-    Font.Pitch = fpFixed
-    Font.Style = [fsBold]
-    Font.Quality = fqAntialiased
-    ParentFont = False
-    Visible = False
-  end
   object LCMatchingLabel: TLabel
     Left = 555
     Top = 35
@@ -442,8 +426,8 @@ object Form1: TForm1
     OnMouseDown = RecordSpeedButtonMouseDown
   end
   object ScanSpeedButton: TSpeedButton
-    Left = 116
-    Top = 57
+    Left = 119
+    Top = 59
     Width = 51
     Height = 27
     Cursor = crHandPoint
@@ -470,7 +454,7 @@ object Form1: TForm1
     OnClick = ScanSpeedButtonClick
   end
   object InfoPanelLabel2: TLabel
-    Left = 810
+    Left = 992
     Top = 35
     Width = 24
     Height = 15
@@ -483,6 +467,7 @@ object Form1: TForm1
     Font.Name = 'Lucida Sans Unicode'
     Font.Style = []
     ParentFont = False
+    ExplicitLeft = 810
   end
   object EDelayLabel: TLabel
     Left = 74
@@ -628,6 +613,22 @@ object Form1: TForm1
     ShowHint = True
     OnClick = CWModeSpeedButtonClick
   end
+  object SweepNameFontLabel: TLabel
+    Left = 39
+    Top = 160
+    Width = 180
+    Height = 18
+    Caption = 'SweepNameFontLabel'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Lucida Sans Unicode'
+    Font.Pitch = fpFixed
+    Font.Style = [fsBold]
+    Font.Quality = fqAntialiased
+    ParentFont = False
+    Visible = False
+  end
   object TimeAverageLevelTrackBar: TTrackBar
     Left = 136
     Top = 304
@@ -647,7 +648,7 @@ object Form1: TForm1
     OnChange = TimeAverageLevelTrackBarChange
   end
   object CloseBitBtn: TBitBtn
-    Left = 840
+    Left = 1022
     Top = 4
     Width = 36
     Height = 21
@@ -736,8 +737,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 642
-    Width = 884
+    Top = 730
+    Width = 1066
     Height = 19
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -786,7 +787,7 @@ object Form1: TForm1
   object VelocityFactorComboBox: TComboBox
     Left = 684
     Top = 4
-    Width = 131
+    Width = 313
     Height = 23
     Cursor = crHandPoint
     Hint = ' TDR \n Velocity factor '
@@ -801,8 +802,8 @@ object Form1: TForm1
     OnChange = VelocityFactorComboBoxChange
   end
   object VelocityFactorEdit: TEdit
-    Left = 821
-    Top = 4
+    Left = 1003
+    Top = 6
     Width = 55
     Height = 23
     Alignment = taCenter
@@ -899,8 +900,8 @@ object Form1: TForm1
   object Panel1: TPanel
     Left = 228
     Top = 57
-    Width = 653
-    Height = 563
+    Width = 835
+    Height = 651
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvNone
     DoubleBuffered = True
@@ -912,8 +913,8 @@ object Form1: TForm1
     object GraphPaintBox: TPaintBox
       Left = 0
       Top = 0
-      Width = 358
-      Height = 536
+      Width = 540
+      Height = 624
       Cursor = crArrow
       Hint = 'No hint'
       Align = alClient
@@ -943,10 +944,10 @@ object Form1: TForm1
       ExplicitHeight = 543
     end
     object InfoPanel: TPanel
-      Left = 358
+      Left = 540
       Top = 0
       Width = 295
-      Height = 536
+      Height = 624
       Align = alRight
       BevelOuter = bvLowered
       Caption = 'InfoPanel'
@@ -1742,8 +1743,8 @@ object Form1: TForm1
     end
     object Panel2: TPanel
       Left = 0
-      Top = 536
-      Width = 653
+      Top = 624
+      Width = 835
       Height = 27
       Margins.Left = 0
       Margins.Right = 0
@@ -1756,7 +1757,7 @@ object Form1: TForm1
       object HistoryTrackBar: TTrackBar
         Left = 46
         Top = 0
-        Width = 607
+        Width = 789
         Height = 27
         Cursor = crHandPoint
         Hint = 'History position'
@@ -1807,8 +1808,8 @@ object Form1: TForm1
     object GLPanel: TPanel
       Left = 0
       Top = 0
-      Width = 358
-      Height = 536
+      Width = 540
+      Height = 624
       Align = alClient
       BevelOuter = bvLowered
       Caption = 'GLPanel'
@@ -1861,7 +1862,7 @@ object Form1: TForm1
   object SweepNameEdit: TEdit
     Left = 684
     Top = 31
-    Width = 117
+    Width = 299
     Height = 23
     Hint = 'Sweep name - added to top of saved image'
     Anchors = [akLeft, akTop, akRight]
@@ -1949,7 +1950,7 @@ object Form1: TForm1
     Left = 7
     Top = 537
     Width = 213
-    Height = 84
+    Height = 172
     Anchors = [akLeft, akTop, akBottom]
     Caption = ' Frequency markers '
     Color = clBtnFace
@@ -1961,12 +1962,12 @@ object Form1: TForm1
     TabOrder = 38
     DesignSize = (
       213
-      84)
+      172)
     object MarkerListView: TListView
       Left = 8
       Top = 36
       Width = 198
-      Height = 39
+      Height = 127
       Cursor = crHandPoint
       Anchors = [akLeft, akTop, akRight, akBottom]
       Columns = <
@@ -2010,7 +2011,7 @@ object Form1: TForm1
       Left = 8
       Top = 42
       Width = 198
-      Height = 34
+      Height = 122
       Cursor = crHandPoint
       Anchors = [akLeft, akTop, akRight, akBottom]
       Font.Charset = DEFAULT_CHARSET
@@ -2155,7 +2156,7 @@ object Form1: TForm1
     OnClick = SetScanRangeToVNAScanRangeBitBtnClick
   end
   object NewGraphBitBtn: TBitBtn
-    Left = 631
+    Left = 634
     Top = 4
     Width = 44
     Height = 21
@@ -2206,7 +2207,7 @@ object Form1: TForm1
     OnClick = UploadFirmwareBitBtnClick
   end
   object SettingsBitBtn: TBitBtn
-    Left = 309
+    Left = 306
     Top = 4
     Width = 44
     Height = 21
@@ -2536,7 +2537,7 @@ object Form1: TForm1
     OnClick = CalibrationBitBtnClick
   end
   object InfoPanelToggleSwitch: TToggleSwitch
-    Left = 836
+    Left = 1018
     Top = 31
     Width = 40
     Height = 20
@@ -2637,6 +2638,7 @@ object Form1: TForm1
     Max = 6
     ParentShowHint = False
     PageSize = 1
+    Position = 1
     ShowHint = True
     TabOrder = 41
     ThumbLength = 19
@@ -2893,8 +2895,8 @@ object Form1: TForm1
   end
   object StatusBar2: TStatusBar
     Left = 0
-    Top = 623
-    Width = 884
+    Top = 711
+    Width = 1066
     Height = 19
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -2961,8 +2963,8 @@ object Form1: TForm1
   object GraphPopupMenu: TPopupMenu
     AutoHotkeys = maManual
     OnPopup = GraphPopupMenuPopup
-    Left = 292
-    Top = 136
+    Left = 476
+    Top = 72
     object Enablespline1: TMenuItem
       Caption = 'Enable spline'
       OnClick = Enablespline1Click
@@ -4430,8 +4432,8 @@ object Form1: TForm1
       'PNG {*.png}|*.png|BMP {*.bmp}|*.bmp|JPG {*.jpg}|*.jpg|All files ' +
       '(*.*}|*.*'
     Options = [ofPathMustExist, ofNoReadOnlyReturn, ofEnableSizing, ofDontAddToRecent]
-    Left = 298
-    Top = 84
+    Left = 274
+    Top = 76
   end
   object MarkersListBoxPopupMenu: TPopupMenu
     OnPopup = MarkersListBoxPopupMenuPopup
@@ -4471,13 +4473,13 @@ object Form1: TForm1
     AutoHotkeys = maManual
     AutoPopup = False
     OnPopup = GraphTypePopupMenuPopup
-    Left = 388
-    Top = 141
+    Left = 364
+    Top = 77
   end
   object MemoryPopupMenu: TPopupMenu
     OnPopup = MemoryPopupMenuPopup
-    Left = 488
-    Top = 139
+    Left = 576
+    Top = 75
     object ClearMemory1: TMenuItem
       Caption = 'Clear memory'
       OnClick = ClearMemory1Click

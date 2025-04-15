@@ -1,4 +1,4 @@
-
+﻿
 #pragma hdrstop
 
 #include "NanoVNA_v1_comms.h"
@@ -245,7 +245,7 @@ void __fastcall CNanoVNA1Comms::sendBandwidthCommand()
 	if (!data_unit.m_vna_data.cmd_bandwidth)
 		return;
 
-	String s;
+	String s; 
 
 	if (data_unit.m_vna_data.adc_Hz <= 0 || data_unit.m_vna_data.audio_samples_count <= 0 || data_unit.m_vna_data.bandwidth_Hz <= 0)
 		return;
@@ -269,13 +269,13 @@ void __fastcall CNanoVNA1Comms::sendBandwidthCommand()
 
 bool __fastcall CNanoVNA1Comms::requestCapture()
 {	// request a screen capture from the VNA
-
 	if (!m_get_screen_capture || m_rx_block.type != SERIAL_STATE_IDLE)
 		return false;
 
 	m_get_screen_capture = false;
 
-	if (!data_unit.m_vna_data.cmd_capture)
+	//MODIFY Some Special process
+	if (!data_unit.m_vna_data.cmd_capture && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
 		return false;
 
 	addSerialTxCommand("capture");
@@ -317,9 +317,10 @@ void __fastcall CNanoVNA1Comms::requestScan()
 	if (segments <= 0)
 		return;
 
-	const uint32_t seg_span  = data_unit.m_freq_span_Hz / segments;
-	const uint32_t seg_start = data_unit.m_freq_start_Hz + (seg_span * data_unit.m_segment);
-	const uint32_t seg_stop  = seg_start + seg_span;
+	//MODIFy 原uint32_t修改为uint64_t
+	const uint64_t seg_span  = data_unit.m_freq_span_Hz / segments;
+	const uint64_t seg_start = data_unit.m_freq_start_Hz + (seg_span * data_unit.m_segment);
+	const uint64_t seg_stop  = seg_start + seg_span;
 
 	if (m_poll_timer.millisecs(false) >= m_poll_ms)
 		poll();
@@ -348,7 +349,7 @@ void __fastcall CNanoVNA1Comms::requestScan()
 			if (settings.timeAverageLevel > 0 || GraphTypeComboBox1->Text.LowerCase().Pos("s11") > 0 || GraphTypeComboBox2->Text.LowerCase().Pos("s11") > 0)
 				mask |= SCAN_MASK_OUT_DATA0;
 		#else
-			mask |= SCAN_MASK_OUT_DATA0;
+			mask |= SCAN_MASK_OUT_DATA0;//2
 		#endif
 
 		#if 0
@@ -356,10 +357,10 @@ void __fastcall CNanoVNA1Comms::requestScan()
 			if (settings.timeAverageLevel > 0 || GraphTypeComboBox1->Text.LowerCase().Pos("s21") > 0 || GraphTypeComboBox2->Text.LowerCase().Pos("s21") > 0)
 				mask |= SCAN_MASK_OUT_DATA1;
 		#else
-			mask |= SCAN_MASK_OUT_DATA1;
+			mask |= SCAN_MASK_OUT_DATA1;//4
 		#endif
 
-		if (settings.calibrationSelection != CAL_SELECT_VNA)
+		if (settings.calibrationSelection != CAL_SELECT_VNA)//8
 			mask |= SCAN_MASK_NO_CALIBRATION;	// don't use the VNA's own calibration
 
 		//mask |= SCAN_MASK_BINARY;
@@ -368,13 +369,16 @@ void __fastcall CNanoVNA1Comms::requestScan()
 			// only request the frequency data on the first scan
 			if (data_unit.m_total_frames <= 0)
 		#endif
-				mask |= SCAN_MASK_OUT_FREQ;
+				mask |= SCAN_MASK_OUT_FREQ;//1
 
 		String s;
-		s.printf(L"%u %u %d %u", seg_start, seg_stop, data_unit.m_points_per_segment, mask);
+		//MODIFY u%---->llu%;
+		s.printf(L"%llu %llu %d %u", seg_start, seg_stop, data_unit.m_points_per_segment, mask);
 //		s = "scan " + s;
 		s = (data_unit.m_vna_data.cmd_scan_bin ? "scan_bin " : "scan ") + s;
 
+		String point = common.valueToStr(data_unit.m_points_per_segment,false,false);
+		
 		addSerialTxCommand(s);
 	}
 }
@@ -538,8 +542,11 @@ void __fastcall CNanoVNA1Comms::poll()
 			m_mode = MODE_IDLE;
 
 		case MODE_IDLE:
+
 			if (m_pause_comms)
 				break;
+
+				Form1->pushCommMessage("MODE_IDLE" + m_tx_command);
 
 			if (data_unit.m_vna_data.cmd_usart_cfg && data_unit.m_vna_data.usart_speed <= 0)
 				addSerialTxCommand("usart_cfg");
@@ -786,9 +793,31 @@ void __fastcall CNanoVNA1Comms::extractInfoCommand()
 	{
 		String s = m_rx_block.lines[i].Trim().LowerCase();
 
-//		if (s.Pos("board:") <= 0)
-//			continue;
-
+		if (s.Pos("jncradio_vna_3g")> 0)//MODIFY
+		{
+			data_unit.m_vna_data.type = UNIT_TYPE_JNCRadio_VNA_3G;
+			break;
+		}
+		if (s.Pos("nanovna-f_v3")> 0)//MODIFY
+		{
+			data_unit.m_vna_data.type = UNIT_TYPE_NANOVNA_FV3;
+			break;
+		}
+		if (s.Pos("nanovna-f_v2")> 0)//MODIFY
+		{
+			data_unit.m_vna_data.type = UNIT_TYPE_NANOVNA_FV2;
+			break;
+		}
+		if (s.Pos("sv6301a")> 0)//MODIFY
+		{
+			data_unit.m_vna_data.type = UNIT_TYPE_SV6301_A;
+			break;
+		}
+		if (s.Pos("sv4401a")> 0)//MODIFY
+		{
+			data_unit.m_vna_data.type = UNIT_TYPE_SV4401_A;
+			break;
+		}
 		if (s.Pos("nanovna-h7") > 0 || s.Pos("nanovna-h 7") > 0)
 		{
 			data_unit.m_vna_data.type = UNIT_TYPE_NANOVNA_H7;
@@ -811,18 +840,41 @@ void __fastcall CNanoVNA1Comms::extractInfoCommand()
 		}
 	}
 
+	//MODIFY Select the manufacturer for the subsequent special treatment
+	switch (data_unit.m_vna_data.type)
+	{
+		case UNIT_TYPE_JNCRadio_VNA_3G:
+		case UNIT_TYPE_NANOVNA_FV3:
+		case UNIT_TYPE_NANOVNA_FV2:
+		case UNIT_TYPE_SV6301_A:
+		case UNIT_TYPE_SV4401_A:
+			data_unit.m_vna_data.ventor = VENTOR_SYSJOINT;
+		break;
+
+		default:
+			data_unit.m_vna_data.ventor = VENTOR_DEFAULT;
+		break;
+	}
+
+
+
 	// set new unit type
 	switch (data_unit.m_vna_data.type)
 	{
-		case UNIT_TYPE_NONE:       data_unit.m_vna_data.name = "NONE-unit-type";    break;
-		case UNIT_TYPE_UNKNOWN:    data_unit.m_vna_data.name = "UNKNOWN-unit-type"; break;
-		case UNIT_TYPE_NANOVNA_H:  data_unit.m_vna_data.name = "NanoVNA-H";         break;
-		case UNIT_TYPE_NANOVNA_H4: data_unit.m_vna_data.name = "NanoVNA-H4";        break;
-		case UNIT_TYPE_NANOVNA_H7: data_unit.m_vna_data.name = "NanoVNA-H7";        break;
-		case UNIT_TYPE_NANOVNA_V2: data_unit.m_vna_data.name = "NanoVNA-V2";        break;
-		case UNIT_TYPE_JANVNA_V2:  data_unit.m_vna_data.name = "JanVNA-V2";         break;
-		case UNIT_TYPE_TINYSA:     data_unit.m_vna_data.name = "tinySA";            break;
-		default:                	data_unit.m_vna_data.name = "ERROR-unit-type";   break;
+		case UNIT_TYPE_NONE:       			data_unit.m_vna_data.name = "NONE-unit-type";    			break;
+		case UNIT_TYPE_UNKNOWN:    			data_unit.m_vna_data.name = "UNKNOWN-unit-type"; 			break;
+		case UNIT_TYPE_NANOVNA_H:  			data_unit.m_vna_data.name = "NanoVNA-H";         			break;
+		case UNIT_TYPE_NANOVNA_H4: 			data_unit.m_vna_data.name = "NanoVNA-H4";        			break;
+		case UNIT_TYPE_NANOVNA_H7: 			data_unit.m_vna_data.name = "NanoVNA-H7";        			break;
+		case UNIT_TYPE_NANOVNA_V2: 			data_unit.m_vna_data.name = "NanoVNA-V2";        			break;
+		case UNIT_TYPE_JANVNA_V2:  			data_unit.m_vna_data.name = "JanVNA-V2";         			break;
+		case UNIT_TYPE_TINYSA:     			data_unit.m_vna_data.name = "tinySA";            			break;
+		case UNIT_TYPE_NANOVNA_FV2: 		data_unit.m_vna_data.name = "NanoVNA_FV2";     	 			break;//MODIFY
+		case UNIT_TYPE_NANOVNA_FV3: 		data_unit.m_vna_data.name = "NanoVNA_FV3";     	 			break;//MODIFY
+		case UNIT_TYPE_JNCRadio_VNA_3G:  	data_unit.m_vna_data.name = "JNCRadio_VNA_3G";				break;//MODIFY
+		case UNIT_TYPE_SV6301_A:  			data_unit.m_vna_data.name = "SV6301A";   		 			break;//MODIFY
+		case UNIT_TYPE_SV4401_A:  			data_unit.m_vna_data.name = "SV4401A";   		 			break;//MODIFY
+		default:                			data_unit.m_vna_data.name = "ERROR-unit-type";   			break;
 	}
 
 	for (unsigned int i = 0; i < m_rx_block.lines.size(); i++)
@@ -912,6 +964,40 @@ void __fastcall CNanoVNA1Comms::extractInfoCommand()
 				data_unit.m_vna_data.lcd_width  = 320;
 				data_unit.m_vna_data.lcd_height = 240;
 				break;
+
+				//MODIFY The following products do not support bandwidth and adc_hz settings
+		case UNIT_TYPE_NANOVNA_FV2:
+				data_unit.m_vna_data.max_bandwidth_Hz = 4000;
+
+				data_unit.m_vna_data.max_points = 301;
+				data_unit.m_vna_data.lcd_width  = 800;
+				data_unit.m_vna_data.lcd_height = 480;
+				break;
+
+		case UNIT_TYPE_NANOVNA_FV3:
+				data_unit.m_vna_data.max_bandwidth_Hz = 4000;
+
+				data_unit.m_vna_data.max_points = 801;
+				data_unit.m_vna_data.lcd_width  = 800;
+				data_unit.m_vna_data.lcd_height = 480;
+				break;
+
+		case UNIT_TYPE_JNCRadio_VNA_3G:
+				data_unit.m_vna_data.max_bandwidth_Hz = 4000;
+
+				data_unit.m_vna_data.max_points = 1001;
+				data_unit.m_vna_data.lcd_width  = 800;
+				data_unit.m_vna_data.lcd_height = 480;
+				break;
+
+		case UNIT_TYPE_SV6301_A:
+		case UNIT_TYPE_SV4401_A:
+				data_unit.m_vna_data.max_bandwidth_Hz = 4000;
+
+				data_unit.m_vna_data.max_points = 1001;
+				data_unit.m_vna_data.lcd_width  = 1024;
+				data_unit.m_vna_data.lcd_height = 600;
+				break;
 	}
 
 	::PostMessage(Form1->Handle, WM_NEW_UNIT_TYPE, 0, 0);
@@ -940,8 +1026,38 @@ void __fastcall CNanoVNA1Comms::extractPower(String s)
 	::PostMessage(Form1->Handle, WM_UPDATE_OUTPUT_POWER, value, 0);
 }
 
+// void __fastcall CNanoVNA1Comms::OUTPUT_STATE(String s)
+// {
+// 		if(  (s.Pos(" reset")       > 0) ) Form1->pushCommMessage("CHECK  -->  reset      ");
+// 		if(  (s.Pos(" capture")     > 0) ) Form1->pushCommMessage("CHECK  -->  capture    ");
+// 		if(  (s.Pos(" bandwidth")   > 0) ) Form1->pushCommMessage("CHECK  -->  bandwidth  ");
+// 		if(  (s.Pos(" battery")     > 0) ) Form1->pushCommMessage("CHECK  -->  battery    ");
+// 		if(  (s.Pos(" vbat_offset") > 0) ) Form1->pushCommMessage("CHECK  -->  vbat_offset");
+// 		if(  (s.Pos(" marker")      > 0) ) Form1->pushCommMessage("CHECK  -->  marker     ");
+// 		if(  (s.Pos(" integrator")  > 0) ) Form1->pushCommMessage("CHECK  -->  integrator ");
+// 		if(  (s.Pos(" scan_bin")    > 0) ) Form1->pushCommMessage("CHECK  -->  scan_bin   ");
+// 		if(  (s.Pos(" scanraw")     > 0) ) Form1->pushCommMessage("CHECK  -->  scanraw    ");
+// 		if(  (s.Pos(" sd_list")     > 0) ) Form1->pushCommMessage("CHECK  -->  sd_list    ");
+// 		if(  (s.Pos(" sd_readfile") > 0) ) Form1->pushCommMessage("CHECK  -->  sd_readfile");
+// 		if(  (s.Pos(" time")        > 0) ) Form1->pushCommMessage("CHECK  -->  time       ");
+// 		if(  (s.Pos(" threshold")   > 0) ) Form1->pushCommMessage("CHECK  -->  threshold  ");
+// 		if(  (s.Pos(" pause")       > 0) ) Form1->pushCommMessage("CHECK  -->  pause      ");
+// 		if(  (s.Pos(" resume")      > 0) ) Form1->pushCommMessage("CHECK  -->  resume     ");
+// 		if(  (s.Pos(" cal")         > 0) ) Form1->pushCommMessage("CHECK  -->  cal        ");
+// 		if(  (s.Pos(" power")       > 0) ) Form1->pushCommMessage("CHECK  -->  power      ");
+// 		if(  (s.Pos(" usart")       > 0) ) Form1->pushCommMessage("CHECK  -->  usart      ");
+// 		if(  (s.Pos(" usart_cfg")   > 0) ) Form1->pushCommMessage("CHECK  -->  usart_cfg  ");
+// 		if(  (s.Pos(" deviceid")    > 0) ) Form1->pushCommMessage("CHECK  -->  deviceid   ");
+// 		if(  (s.Pos(" sweep")       > 0) ) Form1->pushCommMessage("CHECK  -->  sweep      ");
+// 		if(  (s.Pos(" mode")        > 0) ) Form1->pushCommMessage("CHECK  -->  mode       ");		
+// } 
+
+
+/// @brief 
+/// @return 
 void __fastcall CNanoVNA1Comms::processRxBlock()
 {
+
 	const int segments = (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA) ? data_unit.m_segments : 1;
 
 	if (m_rx_block.type == SERIAL_STATE_IDLE)
@@ -990,6 +1106,7 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 								//common.parseString(m_rx_block.lines[i].Trim().LowerCase(), " ", params);
 
 								String s2 = m_rx_block.lines[i].Trim().LowerCase();
+
 								if (!s2.IsEmpty())
 								{
 									if (s2[s2.Length()] == '?')
@@ -998,33 +1115,41 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 									}
 									else
 									{
-										const int pos = s2.Pos("commands:");
+										//MODIFY	Compatible with the commands of different models
+										int pos = s2.Pos("commands:")>s2.Pos("usage:")?s2.Pos("commands:"):s2.Pos("usage:");
 										if (pos > 0)
 										{
 											data_unit.m_vna_data.help              = s2;
-											s2                                     = " " + s2.SubString(pos + 10, s2.Length()).Trim() + " ";
-											data_unit.m_vna_data.cmd_capture       = (s2.Pos(" capture ")     > 1) ? true : false;
-											data_unit.m_vna_data.cmd_bandwidth     = (s2.Pos(" bandwidth ")   > 1) ? true : false;
-											data_unit.m_vna_data.cmd_vbat          = (s2.Pos(" vbat ")        > 1) ? true : false;
-											data_unit.m_vna_data.cmd_vbat_offset   = (s2.Pos(" vbat_offset ") > 1) ? true : false;
-											data_unit.m_vna_data.cmd_marker        = (s2.Pos(" marker ")      > 1) ? true : false;
-											data_unit.m_vna_data.cmd_integrator    = (s2.Pos(" integrator ")  > 1) ? true : false;
-											data_unit.m_vna_data.cmd_scan_bin      = (s2.Pos(" scan_bin ")    > 1) ? true : false;
-											data_unit.m_vna_data.cmd_scanraw       = (s2.Pos(" scanraw ")     > 1) ? true : false;
-											data_unit.m_vna_data.cmd_sd_list       = (s2.Pos(" sd_list ")     > 1) ? true : false;
-											data_unit.m_vna_data.cmd_sd_readfile   = (s2.Pos(" sd_readfile ") > 1) ? true : false;
-											data_unit.m_vna_data.cmd_time          = (s2.Pos(" time ")        > 1) ? true : false;
-											data_unit.m_vna_data.cmd_threshold     = (s2.Pos(" threshold ")   > 1) ? true : false;
-											data_unit.m_vna_data.cmd_pause         = (s2.Pos(" pause ")       > 1) ? true : false;
-											data_unit.m_vna_data.cmd_resume        = (s2.Pos(" resume ")      > 1) ? true : false;
-											data_unit.m_vna_data.cmd_reset         = (s2.Pos(" reset ")       > 1) ? true : false;
-											data_unit.m_vna_data.cmd_cal           = (s2.Pos(" cal ")         > 1) ? true : false;
-											data_unit.m_vna_data.cmd_power         = (s2.Pos(" power ")       > 1) ? true : false;
-											data_unit.m_vna_data.cmd_usart         = (s2.Pos(" usart ")       > 1) ? true : false;
-											data_unit.m_vna_data.cmd_usart_cfg     = (s2.Pos(" usart_cfg ")   > 1) ? true : false;
-											data_unit.m_vna_data.cmd_deviceid      = (s2.Pos(" deviceid ")    > 1) ? true : false;
-											data_unit.m_vna_data.cmd_sweep         = (s2.Pos(" sweep ")       > 1) ? true : false;
-											data_unit.m_vna_data.cmd_mode          = (s2.Pos(" mode ")        > 1) ? true : false;
+											if( s2.Pos("commands:") > 0 )
+											s2                                     = " " + s2.SubString(pos + 10, s2.Length()).Trim();
+											else
+											s2                                     = " " + s2.SubString(pos + 6, s2.Length()).Trim();
+
+											data_unit.m_vna_data.cmd_capture       = (s2.Pos("capture")     > 1) ? true : false;
+											data_unit.m_vna_data.cmd_bandwidth     = (s2.Pos("bandwidth")   > 1) ? true : false;
+											data_unit.m_vna_data.cmd_vbat          = (s2.Pos("vbat")> 1) || (s2.Pos("battery")> 1);
+											data_unit.m_vna_data.cmd_vbat_offset   = (s2.Pos("vbat_offset") > 1) ? true : false;
+											data_unit.m_vna_data.cmd_marker        = (s2.Pos("marker")      > 1) ? true : false;
+											data_unit.m_vna_data.cmd_integrator    = (s2.Pos("integrator")  > 1) ? true : false;
+											data_unit.m_vna_data.cmd_scan_bin      = (s2.Pos("scan_bin")    > 1) ? true : false;
+											data_unit.m_vna_data.cmd_scanraw       = (s2.Pos("scanraw")     > 1) ? true : false;
+											data_unit.m_vna_data.cmd_sd_list       = (s2.Pos("sd_list")     > 1) ? true : false;
+											data_unit.m_vna_data.cmd_sd_readfile   = (s2.Pos("sd_readfile") > 1) ? true : false;
+											data_unit.m_vna_data.cmd_time          = (s2.Pos("time")        > 1) ? true : false;
+											data_unit.m_vna_data.cmd_threshold     = (s2.Pos("threshold")   > 1) ? true : false;
+											data_unit.m_vna_data.cmd_pause         = (s2.Pos("pause")       > 1) ? true : false;
+											data_unit.m_vna_data.cmd_resume        = (s2.Pos("resume")      > 1) ? true : false;
+											data_unit.m_vna_data.cmd_reset         = (s2.Pos("reset")       > 1) ? true : false;
+											data_unit.m_vna_data.cmd_cal           = (s2.Pos("cal")         > 1) ? true : false;
+											data_unit.m_vna_data.cmd_power         = (s2.Pos("power")       > 1) ? true : false;
+											data_unit.m_vna_data.cmd_usart         = (s2.Pos("usart")       > 1) ? true : false;
+											data_unit.m_vna_data.cmd_usart_cfg     = (s2.Pos("usart_cfg")   > 1) ? true : false;
+											data_unit.m_vna_data.cmd_deviceid      = (s2.Pos("deviceid")    > 1) ? true : false;
+											data_unit.m_vna_data.cmd_sweep         = (s2.Pos("sweep")       > 1) ? true : false;
+											data_unit.m_vna_data.cmd_mode          = (s2.Pos("mode")        > 1) ? true : false;
+
+											// 打印已经确认可用的指令
+                                            // OUTPUT_STATE(s2);
 										}
 									}
 								}
@@ -1076,6 +1201,7 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 						break;
 
 					case SERIAL_STATE_INFO:
+
 						extractInfoCommand();
 
 						if (m_mode == MODE_INIT2 &&
@@ -1104,8 +1230,7 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 							}
 						}
 						break;
-
-					case SERIAL_STATE_SWEEP:
+				case SERIAL_STATE_SWEEP:
 							data_unit.m_vna_data.freq_start_Hz  = 0;
 							data_unit.m_vna_data.freq_stop_Hz   = 0;
 							data_unit.m_vna_data.freq_center_Hz = 0;
@@ -1633,7 +1758,8 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 								}
 								//else
 								//if (channel < (MAX_CHANNELS + 5))
-								//{	// calibration data
+
+								//{	// calibration data
 								//	//Form1->m_calibration_data_list[i].sParam[channel - MAX_CHANNELS] = c;
 								//}
 							}
@@ -1654,13 +1780,15 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 
 					case SERIAL_STATE_FREQDATA:
 						{
+
 							if ((int)m_rx_block.lines.size() != data_unit.m_points_per_segment)
 							{
 								Form1->pushCommMessage("rx: " + String("freq_data incorrect number of points error ") + IntToStr((int)m_rx_block.lines.size()));
 
 								Form1->m_freq_data_list.resize(0);
-								//Form1->resetFreqArray();
-								//::PostMessage(Form1->Handle, WM_CAPTURE_STOP, 0, 0);
+
+								// Form1->resetFreqArray();
+								// ::PostMessage(Form1->Handle, WM_CAPTURE_STOP, 0, 0);
 								break;
 							}
 
@@ -1952,6 +2080,8 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 								data_unit.m_point_incoming.resize(0);
 							}
 */
+
+
 							if (Form1->m_freq_data_list.size() > 0)
 							{
 								Form1->addNewRxData(data_unit.m_point_incoming);
@@ -2062,6 +2192,9 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 					case SERIAL_STATE_SCREEN_BULK:
 						if (data_unit.m_vna_data.lcd_width >= 320 && data_unit.m_vna_data.lcd_height >= 240 && data_unit.m_vna_data.lcd_width <= 4096 && data_unit.m_vna_data.lcd_height <= 4096)
 						{
+
+							Form1->pushCommMessage("2209");
+
 							if (m_rx_block.bin_data_index == m_rx_block.bin_data.size())
 							{
 								if (m_capture_bm == NULL) {
@@ -2076,19 +2209,30 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 								int16_t x0, x1, y0, y1;
 								uint16_t *data;
 								int step = 1;
-								if (m_rx_block.type == SERIAL_STATE_SCREEN_CAPTURE) {
+								if (m_rx_block.type == SERIAL_STATE_SCREEN_CAPTURE) 
+								{
 								   x0 = 0; x1 = m_capture_bm->Width;
 								   y0 = 0; y1 = m_capture_bm->Height;
 								   data = (uint16_t*)&m_rx_block.bin_data[0];
+
+									int x =x1;
+									int y = y1;
+
+								   String Width =  IntToStr(x);
+								   String Height =  IntToStr(y);
+
+								   Form1->pushCommMessage("Captrue :Width" + Width + "Height" + Height);
 								}
-								else if (m_rx_block.type == SERIAL_STATE_SCREEN_BULK){
+								else if (m_rx_block.type == SERIAL_STATE_SCREEN_BULK)
+								{
 								   x0 = m_region.x;
 								   y0 = m_region.y;
 								   x1 = m_region.w + x0;
 								   y1 = m_region.h + y0;
 								   data = (uint16_t*)&m_rx_block.bin_data[8];
 								}
-								else {
+								else 
+								{
 								   x0 = m_region.x;
 								   y0 = m_region.y;
 								   x1 = m_region.w + x0;
@@ -2096,10 +2240,19 @@ void __fastcall CNanoVNA1Comms::processRxBlock()
 								   data = (uint16_t*)&m_rx_block.bin_data[8];
 								   step = 0;
 								}
-								for (int16_t y = y0; y < y1; y++) {
+
+
+								for (int16_t y = y0; y < y1; y++) 
+								{
 									uint16_t *dst = (uint16_t *)m_capture_bm->ScanLine[y] + x0;
-									for (int16_t x = x0; x < x1; x++, data+=step){
-										*dst++ = (*data<<8)|(*data>>8);
+
+									for (int16_t x = x0; x < x1; x++, data+=step)
+									{
+										//MODIFY This vendor handles data differently
+										if( data_unit.m_vna_data.ventor == VENTOR_SYSJOINT)
+											*dst++ = *data;
+										else
+											*dst++ = (*data<<8)|(*data>>8);
 									}
 								}
 
@@ -2148,6 +2301,8 @@ bool __fastcall CNanoVNA1Comms::processRxLine()
 		//Form1->pushCommMessage("rx: " + m_rx_string);
 
 		m_rx_string = m_rx_string.SubString(pos + 3, m_rx_string.Length());
+
+		// Form1->pushCommMessage("rx: " + m_rx_string.Trim());
 
 		if (!m_tx_command.IsEmpty())
 		{
@@ -2542,7 +2697,9 @@ int __fastcall CNanoVNA1Comms::processRx(t_serial_buffer &serial_buffer)
 								m_rx_block.bin_data.resize(8 + 2);												// make room for the following data
 						}
 					}
-				} else {
+				} 
+				else 
+				{
 					int available_bytes = serial_buffer.buffer_wr - k;
 					int available_space = (int)m_rx_block.bin_data.size() - (int)m_rx_block.bin_data_index;
 					if (available_bytes > available_space)
@@ -2587,6 +2744,7 @@ int __fastcall CNanoVNA1Comms::processRx(t_serial_buffer &serial_buffer)
 					int available_space = (int)m_rx_block.bin_data.size() - (int)m_rx_block.bin_data_index;
 					if (available_bytes > available_space)
 						available_bytes  = available_space;
+
 					if (available_bytes > 0)
 					{	// copy the rx'ed data into the rx binary buffer
 						memcpy(&m_rx_block.bin_data[m_rx_block.bin_data_index], &serial_buffer.buffer[k], available_bytes);

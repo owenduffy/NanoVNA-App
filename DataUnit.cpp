@@ -178,12 +178,18 @@ double __fastcall CData::freq_step(const int mem)
 	{
 		return (m_points > 1) ? (double)(m_freq_stop_Hz - m_freq_start_Hz) / (m_points - 1) : 0;
 	}
-	else
-	{
-		const int size = freqArraySize(mem);
-		return (size > 1) ? (double)(m_point_mem[mem][size - 1].Hz - m_point_mem[mem][0].Hz) / (size - 1) : 0;
-	}
-}
+
+	else
+
+	{
+
+		const int size = freqArraySize(mem);
+
+		return (size > 1) ? (double)(m_point_mem[mem][size - 1].Hz - m_point_mem[mem][0].Hz) / (size - 1) : 0;
+
+	}
+
+}
 
 double __fastcall CData::max_time(const double freq_step)
 {
@@ -371,6 +377,37 @@ void __fastcall CData::minMaxFreqHz(int64_t &min_Hz, int64_t &max_Hz)
 	{
 		max_Hz = MAX_TINYSA_FREQ_HZ;
 		min_Hz = MIN_TINYSA_FREQ_HZ;
+	}
+	
+	//MODIFY  Fixed parameter settings
+	if (m_vna_data.type == UNIT_TYPE_NANOVNA_FV2)
+	{
+		max_Hz = MAX_NANOVNA_FV2_HZ;
+		min_Hz = MIN_NANOVNA_FV2_HZ;
+	}
+
+	if (m_vna_data.type == UNIT_TYPE_NANOVNA_FV3)
+	{
+		max_Hz = MAX_NANOVNA_FV3_HZ;
+		min_Hz = MIN_NANOVNA_FV3_HZ;
+	}
+
+	if (m_vna_data.type == UNIT_TYPE_JNCRadio_VNA_3G)
+	{
+		max_Hz = MAX_JNCRadio_VNA_3G_HZ;
+		min_Hz = MIN_JNCRadio_VNA_3G_HZ;
+	}
+
+	if (m_vna_data.type == UNIT_TYPE_SV6301_A)
+	{
+		max_Hz = MAX_SV6301_A;
+		min_Hz = MIN_SV6301_A;
+	}
+
+	if (m_vna_data.type == UNIT_TYPE_SV4401_A)
+	{
+		max_Hz = MAX_SV4401_A;
+		min_Hz = MIN_SV4401_A;
 	}
 }
 

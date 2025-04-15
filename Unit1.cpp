@@ -1,4 +1,4 @@
-
+﻿
 // (c) OneOfEleven 2020
 //
 // This code can be used on terms of WTFPL Version 2 (http://www.wtfpl.net)
@@ -45,7 +45,6 @@
 #define POPUP_MENU_LINE_PADDING  5
 
 const int RBW_DEFAULT[]          = {10, 25, 33, 50, 100, 250, 333, 500, 1000, 2000, 3000, 4000, 5000, 7500, 10000, 20000, 25000, 50000};
-
 const int NUM_POINTS_DEFAULT[]   = {51, 101, 201, 401, 801, 1024, 1601, 3201, 4501, 6401, 12801, 25601};
 const int NUM_POINTS_V1[]        = {51, 101, 201, 401, 801, 1601, 3201, 6401, 12801, 25601};
 //const int NUM_POINTS_V2[]      = {11, 21, 51, 101, 201, 401, 801, 1024, 1601, 3201, 6401, 12801, 25601};
@@ -54,6 +53,9 @@ const int NUM_POINTS_V2PLUS4[]   = {11, 21, 51, 101, 201, 401, 801, 1601, 3201, 
 const int NUM_POINTS_JANVNA_V2[] = {11, 21, 51, 101, 201, 401, 801, 1601, 3201, 4501};
 const int NUM_POINTS_TINYSA[]    = {51, 101, 145, 290, 500, 750, 1000, 2000, 5000};
 
+const int NUM_POINTS_FV[]        = {11, 21, 51, 101, 151 , 201 , 251 ,301};//MODIFY
+const int NUM_POINTS_FV3[]       = {101, 201, 301 , 401 , 501 , 601 , 701 , 801};//MODIFY
+const int NUM_POINTS_SV_A[]  	 = {101, 201, 301, 401 , 501,601,701 , 801 ,901,1001};//MODIFY
 // ************************************************************************
 
 const GUID GUID_BUS1394_CLASS                       = {0x6BDD1FC1, 0x810F, 0x11d0, {0xBE, 0xC7, 0x08, 0x00, 0x2B, 0xE2, 0x09, 0x2F}};
@@ -3527,15 +3529,15 @@ void __fastcall TForm1::WMComDeviceChanged(TMessage &msg)
 		std::vector <T_SerialPortInfo> serial_port_list;
 		m_comms.serial.GetSerialPortList(serial_port_list);
 
-		if (nanovna1_comms.mode != MODE_NONE || nanovna2_comms.mode != MODE_NONE)
+		if (nanovna1_comms.mode != MODE_NONE || nanovna2_comms.mode != MODE_NONE) //�޸�
 		{
-			// find out if the connected serial port is still in the list
-			String s = m_comms.serial.deviceName.LowerCase();
+        			// find out if the connected serial port is still in the list
+			String sp = m_comms.serial.deviceName.LowerCase();
 			int index = -1;
 			for (unsigned int i = 0; i < serial_port_list.size(); i++)
 			{
 				String pn = String(serial_port_list[i].name).LowerCase();
-				if (s == pn)
+				if (sp == pn)
 				{
 					index = i;
 					break;
@@ -3548,6 +3550,7 @@ void __fastcall TForm1::WMComDeviceChanged(TMessage &msg)
 		}
 	}
 }
+
 
 void __fastcall TForm1::WMUpdateEDelay(TMessage &msg)
 {
@@ -3566,14 +3569,17 @@ void __fastcall TForm1::WMUpdatePointBandwidth(TMessage &msg)
 {
 	const int point_bandwidth = (int)msg.WParam;
 
+	Form1->pushCommMessage("WMUpdatePointBandwidth");
+
 	if (point_bandwidth > 0)
 	{
 		String s;
 		s.printf(L"%d", point_bandwidth);
 		if (PointBandwidthHzComboBox->Text != s)
 			PointBandwidthHzComboBox->Text = s;
-		common.setWarning(PointBandwidthHzComboBox, "");
+		common.setWarning(PointBandwidthHzComboBox, " ");
 	}
+
 
 	StatusBar2->Panels->Items[4]->Text = "BW " + common.freqToStr1(point_bandwidth, true, true, 3, false);
 }
@@ -4098,8 +4104,7 @@ void __fastcall TForm1::addNewRxData(std::vector <t_data_point> &new_points)
 			data_unit.m_point[i].hist[h_index] = new_points[i];
 		}
 	}
-	else
-	if (!data_unit.m_point_incoming.empty())
+	else if (!data_unit.m_point_incoming.empty())
 	{
 		const unsigned int size = data_unit.m_point_incoming.size();
 
@@ -4113,7 +4118,7 @@ void __fastcall TForm1::addNewRxData(std::vector <t_data_point> &new_points)
 			data_unit.m_point[i].Hz            = data_unit.m_point_incoming[i].Hz;
 			data_unit.m_point[i].hist[h_index] = data_unit.m_point_incoming[i];
 		}
-	}
+	} 
 	else
 	{
 		unsigned int m_start_bin = 0;
@@ -4146,6 +4151,7 @@ void __fastcall TForm1::addNewRxData(std::vector <t_data_point> &new_points)
 		const double secs = m_comms.points_speed_timer.secs(true);
 		if (secs > 0)
 		{
+
 			const int points = (!data_unit.m_point_incoming.empty()) ? data_unit.m_point_incoming.size() : m_freq_data_list.size() * segments;
 			const float points_per_sec = (float)points / secs;
 
@@ -4259,6 +4265,7 @@ void __fastcall TForm1::addNewRxData(std::vector <t_data_point> &new_points)
 		if ((nanovna1_comms.mode == MODE_SINGLE_SCAN || nanovna1_comms.mode == MODE_SCAN) &&
 			 (!nanovna1_comms.m_pause_comms || (data_unit.m_segment > 0 && data_unit.m_segment < segments)))
 		{
+			
 			requestScan(); 	// request next segment
 		}
 		else	// finished scan
@@ -4428,10 +4435,13 @@ bool __fastcall TForm1::autoRefresh(bool enable)
 {
 	if (!connected() /*	|| m_comms.rx_block.type != SERIAL_STATE_IDLE */)
 		return false;
-	if (enable) {
+	if (enable) 
+	{
 		pauseComms(true);
 		addSerialTxCommand("refresh on");
-	} else {
+	} 
+	else 
+	{
 		addSerialTxCommand("refresh off");
 	}
 	Sleep(30);
@@ -4821,7 +4831,6 @@ void __fastcall TForm1::processSerial()
 		// send any queued tx commands to the unit
 //		if (connected())
 //			nanovna2_comms.processTxCommands();
-
 	}
 	else
 	{	// V1
@@ -5079,7 +5088,9 @@ void __fastcall TForm1::scan()
 	else
 	{	// V1
 		if (nanovna1_comms.mode != MODE_IDLE)
+		{
 			return;
+		}
 	}
 
 	CWModeSpeedButton->Down = false;
@@ -5141,24 +5152,31 @@ void __fastcall TForm1::scan()
 	if (StartMHzEdit->Visible)
 		if (!processStartMHzEdit(true, true))
 			return;
+
 	if (StopMHzEdit->Visible)
 		if (!processStopMHzEdit(true, true))
 			return;
+
 	if (CenterMHzEdit->Visible)
 		if (!processCenterMHzEdit(true, true))
 			return;
+
 	if (SpanMHzEdit->Visible)
 		if (!processSpanMHzEdit(true, true))
 			return;
+
 	if (CWMHzEdit->Visible)
 		if (!processCWMHzEdit(true, true))
 			return;
+
 	if (PointBandwidthHzComboBox->Visible)
 		if (!processPointBandwidthHzComboBox())
 			return;
+
 	if (NumberOfPointsComboBox->Visible)
 		if (!processNumberOfPointsComboBox())
 			return;
+
 
 	//	NumberOfPointsComboBox->Enabled = false;
 
@@ -5219,7 +5237,10 @@ void __fastcall TForm1::scan()
 
 		// pause the NanoVNA's own scan
 		if (data_unit.m_vna_data.cmd_pause)
+		{
 			addSerialTxCommand("pause");
+		}
+			
 
 		if (data_unit.m_vna_data.cmd_integrator)
 		{
@@ -5257,6 +5278,7 @@ bool __fastcall TForm1::connected()
 			#else
 				try
 				{
+					// if (m_comms.tcpip)
 					if (m_comms.tcpip)
 						conn = m_comms.tcpip->Connected();
 				}
@@ -5627,6 +5649,7 @@ void __fastcall TForm1::connect()
 	String device_name = DeviceComboBox->Text.Trim();
 
 	int port_index = DeviceComboBox->ItemIndex;
+
 	if (port_index >= 0)
 			port_index = (int)DeviceComboBox->Items->Objects[port_index];
 
@@ -5744,8 +5767,7 @@ void __fastcall TForm1::connect()
 		TCPIPAddressEdit->Enabled = false;
 		TCPIPPortEdit->Enabled    = false;
 	}
-	else
-	if (port_index >= 100)
+	else if (port_index >= 100)
 	{	// libusb connection
 
 		int res;
@@ -5878,7 +5900,7 @@ void __fastcall TForm1::connect()
 		uint8_t buffer[1024];
 		const DWORD tick2 = GetTickCount();
 		do Application->ProcessMessages();
-		while ((GetTickCount() - 500) < tick2 && m_comms.serial.RxBytes(&buffer[0], sizeof(buffer)) > 0);
+		while ( (GetTickCount() - 500) < tick2  &&  m_comms.serial.RxBytes(&buffer[0], sizeof(buffer)) > 0);
 	}
 
 	#ifdef TCPIPH
@@ -5902,8 +5924,7 @@ void __fastcall TForm1::connect()
 	if (data_unit.m_vna_data.type == UNIT_TYPE_JANVNA_V2)
 	{
 	}
-	else
-	if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2)
+	else if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2)
 	{	// V2
 		// we need some information from the unit
 		nanovna2_comms.reset(true);
@@ -7246,7 +7267,8 @@ void __fastcall TForm1::updatePointBandwidthComboBox(const bool create)
 	}
 	else
 	{
-		if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2) {
+		if (data_unit.m_vna_data.type == UNIT_TYPE_NANOVNA_V2) 
+		{
 			int avg;
 			avg = 1;cb->AddItem(IntToStr(avg), (TObject *)avg);
 			avg = 2;cb->AddItem(IntToStr(avg), (TObject *)avg); 
@@ -7259,7 +7281,8 @@ void __fastcall TForm1::updatePointBandwidthComboBox(const bool create)
 			cb->ItemIndex = 0;
 			cb->Text = data_unit.m_bandwidth_Hz;
 		}
-		else {
+		else 
+		{
 			int Hz = data_unit.m_vna_data.max_bandwidth_Hz;
 			if (Hz > 25000)
 			{
@@ -7322,15 +7345,30 @@ void __fastcall TForm1::updatePointBandwidthComboBox(const bool create)
 					cb->AddItem("10",   (TObject *)10);
 			}
 		}
+
+
+		
 		if (!s.IsEmpty())
 		{
 			const int i = cb->Items->IndexOf(s);
 			if (i >= 0)
 				cb->ItemIndex = i;	// select the old value
+
+			//MODIFY Make sure no surprises
+			else
+			{
+				cb->ItemIndex = 1;
+			}
 		}
 		else
-			cb->ItemIndex = 0;
+		{
+			cb->ItemIndex = 1;
+		}
 	}
+
+	//
+	String BW = cb->Text;
+	Form1->pushCommMessage("bandwidth setting---" + BW);
 
 	cb->Items->EndUpdate();
 	cb->OnChange = ne;
@@ -7356,99 +7394,84 @@ void __fastcall TForm1::updateNumberOfPointsComboBox(const bool process)
 	cb->Items->BeginUpdate();
 	cb->Clear();
 
+	const int *NUMPOINT = NULL;
+	int LENGTH = 0;
+
+	// MODIFY Simplify the original code
 	switch (data_unit.m_vna_data.type)
 	{
 		case UNIT_TYPE_NANOVNA_H:
 		case UNIT_TYPE_NANOVNA_H4:
 		case UNIT_TYPE_NANOVNA_H7:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V1); i++)
-				{
-
-					const int num = NUM_POINTS_V1[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_V1;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_V1);
 			}
-
 			break;
 
 		case UNIT_TYPE_NANOVNA_V2:
 			if (data_unit.m_vna_data.hardware_revision != REG_V2_HARDWARE_REVISION_ACK_2_4)
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V2); i++)
-				{
-
-					const int num = NUM_POINTS_V2[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_V2;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_V2);
 			}
-
 			else
-
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V2PLUS4); i++)
-				{
-
-					const int num = NUM_POINTS_V2PLUS4[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_V2PLUS4;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_V2PLUS4);
 			}
-
 			break;
 
 		case UNIT_TYPE_JANVNA_V2:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_JANVNA_V2); i++)
-				{
-
-					const int num = NUM_POINTS_JANVNA_V2[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_JANVNA_V2;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_JANVNA_V2);
 			}
-
 			break;
-
 
 		case UNIT_TYPE_TINYSA:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_TINYSA); i++)
-				{
-					const int num = NUM_POINTS_TINYSA[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_TINYSA;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_TINYSA);
 			}
-
+			break;
+		//MODIFY
+		case UNIT_TYPE_NANOVNA_FV2:
+			{
+				NUMPOINT = NUM_POINTS_FV;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_FV);
+			}
+			break;
+		//MODIFY
+		case UNIT_TYPE_NANOVNA_FV3:
+			{
+				NUMPOINT = NUM_POINTS_FV3;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_FV3);
+			}
+			break;
+		//MODIFY
+		case UNIT_TYPE_SV6301_A:
+		case UNIT_TYPE_SV4401_A:
+		case UNIT_TYPE_JNCRadio_VNA_3G:
+			{
+				NUMPOINT = NUM_POINTS_SV_A;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_SV_A);
+			}
 			break;
 
 		default:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_DEFAULT); i++)
-				{
-
-					const int num = NUM_POINTS_DEFAULT[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_DEFAULT;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_DEFAULT);
 			}
 
 			break;
+	}
+
+	for (unsigned int i = 0; i < LENGTH; i++)
+	{
+		const int num = NUMPOINT[i];
+		cb->AddItem(IntToStr(num), (TObject *)num);
 	}
 
 	int item_index = 0;
@@ -7786,6 +7809,10 @@ bool __fastcall TForm1::processStartMHzEdit(const bool update_other_edits, const
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+
 			if (scanning())
 				stop();
 
@@ -7841,6 +7868,9 @@ bool __fastcall TForm1::processStopMHzEdit(const bool update_other_edits, const 
 	int64_t min_Hz;
 	data_unit.minMaxFreqHz(min_Hz, max_Hz);
 
+	String a =  IntToStr(max_Hz);
+	String b =  IntToStr(min_Hz);
+
 	if (!common.strToMHz(StopMHzEdit->Text, d))
 	{
 		common.setWarning(StopMHzEdit, "Invalid stop frequency");
@@ -7859,8 +7889,13 @@ bool __fastcall TForm1::processStopMHzEdit(const bool update_other_edits, const 
 	{
 		if (changed)
 		{
-			if (scanning())
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+
+			if (scanning() )
 				stop();
+
 
 			data_unit.m_freq_stop_Hz   = Hz;
 			data_unit.m_freq_span_Hz   = data_unit.m_freq_stop_Hz  - data_unit.m_freq_start_Hz;
@@ -7932,6 +7967,10 @@ bool __fastcall TForm1::processCenterMHzEdit(const bool update_other_edits, cons
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+
 			if (scanning())
 				stop();
 
@@ -8005,8 +8044,12 @@ bool __fastcall TForm1::processSpanMHzEdit(const bool update_other_edits, const 
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+
 			if (scanning())
-				stop();
+			stop();
 
 			data_unit.m_freq_span_Hz  = Hz;
 			data_unit.m_freq_start_Hz = data_unit.m_freq_center_Hz - (data_unit.m_freq_span_Hz / 2);
@@ -8171,7 +8214,11 @@ bool __fastcall TForm1::processNumberOfPointsComboBox()
 		return false;
 	}
 
-	common.setWarning(NumberOfPointsComboBox, "");
+	// common.setWarning(NumberOfPointsComboBox, "");
+
+	
+	Form1->pushCommMessage("max point" + IntToStr(max_points_per_segment));
+
 
 	// compute the number of segments we need to do
 	if (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA)
@@ -8496,14 +8543,31 @@ bool __fastcall TForm1::processNumberOfPointsComboBox()
 		return true;  // no change
 
 	settings.numOfPoints = points;
+		
+	//MODIFY Allows parameters to be modified during scanning
+	// if (connected() && nanovna1_comms.mode == MODE_SCAN && data_unit.m_vna_data.ventor == VENTOR_SYSJOINT)
+	// {
+	// 	resetFreqArray();//reste axisy
+	// }
+	// else
+	// {
+	// 	stop();
+	// }
 
 	if (connected())
+	{
 		stop();
+	}
+		
+
 
 	data_unit.m_points = points;
 	data_unit.m_points_per_segment = points_per_segment;
 	data_unit.m_segments = segments;
 	data_unit.m_segment = 0;
+
+	String point = common.valueToStr(data_unit.m_points_per_segment,false,false);
+	Form1->pushCommMessage("Reset_point:" + NumberOfPointsComboBox->Text + "pack point:"+ point);
 
 	return true;
 }
@@ -9716,7 +9780,7 @@ void __fastcall TForm1::ScanOnceSpeedButtonClick(TObject *Sender)
 
 	if (!ScanOnceSpeedButton->Down)
 	{
-      stop();
+        stop();
 		return;
 	}
 

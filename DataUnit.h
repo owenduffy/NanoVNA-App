@@ -1,4 +1,4 @@
-
+﻿
 // (c) OneOfEleven 2020
 //
 // This code can be used on terms of WTFPL Version 2 (http://www.wtfpl.net)
@@ -46,7 +46,7 @@ class CData
 			bool cmd_bandwidth;
 			bool cmd_vbat;
 			bool cmd_vbat_offset;
-         bool cmd_marker;
+         	bool cmd_marker;
 			bool cmd_time;
 			bool cmd_threshold;
 			bool cmd_pause;
@@ -61,6 +61,7 @@ class CData
 			bool cmd_mode;
 			bool cmd_edelay;
 
+			t_ventor ventor;	//MODIFY
 			t_unit_type type;
 			int lcd_width;
 			int lcd_height;

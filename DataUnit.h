@@ -61,6 +61,7 @@ class CData
 			bool cmd_mode;
 			bool cmd_edelay;
 
+			t_ventor ventor;	//MODIFY
 			t_unit_type type;
 			int lcd_width;
 			int lcd_height;

@@ -78,6 +78,8 @@ class CNanoVNA1Comms
 		void __fastcall extractPower(String s);
 
 		int __fastcall processRx(t_serial_buffer &serial_buffer);
+		
+		void __fastcall OUTPUT_STATE(String s);//MODIFY  Print supported commands
 
 		__property t_mode mode = {read = m_mode, write = setMode};
 };

@@ -54,6 +54,9 @@ const int NUM_POINTS_V2PLUS4[]   = {11, 21, 51, 101, 201, 401, 801, 1601, 3201, 
 const int NUM_POINTS_JANVNA_V2[] = {11, 21, 51, 101, 201, 401, 801, 1601, 3201, 4501};
 const int NUM_POINTS_TINYSA[]    = {51, 101, 145, 290, 500, 750, 1000, 2000, 5000};
 
+const int NUM_POINTS_FV[]        = {11, 21, 51, 101, 151 , 201 , 251 ,301};//MODIFY
+const int NUM_POINTS_FV3[]       = {101, 201, 301 , 401 , 501 , 601 , 701 , 801};//MODIFY
+const int NUM_POINTS_SV_A[]  	 = {101, 201, 301, 401 , 501,601,701 , 801 ,901,1001};//MODIFY
 // ************************************************************************
 
 const GUID GUID_BUS1394_CLASS                       = {0x6BDD1FC1, 0x810F, 0x11d0, {0xBE, 0xC7, 0x08, 0x00, 0x2B, 0xE2, 0x09, 0x2F}};
@@ -533,7 +536,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		String windows_ver = common.windowsVer;
 		String local_name  = common.localName;
 
-		common.title = Application->Title + " by OneOfEleven et al " + s + " (+OD18) ";
+		common.title = Application->Title + " by SYSJOINT et al " + s + " (+OD18) ";
 
 		this->Caption = common.title;
 		StatusBar2->Panels->Items[0]->Text = windows_ver + " " + local_name + " '" + String(common.decimalPoint()) + "'";
@@ -7327,6 +7330,10 @@ void __fastcall TForm1::updatePointBandwidthComboBox(const bool create)
 			const int i = cb->Items->IndexOf(s);
 			if (i >= 0)
 				cb->ItemIndex = i;	// select the old value
+			else
+			{
+				cb->ItemIndex = 1;//MODIFY Make sure no surprises
+			}
 		}
 		else
 			cb->ItemIndex = 0;
@@ -7355,102 +7362,86 @@ void __fastcall TForm1::updateNumberOfPointsComboBox(const bool process)
 
 	cb->Items->BeginUpdate();
 	cb->Clear();
+	
+	const int *NUMPOINT = NULL;
+	int LENGTH = 0;
 
+	// MODIFY Simplify the original code
 	switch (data_unit.m_vna_data.type)
 	{
 		case UNIT_TYPE_NANOVNA_H:
 		case UNIT_TYPE_NANOVNA_H4:
 		case UNIT_TYPE_NANOVNA_H7:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V1); i++)
-				{
-
-					const int num = NUM_POINTS_V1[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_V1;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_V1);
 			}
-
 			break;
 
 		case UNIT_TYPE_NANOVNA_V2:
 			if (data_unit.m_vna_data.hardware_revision != REG_V2_HARDWARE_REVISION_ACK_2_4)
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V2); i++)
-				{
-
-					const int num = NUM_POINTS_V2[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_V2;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_V2);
 			}
-
 			else
-
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_V2PLUS4); i++)
-				{
-
-					const int num = NUM_POINTS_V2PLUS4[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_V2PLUS4;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_V2PLUS4);
 			}
-
 			break;
 
 		case UNIT_TYPE_JANVNA_V2:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_JANVNA_V2); i++)
-				{
-
-					const int num = NUM_POINTS_JANVNA_V2[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_JANVNA_V2;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_JANVNA_V2);
 			}
-
 			break;
-
 
 		case UNIT_TYPE_TINYSA:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_TINYSA); i++)
-				{
-					const int num = NUM_POINTS_TINYSA[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_TINYSA;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_TINYSA);
 			}
-
+			break;
+		//MODIFY
+		case UNIT_TYPE_NANOVNA_FV2:
+			{
+				NUMPOINT = NUM_POINTS_FV;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_FV);
+			}
+			break;
+		//MODIFY
+		case UNIT_TYPE_NANOVNA_FV3:
+			{
+				NUMPOINT = NUM_POINTS_FV3;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_FV3);
+			}
+			break;
+		//MODIFY
+		case UNIT_TYPE_SV6301_A:
+		case UNIT_TYPE_SV4401_A:
+		case UNIT_TYPE_JNCRadio_VNA_3G:
+			{
+				NUMPOINT = NUM_POINTS_SV_A;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_SV_A);
+			}
 			break;
 
 		default:
 			{
-				for (unsigned int i = 0; i < ARRAY_SIZE(NUM_POINTS_DEFAULT); i++)
-				{
-
-					const int num = NUM_POINTS_DEFAULT[i];
-
-					cb->AddItem(IntToStr(num), (TObject *)num);
-
-				}
-
+				NUMPOINT = NUM_POINTS_DEFAULT;
+				LENGTH = ARRAY_SIZE(NUM_POINTS_DEFAULT);
 			}
 
 			break;
 	}
-
+	// MODIFY
+	for (unsigned int i = 0; i < LENGTH; i++)
+	{
+		const int num = NUMPOINT[i];
+		cb->AddItem(IntToStr(num), (TObject *)num);
+	}
 	int item_index = 0;
 	// select a default value
 	if (data_unit.m_vna_data.type != UNIT_TYPE_TINYSA)
@@ -7786,6 +7777,9 @@ bool __fastcall TForm1::processStartMHzEdit(const bool update_other_edits, const
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
 			if (scanning())
 				stop();
 
@@ -7859,6 +7853,10 @@ bool __fastcall TForm1::processStopMHzEdit(const bool update_other_edits, const 
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+			
 			if (scanning())
 				stop();
 
@@ -7932,6 +7930,10 @@ bool __fastcall TForm1::processCenterMHzEdit(const bool update_other_edits, cons
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+			
 			if (scanning())
 				stop();
 
@@ -8005,6 +8007,10 @@ bool __fastcall TForm1::processSpanMHzEdit(const bool update_other_edits, const 
 	{
 		if (changed)
 		{
+			//MODIFY Allows parameters to be modified during scanning
+			// if (scanning() && data_unit.m_vna_data.ventor != VENTOR_SYSJOINT)
+			// 	stop();
+			
 			if (scanning())
 				stop();
 
@@ -8496,6 +8502,16 @@ bool __fastcall TForm1::processNumberOfPointsComboBox()
 		return true;  // no change
 
 	settings.numOfPoints = points;
+
+	//MODIFY Allows parameters to be modified during scanning
+	// if (connected() && nanovna1_comms.mode == MODE_SCAN && data_unit.m_vna_data.ventor == VENTOR_SYSJOINT)
+	// {
+	// 	resetFreqArray();//reste axisy
+	// }
+	// else
+	// {
+	// 	stop();
+	// }
 
 	if (connected())
 		stop();

@@ -105,6 +105,22 @@
 #define MAX_TINYSA_FREQ_HZ             950000000LL
 #define MIN_TINYSA_FREQ_HZ             1000LL
 
+//MODIFY
+#define MAX_NANOVNA_FV2_HZ             4400000000LL
+#define MIN_NANOVNA_FV2_HZ             10000LL
+
+#define MAX_NANOVNA_FV3_HZ             6300000000LL
+#define MIN_NANOVNA_FV3_HZ             1000000LL
+
+#define MAX_JNCRadio_VNA_3G_HZ         4400000000LL
+#define MIN_JNCRadio_VNA_3G_HZ         50000LL
+
+#define MAX_SV6301_A         		   6300000000LL
+#define MIN_SV6301_A         		   1000000LL
+
+#define MAX_SV4401_A         		   4400000000LL
+#define MIN_SV4401_A         		   50000LL
+
 #define MAX_FREQ_STEPS                 10000
 
 #define DEFAULT_JANVNAV2_MAX_POINTS    4501
@@ -176,7 +192,7 @@
 // serial link timeout values
 
 #define DEFAULT_POLL_V1_MS					6000
-#define DEFAULT_STATE_TIME_OUT_V1_MS	3000
+#define DEFAULT_STATE_TIME_OUT_V1_MS	10000	//MODIFY 3000 Some device is too slow to respond
 #define DEFAULT_LINK_TIME_OUT_V1_MS		15000
 
 #define DEFAULT_POLL_V2_MS					6000
@@ -326,7 +342,12 @@ enum t_unit_type : int
 	UNIT_TYPE_NANOVNA_H7,
 	UNIT_TYPE_NANOVNA_V2,
 	UNIT_TYPE_JANVNA_V2,
-	UNIT_TYPE_TINYSA
+	UNIT_TYPE_TINYSA,
+	UNIT_TYPE_NANOVNA_FV2,
+	UNIT_TYPE_NANOVNA_FV3,
+	UNIT_TYPE_JNCRadio_VNA_3G,
+	UNIT_TYPE_SV6301_A,
+	UNIT_TYPE_SV4401_A
 };
 
 // serial connection mode/state
@@ -393,6 +414,13 @@ enum t_serial_state : int
 	SERIAL_STATE_SD_LIST,
 	SERIAL_STATE_SD_READFILE,
 	SERIAL_STATE_MODE
+};
+
+//MODIFY  Set Manufacturer for Special handle
+enum t_ventor : int
+{
+	VENTOR_DEFAULT = 0,
+	VENTOR_SYSJOINT
 };
 
 // *****************************************************************
